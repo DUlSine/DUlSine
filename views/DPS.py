@@ -6,7 +6,7 @@ def index(request, delegation):
 def details(request, delegation, id):
     return HttpResponse(status=200)
 
-def nouveau(request, delegation, id, hash=None):
+def nouveau(request, delegation, hash=None):
     return HttpResponse(status=200)
 
 def calendrier(request, delegation, avant=None, apres=None):
