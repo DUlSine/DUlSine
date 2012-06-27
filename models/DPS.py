@@ -2,6 +2,7 @@ from django.db import models
 
 from organisateur import Contact
 from organisateur import Organisateur
+from intervenant import Intervenant
 
 CIRCUITS = (
         ('O', 'ouvert'),
@@ -43,3 +44,54 @@ class DPS(models.Model):
     effectifs_public    = models.IntegerField()
     age_public          = models.CharField(max_length=50)
     besoins_specifiques = models.CharField(max_length=200)
+
+    medecin = models.ForeignKey(Contact, related_name='medecin', null=True)
+    infirmier = models.BooleanField()
+    ambulance_prive = models.BooleanField()
+    secours_public = models.CharField(max_length=200, null=True)
+    secours_autre = models.CharField(max_length=200, null=True)
+
+    centre_sdis = models.CharField(max_length=200)
+    hopital = models.CharField(max_length=200)
+
+    repas = models.BooleanField()
+
+    P2 = models.IntegerField()
+    E1 = models.IntegerField()
+    E2 = models.IntegerField()
+    IS = models.IntegerField()
+
+    prix = models.IntegerField()
+    remarques = models.CharField(max_length=500)
+
+
+class PAPS(models.Model):
+    class Meta:
+        app_label = 'DUlSine'
+
+    DPS = models.ForeignKey(DPS)
+    PSE2 = models.ForeignKey(Intervenant, related_name='PAPS_PSE2')
+    PSE1 = models.ForeignKey(Intervenant, related_name='PAPS_PSE1')
+
+
+class Equipe(models.Model):
+    class Meta:
+        app_label = 'DUlSine'
+
+    DPS = models.ForeignKey(DPS)
+    CI     = models.ForeignKey(Intervenant, related_name='Equipe_CI')
+    PSE2_1 = models.ForeignKey(Intervenant, related_name='Equipe_PSE2_1')
+    PSE2_2 = models.ForeignKey(Intervenant, related_name='Equipe_PSE2_2')
+    PSE1   = models.ForeignKey(Intervenant, related_name='Equipe_PSE1')
+    PSC1   = models.ForeignKey(Intervenant, related_name='Equipe_PSC1', null=True)
+
+
+class Binome(models.Model):
+    class Meta:
+        app_label = 'DUlSine'
+
+    DPS = models.ForeignKey(DPS)
+    Equipe = models.ForeignKey(Equipe)
+    PSE2 = models.ForeignKey(Intervenant, related_name='Binome_PSE2')
+    PSE1 = models.ForeignKey(Intervenant, related_name='Binome_PSE1')
+
