@@ -9,8 +9,8 @@ urlpatterns = patterns('DUlSine.views.general',
 
 urlpatterns += patterns('DUlSine.views.DPS',
     url(r'^(?P<delegation>\d+)/DPS/$', 'index', name='dps.index'),
-    url(r'^(?P<delegation>\d+)/DPS/(?P<id>\d+)/$', 'details', name='dps.details'),
-    url(r'^(?P<delegation>\d+)/DPS/nouveau(?:/(?P<hash>\w+))?/$', 'nouveau', name='dps.nouveau'),
+    url(r'^(?P<delegation>\d+)/DPS/(?P<dps_id>\d+)/$', 'details', name='dps.details'),
+    url(r'^(?P<delegation>\d+)/DPS/nouveau(?:/(?P<dps_hash>\w+))?/$', 'nouveau', name='dps.nouveau'),
 
     # Calendrier au format CalDav
     # Deux arguments optionnels peuvent etre passés via l'url
@@ -21,6 +21,6 @@ urlpatterns += patterns('DUlSine.views.DPS',
 
 urlpatterns += patterns('DUlSine.views.benevole',
     url(r'^(?P<delegation>\d+)/benevole/$', 'index', name='benevole.index'),
-    url(r'^benevole/(?P<id>\d+)/$', 'details', name='benevole.details'),
-    url(r'^benevole/(?P<id>\d+)/calendrier(?:/(?P<type>\w+))?(?:/(?P<avant>\d+)(?:/(?P<apres>\d+))?)?/$', 'calendrier', name='benevole.calendrier'),
+    url(r'^benevole/(?P<benevole_id>\d+)/$', 'details', name='benevole.details'),
+    url(r'^benevole/(?P<benevole_id>\d+)/calendrier(?:/(?P<event_type>\w+))?(?:/(?P<avant>\d+)(?:/(?P<apres>\d+))?)?/$', 'calendrier', name='benevole.calendrier'),
 )
