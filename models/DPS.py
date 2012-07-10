@@ -1,7 +1,7 @@
 from django.db import models
 
-from organisateur import Contact
-from organisateur import Organisateur
+from delegation import Delegation
+from organisateur import Contact, Organisateur
 from intervenant import Intervenant
 
 CIRCUITS = (
@@ -21,16 +21,28 @@ class DPS(models.Model):
     class Meta:
         app_label = 'DUlSine'
 
+    delegation = models.ForeignKey(Delegation)
     nom = models.CharField(max_length=200)
     organisateur = models.ForeignKey(Organisateur)
-    lieu = models.CharField(max_length=400)
-    debut = models.DateTimeField()
-    fin = models.DateTimeField()
 
     objet = models.CharField(max_length=200)
     adresse = models.CharField(max_length=500)
     contact = models.ForeignKey(Contact)
     telephone = models.CharField(max_length=20)
+
+    prix = models.IntegerField()
+    remarques = models.CharField(max_length=500)
+
+
+class Dimenssionnement(models.Model):
+    class Meta:
+        app_label = 'DUlSine'
+
+    DPS = models.ForeignKey(DPS)
+
+    debut = models.DateTimeField()
+    fin = models.DateTimeField()
+    lieu = models.CharField(max_length=400)
 
     circuit = models.CharField(max_length=1, choices=CIRCUITS)
     superficie = models.IntegerField()
@@ -60,9 +72,6 @@ class DPS(models.Model):
     E1 = models.IntegerField()
     E2 = models.IntegerField()
     IS = models.IntegerField()
-
-    prix = models.IntegerField()
-    remarques = models.CharField(max_length=500)
 
 
 class PAPS(models.Model):
