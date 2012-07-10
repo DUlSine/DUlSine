@@ -1,3 +1,3 @@
-from DPS import DPS
-from organisateur import Contact
-from organisateur import Organisateur
+from delegation import *
+from DPS import *
+from organisateur import *
