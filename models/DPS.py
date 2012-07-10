@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+# vim: set ts=4
 from django.db import models
 
 from delegation import Delegation
