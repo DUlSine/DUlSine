@@ -75,6 +75,51 @@ class Dimenssionnement(models.Model):
     E2 = models.IntegerField()
     IS = models.IntegerField()
 
+    def RIS(self, public):
+        """
+         Calcul le RIS suivant les informations disponible
+          @param public: True si le DPS concerne le public, False pour les acteurs
+          @return le RIS
+        """
+        indice = self.P2 + self.E1 + self.E2
+        P = 0
+        if(public):
+            P = self.effectifs_public;
+        else:
+            P = self.effectifs_acteurs;
+
+        if(P > 100000):
+            P = 100000 + (P - 100000) / 2
+
+        return indice * P / 1000
+
+
+    def IS(self, public):
+        """
+         Calcul le nombre d'IS minimum sur le DPS
+          @params public: True si le DPS concerne le public, False pour les acteurs
+          @return le nombre minimum d'IS pour le DPS.
+        """
+        ris = self.RIS()
+        if(ris <= 0.25):
+            num_is = 0
+        elif(ris <= 1.125):
+            num_is = 2
+            # Un PAPS n'est pas suffisant pour les acteurs ou dans le cas où
+            # les secours public sont à plus de 30 minutes (E2 = 0.40)
+            if(public == False or self.E2 == 0.40):
+                num_is = 4
+        elif(ris <= 4):
+            num_is = 4
+        else:
+            num_is = math.floor(ris)
+            # Arrondis à l'entier pair supérieur
+            if(num_is % 2 == 1):
+                num_is += 1
+
+        return num_is
+
+
 
 class PAPS(models.Model):
     class Meta:
