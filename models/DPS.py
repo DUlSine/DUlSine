@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: set ts=4
+import math
+
 from django.db import models
 
 from delegation import Delegation
@@ -100,7 +102,7 @@ class Dimenssionnement(models.Model):
           @params public: True si le DPS concerne le public, False pour les acteurs
           @return le nombre minimum d'IS pour le DPS.
         """
-        ris = self.RIS()
+        ris = self.RIS(public)
         if(ris <= 0.25):
             num_is = 0
         elif(ris <= 1.125):
@@ -112,7 +114,7 @@ class Dimenssionnement(models.Model):
         elif(ris <= 4):
             num_is = 4
         else:
-            num_is = math.floor(ris)
+            num_is = math.ceil(ris)
             # Arrondis à l'entier pair supérieur
             if(num_is % 2 == 1):
                 num_is += 1
