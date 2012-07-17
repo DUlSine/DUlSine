@@ -25,17 +25,21 @@ class DPS(models.Model):
     class Meta:
         app_label = 'DUlSine'
 
+    # Déterminer la longeur du hash suivant l'algo choisi
+    hash_id = models.CharField(max_length = 100)
     delegation = models.ForeignKey(Delegation)
-    nom = models.CharField(max_length=200)
-    organisateur = models.ForeignKey(Organisateur)
 
-    objet = models.CharField(max_length=200)
-    adresse = models.CharField(max_length=500)
-    contact = models.ForeignKey(Contact)
-    telephone = models.CharField(max_length=20)
+    organisateur = models.ForeignKey(Organisateur)
+    intitule = models.CharField(max_length = 200)
+    lieu = models.CharField(max_length = 500)
+    objet = models.CharField(max_length = 200)
+
+    adress_rdv = models.CharField(max_length = 500)
+    contact_sur_place = models.ForeignKey(Contact)
+    telephone_contact = models.CharField(max_length = 20)
 
     prix = models.IntegerField()
-    remarques = models.CharField(max_length=500)
+    remarques = models.CharField(max_length = 500)
 
 
 class Dimenssionnement(models.Model):
