@@ -31,7 +31,6 @@ class DPS(models.Model):
 
     organisateur = models.ForeignKey(Organisateur)
     intitule = models.CharField(max_length = 200)
-    lieu = models.CharField(max_length = 500)
     objet = models.CharField(max_length = 200)
 
     adress_rdv = models.CharField(max_length = 500)
