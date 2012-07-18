@@ -8,3 +8,6 @@ class Delegation(models.Model):
 
     nom = models.CharField(max_length = 50)
     adresse = models.CharField(max_length = 500)
+
+    def __unicode__(self):
+        return self.nom

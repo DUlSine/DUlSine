@@ -17,6 +17,9 @@ class Contact(models.Model):
     civilite = models.CharField(max_length=4, choices=CIVILITES)
     fonction = models.CharField(max_length=200)
 
+    def __unicode__(self):
+        return self.civilite + " " + self.nom + " " + self.prenom
+
 
 
 class Organisateur(models.Model):
@@ -33,3 +36,6 @@ class Organisateur(models.Model):
     portable = models.CharField(max_length = 20, null=True, blank=True)
     fax = models.CharField(max_length = 20, null=True, blank=True)
     email = models.EmailField(max_length = 100)
+
+    def __unicode__(self):
+        return self.nom

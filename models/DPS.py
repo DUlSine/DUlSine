@@ -41,6 +41,11 @@ class DPS(models.Model):
     remarques = models.CharField(max_length = 500)
 
 
+    def __unicode__(self):
+        return self.intitule
+
+
+
 class Dimenssionnement(models.Model):
     class Meta:
         app_label = 'DUlSine'
