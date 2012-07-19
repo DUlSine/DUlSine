@@ -87,10 +87,13 @@ class Dimenssionnement(models.Model):
 
     repas = models.BooleanField()
 
-    P2 = models.IntegerField()
+    P2 = models.DecimalField(max_digits = 3, decimal_places = 2, choices = RISQUES)
     E1 = models.DecimalField(max_digits = 3, decimal_places = 2, choices = RISQUES)
     E2 = models.DecimalField(max_digits = 3, decimal_places = 2, choices = RISQUES)
-    IS = models.DecimalField(max_digits = 3, decimal_places = 2, choices = RISQUES)
+    IS = models.IntegerField(null = True, blank = True)
+
+    def __unicode__(self):
+        return str(self.debut) + ' - ' + str(self.fin)
 
     def calculRIS(self, public):
         """
