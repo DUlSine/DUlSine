@@ -1,0 +1,6 @@
+[
+    {"model": "DUlSine.delegation", "pk": 38, "fields": {"nom": "Isere", "adresse": "4 rue Kl\u00e9ber, 38000 Grenoble"}},
+    {"model": "DUlSine.delegation", "pk": 3802, "fields": {"nom": "Grenoble", "adresse": "4 rue Kl\u00e9ber, 38000 Grenoble"}},
+    {"model": "DUlSine.delegation", "pk": 3809, "fields": {"nom": "Drac Romanche", "adresse": ""}},
+    {"model": "DUlSine.delegation", "pk": 3810, "fields": {"nom": "Crolles Gresivaudant", "adresse": ""}}
+]
