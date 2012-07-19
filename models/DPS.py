@@ -142,7 +142,7 @@ class PAPS(models.Model):
     class Meta:
         app_label = 'DUlSine'
 
-    DPS = models.ForeignKey(DPS)
+    dimenssionnement = models.ForeignKey(Dimenssionnement)
     PSE2 = models.ForeignKey(Intervenant, related_name='PAPS_PSE2')
     PSE1 = models.ForeignKey(Intervenant, related_name='PAPS_PSE1')
 
@@ -151,19 +151,19 @@ class Equipe(models.Model):
     class Meta:
         app_label = 'DUlSine'
 
-    DPS = models.ForeignKey(DPS)
+    dimenssionnement = models.ForeignKey(Dimenssionnement)
     CI     = models.ForeignKey(Intervenant, related_name='Equipe_CI')
     PSE2_1 = models.ForeignKey(Intervenant, related_name='Equipe_PSE2_1')
     PSE2_2 = models.ForeignKey(Intervenant, related_name='Equipe_PSE2_2')
     PSE1   = models.ForeignKey(Intervenant, related_name='Equipe_PSE1')
-    PSC1   = models.ForeignKey(Intervenant, related_name='Equipe_PSC1', null=True)
+    PSC1   = models.ForeignKey(Intervenant, related_name='Equipe_PSC1', null=True, blank = True)
 
 
 class Binome(models.Model):
     class Meta:
         app_label = 'DUlSine'
 
-    DPS = models.ForeignKey(DPS)
+    dimenssionnement = models.ForeignKey(Dimenssionnement)
     Equipe = models.ForeignKey(Equipe)
     PSE2 = models.ForeignKey(Intervenant, related_name='Binome_PSE2')
     PSE1 = models.ForeignKey(Intervenant, related_name='Binome_PSE1')
