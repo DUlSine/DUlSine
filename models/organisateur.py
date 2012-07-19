@@ -32,9 +32,9 @@ class Organisateur(models.Model):
     contact = models.ForeignKey(Contact, related_name='contact')
     representant = models.ForeignKey(Contact, related_name='representant')
 
-    telephone = models.CharField(max_length = 20, null=True, blank=True)
-    portable = models.CharField(max_length = 20, null=True, blank=True)
-    fax = models.CharField(max_length = 20, null=True, blank=True)
+    telephone = models.CharField(max_length = 20, blank=True)
+    portable = models.CharField(max_length = 20, blank=True)
+    fax = models.CharField(max_length = 20, blank=True)
     email = models.EmailField(max_length = 100)
 
     def __unicode__(self):

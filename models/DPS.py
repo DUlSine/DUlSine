@@ -79,8 +79,8 @@ class Dimenssionnement(models.Model):
     medecin = models.ForeignKey(Contact, related_name='medecin', null=True, blank=True)
     infirmier = models.BooleanField()
     ambulance_prive = models.BooleanField()
-    secours_public = models.CharField(max_length=200, null=True, blank=True)
-    secours_autre = models.CharField(max_length=200, null=True, blank=True)
+    secours_public = models.CharField(max_length=200, blank=True)
+    secours_autre = models.CharField(max_length=200, blank=True)
 
     centre_sdis = models.CharField(max_length=200)
     hopital = models.CharField(max_length=200)
