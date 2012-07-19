@@ -38,7 +38,7 @@ class DPS(models.Model):
     contact_sur_place = models.ForeignKey(Contact)
     telephone_contact = models.CharField(max_length = 20)
 
-    prix = models.IntegerField(blank = True)
+    prix = models.IntegerField(null = True, blank = True)
     remarques = models.CharField(max_length = 500, blank = True)
 
 
@@ -76,7 +76,7 @@ class Dimenssionnement(models.Model):
     age_public          = models.CharField(max_length=50, blank = True)
     besoins_specifiques = models.CharField(max_length=200, blank = True)
 
-    medecin = models.ForeignKey(Contact, related_name='medecin', null=True, blank=True)
+    medecin = models.ForeignKey(Contact, related_name='medecin', null = True, blank = True)
     infirmier = models.BooleanField()
     ambulance_prive = models.BooleanField()
     secours_public = models.CharField(max_length=200, blank=True)
