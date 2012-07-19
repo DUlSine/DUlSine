@@ -85,7 +85,7 @@ class Dimenssionnement(models.Model):
     E2 = models.IntegerField()
     IS = models.IntegerField()
 
-    def RIS(self, public):
+    def calculRIS(self, public):
         """
          Calcul le RIS suivant les informations disponible
           @param public: True si le DPS concerne le public, False pour les acteurs
@@ -104,13 +104,13 @@ class Dimenssionnement(models.Model):
         return indice * P / 1000
 
 
-    def IS(self, public):
+    def calculIS(self, public):
         """
          Calcul le nombre d'IS minimum sur le DPS
           @params public: True si le DPS concerne le public, False pour les acteurs
           @return le nombre minimum d'IS pour le DPS.
         """
-        ris = self.RIS(public)
+        ris = self.calculRIS(public)
         if(ris <= 0.25):
             num_is = 0
         elif(ris <= 1.125):
