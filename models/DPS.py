@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # vim: set ts=4
+from decimal import Decimal
 import math
 
 from django.db import models
@@ -45,6 +46,12 @@ class DPS(models.Model):
         return self.intitule
 
 
+RISQUES = (
+    ( Decimal("0.25"), '0.25'),
+    ( Decimal("0.30"), '0.30'),
+    ( Decimal("0.35"), '0.35'),
+    ( Decimal("0.40"), '0.40')
+)
 
 class Dimenssionnement(models.Model):
     class Meta:
@@ -81,9 +88,9 @@ class Dimenssionnement(models.Model):
     repas = models.BooleanField()
 
     P2 = models.IntegerField()
-    E1 = models.IntegerField()
-    E2 = models.IntegerField()
-    IS = models.IntegerField()
+    E1 = models.DecimalField(max_digits = 3, decimal_places = 2, choices = RISQUES)
+    E2 = models.DecimalField(max_digits = 3, decimal_places = 2, choices = RISQUES)
+    IS = models.DecimalField(max_digits = 3, decimal_places = 2, choices = RISQUES)
 
     def calculRIS(self, public):
         """
