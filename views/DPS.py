@@ -8,7 +8,7 @@ def index(request, delegation):
 def details(request, delegation, dps_id):
     return HttpResponse(status=200)
 
-def nouveau(request, delegation, dps_hash=None, dimenssionnement=None):
+def nouveau(request, delegation, dps_hash=None, etape=None, dim_id=None):
     return HttpResponse(status=200)
 
 def calendrier(request, delegation, avant=None, apres=None):

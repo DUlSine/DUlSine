@@ -11,7 +11,8 @@ urlpatterns += patterns('DUlSine.views.DPS',
     url(r'^(?P<delegation>\d+)/DPS/$', 'index', name='dps.index'),
     url(r'^(?P<delegation>\d+)/DPS/(?P<dps_id>\d+)/$', 'details', name='dps.details'),
     url(r'^(?P<delegation>\d+)/DPS/nouveau/$', 'nouveau', name='dps.nouveau'),
-    url(r'^(?P<delegation>\d+)/DPS/nouveau/(?P<dps_hash>\w+)(?:/(?P<dimenssionnement>\d+))?/$', 'nouveau', name='dps.nouveau'),
+    url(r'^(?P<delegation>\d+)/DPS/nouveau/(?P<dps_hash>\w+)/(?P<etape>(organisateur|manifestation))/$', 'nouveau', name='dps.nouveau'),
+    url(r'^(?P<delegation>\d+)/DPS/nouveau/(?P<dps_hash>\w+)/(?P<etape>dimenssionnement)/(?P<dim_id>\d+)/$', 'nouveau', name='dps.nouveau'),
 
     # Calendrier au format CalDav
     # Deux arguments optionnels peuvent etre passés via l'url
