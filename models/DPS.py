@@ -2,6 +2,7 @@
 # vim: set ts=4
 from decimal import Decimal
 import math
+import os, binascii
 
 from django.db import models
 
@@ -22,12 +23,16 @@ TYPES_ACTEURS = (
 )
 
 
+def random_hash():
+    """ Retourne une chaine aléatoire """
+    return binascii.b2a_hex(os.urandom(15))
+
+
 class DPS(models.Model):
     class Meta:
         app_label = 'DUlSine'
 
-    # Déterminer la longeur du hash suivant l'algo choisi
-    hash_id = models.CharField(max_length = 100)
+    hash_id = models.CharField(max_length = 30, default = random_hash)
     delegation = models.ForeignKey(Delegation)
 
     organisateur = models.ForeignKey(Organisateur)
