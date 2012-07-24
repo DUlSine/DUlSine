@@ -48,9 +48,9 @@ class DPS(models.Model):
 
 RISQUES = (
     ( Decimal("0.25"), '0.25'),
-    ( Decimal("0.30"), '0.30'),
+    ( Decimal("0.3"),  '0.30'),
     ( Decimal("0.35"), '0.35'),
-    ( Decimal("0.40"), '0.40')
+    ( Decimal("0.4"),  '0.40')
 )
 
 class Dimenssionnement(models.Model):
