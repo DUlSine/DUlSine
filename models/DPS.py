@@ -32,7 +32,7 @@ class DPS(models.Model):
     class Meta:
         app_label = 'DUlSine'
 
-    hash_id = models.CharField(max_length = 30, default = random_hash)
+    hash_id = models.CharField(unique=True, max_length = 30, default = random_hash)
     delegation = models.ForeignKey(Delegation)
 
     organisateur = models.ForeignKey(Organisateur)
