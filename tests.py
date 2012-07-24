@@ -23,8 +23,8 @@ class URLTest(unittest.TestCase):
 
         self.assertEqual(self.client.get('/DUlSine/3802/DPS/nouveau').status_code, 301)
         self.assertEqual(self.client.get('/DUlSine/3802/DPS/nouveau/').status_code, 200)
-        self.assertEqual(self.client.get('/DUlSine/3802/DPS/nouveau/123456ref1231').status_code, 404)
-        self.assertEqual(self.client.get('/DUlSine/3802/DPS/nouveau/123456ref1231/').status_code, 404)
+        self.assertEqual(self.client.get('/DUlSine/3802/DPS/nouveau/123456ref1231').status_code, 301)
+        self.assertEqual(self.client.get('/DUlSine/3802/DPS/nouveau/123456ref1231/').status_code, 200)
         self.assertEqual(self.client.get('/DUlSine/3802/DPS/nouveau/123456ref1231/12345').status_code, 301)
         self.assertEqual(self.client.get('/DUlSine/3802/DPS/nouveau/123456ref1231/12345/').status_code, 200)
 
