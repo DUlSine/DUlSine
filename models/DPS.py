@@ -7,7 +7,7 @@ import os, binascii
 from django.db import models
 
 from delegation import Delegation
-from organisateur import Contact, Organisateur
+from organisateur import Organisateur, CIVILITES
 from intervenant import Intervenant
 
 CIRCUITS = (
@@ -40,8 +40,10 @@ class DPS(models.Model):
     objet = models.CharField(max_length = 200)
 
     adress_rdv = models.CharField(max_length = 500)
-    contact_sur_place = models.ForeignKey(Contact)
-    telephone_contact = models.CharField(max_length = 20)
+    contact_sur_place_nom = models.CharField(max_length=200)
+    contact_sur_place_prenom = models.CharField(max_length=200)
+    contact_sur_place_civilite = models.CharField(max_length=4, choices=CIVILITES)
+    contact_sur_place_telephone = models.CharField(max_length = 20)
 
     prix = models.IntegerField(null = True, blank = True)
     remarques = models.CharField(max_length = 500, blank = True)
@@ -81,7 +83,8 @@ class Dimenssionnement(models.Model):
     age_public          = models.CharField(max_length=50, blank = True)
     besoins_specifiques = models.CharField(max_length=200, blank = True)
 
-    medecin = models.ForeignKey(Contact, related_name='medecin', null = True, blank = True)
+    medecin_nom = models.CharField(max_length=200)
+    medecin_prenom = models.CharField(max_length=200)
     infirmier = models.BooleanField()
     ambulance_prive = models.BooleanField()
     secours_public = models.CharField(max_length=200, blank=True)

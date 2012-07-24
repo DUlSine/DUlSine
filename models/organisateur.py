@@ -8,19 +8,6 @@ CIVILITES= (
     ('Mlle', 'Mademoiselle')
 )
 
-class Contact(models.Model):
-    class Meta:
-        app_label = 'DUlSine'
-
-    nom = models.CharField(max_length=200)
-    prenom = models.CharField(max_length=200)
-    civilite = models.CharField(max_length=4, choices=CIVILITES)
-    fonction = models.CharField(max_length=200)
-
-    def __unicode__(self):
-        return self.civilite + " " + self.nom + " " + self.prenom
-
-
 
 class Organisateur(models.Model):
     class Meta:
@@ -29,8 +16,15 @@ class Organisateur(models.Model):
     nom = models.CharField(max_length = 200)
     adresse = models.CharField(max_length = 500)
 
-    contact = models.ForeignKey(Contact, related_name='contact')
-    representant = models.ForeignKey(Contact, related_name='representant')
+    contact_nom = models.CharField(max_length=200)
+    contact_prenom = models.CharField(max_length=200)
+    contact_civilite = models.CharField(max_length=4, choices=CIVILITES)
+    contact_fonction = models.CharField(max_length=200)
+
+    representant_nom = models.CharField(max_length=200)
+    representant_prenom = models.CharField(max_length=200)
+    representant_civilite = models.CharField(max_length=4, choices=CIVILITES)
+    representant_fonction = models.CharField(max_length=200)
 
     telephone = models.CharField(max_length = 20, blank=True)
     portable = models.CharField(max_length = 20, blank=True)
