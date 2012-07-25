@@ -42,7 +42,7 @@ class DPS(models.Model):
     adress_rdv = models.CharField(max_length = 500)
     contact_sur_place_nom = models.CharField(max_length=200)
     contact_sur_place_prenom = models.CharField(max_length=200)
-    contact_sur_place_civilite = models.CharField(max_length=4, choices=CIVILITES)
+    contact_sur_place_civilite = models.CharField(max_length=4, choices=CIVILITES, default=CIVILITES[0][0])
     contact_sur_place_telephone = models.CharField(max_length = 20)
 
     prix = models.IntegerField(null = True, blank = True)

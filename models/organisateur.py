@@ -18,12 +18,12 @@ class Organisateur(models.Model):
 
     contact_nom = models.CharField(max_length=200)
     contact_prenom = models.CharField(max_length=200)
-    contact_civilite = models.CharField(max_length=4, choices=CIVILITES)
+    contact_civilite = models.CharField(max_length=4, choices=CIVILITES, default=CIVILITES[0][0])
     contact_fonction = models.CharField(max_length=200)
 
     representant_nom = models.CharField(max_length=200)
     representant_prenom = models.CharField(max_length=200)
-    representant_civilite = models.CharField(max_length=4, choices=CIVILITES)
+    representant_civilite = models.CharField(max_length=4, choices=CIVILITES, default=CIVILITES[0][0])
     representant_fonction = models.CharField(max_length=200)
 
     telephone = models.CharField(max_length = 20, blank=True)
