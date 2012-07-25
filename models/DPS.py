@@ -39,7 +39,7 @@ class DPS(models.Model):
     intitule = models.CharField(max_length = 200)
     objet = models.CharField(max_length = 200)
 
-    adress_rdv = models.CharField(max_length = 500)
+    adresse_rdv = models.CharField(max_length = 500)
     contact_sur_place_nom = models.CharField(max_length=200)
     contact_sur_place_prenom = models.CharField(max_length=200)
     contact_sur_place_civilite = models.CharField(max_length=4, choices=CIVILITES, default=CIVILITES[0][0])
