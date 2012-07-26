@@ -1,6 +1,13 @@
 [
     {"model": "DUlSine.delegation", "pk": 38, "fields": {"nom": "Isere", "adresse": "4 rue Kl\u00e9ber, 38000 Grenoble"}},
+    {"model": "DUlSine.delegation", "pk": 3801, "fields": {"nom": "Bourgoin-Jallieu", "adresse": ""}},
     {"model": "DUlSine.delegation", "pk": 3802, "fields": {"nom": "Grenoble", "adresse": "4 rue Kl\u00e9ber, 38000 Grenoble"}},
+    {"model": "DUlSine.delegation", "pk": 3803, "fields": {"nom": "La Tour du Pin", "adresse": ""}},
+    {"model": "DUlSine.delegation", "pk": 3804, "fields": {"nom": "Matheysine-Tri\u00e8ves", "adresse": ""}},
+    {"model": "DUlSine.delegation", "pk": 3805, "fields": {"nom": "Pont de Beauvoisin", "adresse": ""}},
+    {"model": "DUlSine.delegation", "pk": 3806, "fields": {"nom": "Saint-Marcellin", "adresse": ""}},
+    {"model": "DUlSine.delegation", "pk": 3807, "fields": {"nom": "Vienne", "adresse": ""}},
+    {"model": "DUlSine.delegation", "pk": 3808, "fields": {"nom": "Voiron Chartreuse", "adresse": ""}},
     {"model": "DUlSine.delegation", "pk": 3809, "fields": {"nom": "Drac Romanche", "adresse": ""}},
-    {"model": "DUlSine.delegation", "pk": 3810, "fields": {"nom": "Crolles Gresivaudant", "adresse": ""}}
+    {"model": "DUlSine.delegation", "pk": 3810, "fields": {"nom": "Crolles Gr\u00e9sivaudant", "adresse": ""}}
 ]
