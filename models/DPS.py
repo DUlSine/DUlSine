@@ -53,6 +53,7 @@ class DPS(models.Model):
         return self.intitule
 
 
+
 RISQUES = (
     ( Decimal("0.25"), '0.25'),
     ( Decimal("0.3"),  '0.30'),
@@ -83,10 +84,10 @@ class Dimenssionnement(models.Model):
     age_public          = models.CharField(max_length=50, blank = True)
     besoins_specifiques = models.CharField(max_length=200, blank = True)
 
-    medecin_nom = models.CharField(max_length=200)
-    medecin_prenom = models.CharField(max_length=200)
-    infirmier = models.BooleanField()
-    ambulance_prive = models.BooleanField()
+    medecin_nom = models.CharField(max_length=200, blank = True)
+    medecin_prenom = models.CharField(max_length=200, blank = True)
+    infirmier = models.BooleanField(default = False)
+    ambulance_prive = models.BooleanField(default = False)
     secours_public = models.CharField(max_length=200, blank=True)
     secours_autre = models.CharField(max_length=200, blank=True)
 
