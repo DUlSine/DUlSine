@@ -84,8 +84,7 @@ class Dimenssionnement(models.Model):
     age_public          = models.CharField(max_length=50, blank = True)
     besoins_specifiques = models.CharField(max_length=200, blank = True)
 
-    medecin_nom = models.CharField(max_length=200, blank = True)
-    medecin_prenom = models.CharField(max_length=200, blank = True)
+    medecin = models.CharField(max_length=200, blank = True)
     infirmier = models.BooleanField(default = False)
     ambulance_prive = models.BooleanField(default = False)
     secours_public = models.CharField(max_length=200, blank=True)
