@@ -71,7 +71,7 @@ class Dimenssionnement(models.Model):
     fin = models.DateTimeField()
     lieu = models.CharField(max_length=400)
 
-    circuit = models.CharField(max_length=1, choices=CIRCUITS)
+    circuit = models.CharField(max_length = 1, choices = CIRCUITS, default = CIRCUITS[0][0])
     superficie = models.IntegerField()
     distance = models.IntegerField()
     risques = models.CharField(max_length=200)
