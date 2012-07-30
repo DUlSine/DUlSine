@@ -39,26 +39,24 @@ def details(request, delegation, dps_id):
 
 
 
-def nouveau(request, delegation, dps_hash=None):
+def nouveau(request, delegation):
     # Vérifie le numéro de délégation
     DL = get_object_or_404(Delegation, numero=delegation)
 
-    # Est-ce une nouvelle demande pour un DPS
-    if(dps_hash == None):
-        if(request.method == 'POST'):
-            form_orga = OrganisateurForm(request.POST)
-            form_dps = DPSForm(request.POST)
-            if(form_orga.is_valid() and form_dps.is_valid()):
-                orga = form_orga.save()
-                dps = form_dps.save(commit=False)
-                dps.delegation = DL
-                dps.organisateur = orga
-                dps.save()
-                return HttpResponseRedirect(reverse('dps.nouveau.dimenssionnement', args=[delegation, dps.hash_id, 0]))
-        else:
-            form_orga = OrganisateurForm()
-            form_dps = DPSForm()
-        return render_to_response('dps/nouveau.html', {'form_orga': form_orga, 'form_dps': form_dps}, context_instance=RequestContext(request))
+    if(request.method == 'POST'):
+        form_orga = OrganisateurForm(request.POST)
+        form_dps = DPSForm(request.POST)
+        if(form_orga.is_valid() and form_dps.is_valid()):
+            orga = form_orga.save()
+            dps = form_dps.save(commit=False)
+            dps.delegation = DL
+            dps.organisateur = orga
+            dps.save()
+            return HttpResponseRedirect(reverse('dps.nouveau.dimenssionnement', args=[delegation, dps.hash_id]))
+    else:
+        form_orga = OrganisateurForm()
+        form_dps = DPSForm()
+    return render_to_response('dps/nouveau.html', {'form_orga': form_orga, 'form_dps': form_dps}, context_instance=RequestContext(request))
 
 
 def dimenssionnement(request, delegation, dps_hash, dim_id=None):
