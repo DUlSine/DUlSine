@@ -61,7 +61,7 @@ def nouveau(request, delegation, dps_hash=None):
         return render_to_response('dps/nouveau.html', {'form_orga': form_orga, 'form_dps': form_dps}, context_instance=RequestContext(request))
 
 
-def dimenssionnement(request, delegation, dps_hash, dim_id):
+def dimenssionnement(request, delegation, dps_hash, dim_id=None):
     return HttpResponse(status=200)
 
 
