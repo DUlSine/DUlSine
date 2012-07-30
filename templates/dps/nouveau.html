@@ -13,20 +13,20 @@
                     {% for radio in form_orga.contact_civilite %}
                         {{ radio }}
                     {% endfor %}
-                    {% if form_orga.contact_civilite.errors %}{% for error in form_orga.contact_civilite.errors %}<strong>{{ error|escape }}</strong>{% endfor %}{% endif %}
+                    {% for error in form_orga.contact_civilite.errors %}<strong>{{ error|escape }}</strong>{% endfor %}
                 </td>
             </tr>
             <tr>
                 <td><label for='id_contact_nom'>Nom : </label></td>
-                <td>{{form_orga.contact_nom }} {% if form_orga.contact_nom.errors %}{% for error in form_orga.contact_nom.errors %}<strong>{{ error|escape }}</strong>{% endfor %}{% endif %}</td>
+                <td>{{form_orga.contact_nom }} {% for error in form_orga.contact_nom.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
             </tr>
             <tr>
                 <td><label for='id_contact_prenom'>Prénom :</label></td>
-                <td>{{ form_orga.contact_prenom }} {% if form_orga.contact_prenom.errors %}{% for error in form_orga.contact_prenom.errors %}<strong>{{ error|escape }}</strong>{% endfor %}{% endif %}</td>
+                <td>{{ form_orga.contact_prenom }} {% for error in form_orga.contact_prenom.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
             </tr>
             <tr>
                 <td><label for='id_contact_fonction'>Fonction :</label></td>
-                <td>{{ form_orga.contact_fonction }} {% if form_orga.contact_fonction.errors %}{% for error in form_orga.contact_fonction.errors %}<strong>{{ error|escape }}</strong>{% endfor %}{% endif %}</td>
+                <td>{{ form_orga.contact_fonction }} {% for error in form_orga.contact_fonction.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
             </tr>
         </table>
 
@@ -38,20 +38,20 @@
                     {% for radio in form_orga.representant_civilite %}
                         {{ radio }}
                     {% endfor %}
-                    {% if form_orga.representant_civilite.errors %}{% for error in form_orga.representant_civilite.errors %}<strong>{{ error|escape }}</strong>{% endfor %}{% endif %}
+                    {% for error in form_orga.representant_civilite.errors %}<strong>{{ error|escape }}</strong>{% endfor %}
                 </td>
             </tr>
             <tr>
                 <td><label for='id_representant_nom'>Nom :</label></td>
-                <td>{{ form_orga.representant_nom }}{% if form_orga.representant_nom.errors %}{% for error in form_orga.representant_nom.errors %}<strong>{{ error|escape }}</strong>{% endfor %}{% endif %}</td>
+                <td>{{ form_orga.representant_nom }}{% for error in form_orga.representant_nom.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
             </tr>
             <tr>
                 <td><label for='id_representant_prenom'>Prénom :</label></td>
-                <td>{{ form_orga.representant_prenom }}{% if form_orga.representant_prenom.errors %}{% for error in form_orga.representant_prenom.errors %}<strong>{{ error|escape }}</strong>{% endfor %}{% endif %}</td>
+                <td>{{ form_orga.representant_prenom }}{% for error in form_orga.representant_prenom.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
             </tr>
             <tr>
                 <td><label for='id_representant_fonction'>Fonction :</label></td>
-                <td>{{ form_orga.representant_fonction }}{% if form_orga.representant_fonction.errors %}{% for error in form_orga.representant_fonction.errors %}<strong>{{ error|escape }}</strong>{% endfor %}{% endif %}</td>
+                <td>{{ form_orga.representant_fonction }}{% for error in form_orga.representant_fonction.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
         </tr>
         </table>
 
@@ -59,27 +59,27 @@
         <table>
             <tr>
                 <td><label for='id_nom'>Nom :</label></td>
-                <td>{{ form_orga.nom }}{% if form_orga.nom.errors %}{% for error in form_orga.nom.errors %}<strong>{{ error|escape }}</strong>{% endfor %}{% endif %}</td>
+                <td>{{ form_orga.nom }}{% for error in form_orga.nom.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
             </tr>
             <tr>
                 <td><label for='id_adress'>Adresse :</label></td>
-                <td>{{ form_orga.adresse }}{% if form_orga.adresse.errors %}{% for error in form_orga.adresse.errors %}<strong>{{ error|escape }}</strong>{% endfor %}{% endif %}</td>
+                <td>{{ form_orga.adresse }}{% for error in form_orga.adresse.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
             </tr>
             <tr>
                 <td><label for='id_telephone'>Téléphone :</label></td>
-                <td>{{ form_orga.telephone }}{% if form_orga.telephone.errors %}{% for error in form_orga.telephone.errors %}<strong>{{ error|escape }}</strong>{% endfor %}{% endif %}</td>
+                <td>{{ form_orga.telephone }}{% for error in form_orga.telephone.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
             </tr>
             <tr>
                 <td><label for='id_portable'>Portable :</label></td>
-                <td>{{ form_orga.portable }}{% if form_orga.portable.errors %}{% for error in form_orga.portable.errors %}<strong>{{ error|escape }}</strong>{% endfor %}{% endif %}</td>
+                <td>{{ form_orga.portable }}{% for error in form_orga.portable.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
             </tr>
             <tr>
                 <td><label for='id_fax'>Fax :</label></td>
-                <td>{{ form_orga.fax }}{% if form_orga.fax.errors %}{% for error in form_orga.fax.errors %}<strong>{{ error|escape }}</strong>{% endfor %}{% endif %}</td>
+                <td>{{ form_orga.fax }}{% for error in form_orga.fax.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
             </tr>
             <tr>
                 <td><label for='id_email'>Email :</label></td>
-                <td>{{ form_orga.email }}{% if form_orga.email.errors %}{% for error in form_orga.email.errors %}<strong>{{ error|escape }}</strong>{% endfor %}{% endif %}</td>
+                <td>{{ form_orga.email }}{% for error in form_orga.email.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
             </tr>
         </table>
 
@@ -88,15 +88,15 @@
         <table>
             <tr>
                 <td><label for='id_intitule'>Intitule :</label></td>
-                <td>{{ form_dps.intitule }}{% if form_dps.intitule.errors %}{% for error in form_dps.intitule.errors %}<strong>{{ error|escape }}</strong>{% endfor %}{% endif %}</td>
+                <td>{{ form_dps.intitule }}{% for error in form_dps.intitule.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
             </tr>
             <tr>
                 <td><label for='id_objet'>Objet :</label></td>
-                <td>{{ form_dps.objet }}{% if form_dps.objet.errors %}{% for error in form_dps.objet.errors %}<strong>{{ error|escape }}</strong>{% endfor %}{% endif %}</td>
+                <td>{{ form_dps.objet }}{% for error in form_dps.objet.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
             </tr>
             <tr>
                 <td><label for='id_adresse_rdv'>Adresse de rendez-vous :</label></td>
-                <td>{{ form_dps.adresse_rdv }}{% if form_dps.adresse_rdv.errors %}{% for error in form_dps.adresse_rdv.errors %}<strong>{{ error|escape }}</strong>{% endfor %}{% endif %}</td>
+                <td>{{ form_dps.adresse_rdv }}{% for error in form_dps.adresse_rdv.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
             <tr>
         </table>
 
@@ -108,20 +108,20 @@
                     {% for radio in form_dps.contact_sur_place_civilite %}
                         {{ radio }}
                     {% endfor %}
-                    {% if form_dps.contact_sur_place_civilite.errors %}{% for error in form_dps.contact_sur_place_civilite.errors %}<strong>{{ error|escape }}</strong>{% endfor %}{% endif %}
+                    {% for error in form_dps.contact_sur_place_civilite.errors %}<strong>{{ error|escape }}</strong>{% endfor %}
                 </td>
             </tr>
             <tr>
                 <td><label for='id_contact_sur_place_nom'>Nom : </label></td>
-                <td>{{form_dps.contact_sur_place_nom }} {% if form_dps.contact_sur_place_nom.errors %}{% for error in form_dps.contact_sur_place_nom.errors %}<strong>{{ error|escape }}</strong>{% endfor %}{% endif %}</td>
+                <td>{{form_dps.contact_sur_place_nom }} {% for error in form_dps.contact_sur_place_nom.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
             </tr>
             <tr>
                 <td><label for='id_contact_sur_place_prenom'>Prénom :</label></td>
-                <td>{{ form_dps.contact_sur_place_prenom }} {% if form_dps.contact_sur_place_prenom.errors %}{% for error in form_dps.contact_sur_place_prenom.errors %}<strong>{{ error|escape }}</strong>{% endfor %}{% endif %}</td>
+                <td>{{ form_dps.contact_sur_place_prenom }} {% for error in form_dps.contact_sur_place_prenom.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
             </tr>
             <tr>
                 <td><label for='id_contact_sur_place_telephone'>Téléphone :</label></td>
-                <td>{{ form_dps.contact_sur_place_telephone }} {% if form_dps.contact_sur_place_telephone.errors %}{% for error in form_dps.contact_sur_place_telephone.errors %}<strong>{{ error|escape }}</strong>{% endfor %}{% endif %}</td>
+                <td>{{ form_dps.contact_sur_place_telephone }} {% for error in form_dps.contact_sur_place_telephone.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
             </tr>
         </table>
  
