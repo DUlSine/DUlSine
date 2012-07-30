@@ -53,13 +53,27 @@ class DPS(models.Model):
         return self.intitule
 
 
-
-RISQUES = (
-    ( Decimal("0.25"), '0.25'),
-    ( Decimal("0.3"),  '0.30'),
-    ( Decimal("0.35"), '0.35'),
-    ( Decimal("0.4"),  '0.40')
+RISQUES_P2 = (
+    ( Decimal("0.25"), 'Public Assis : spectacle, cérémonie culturelle, réunion publique'),
+    ( Decimal("0.3"),  'Public debout : cérémonie culturelle, réunion publique,restauration, exposition, foire, salon, comice agricole, ..'),
+    ( Decimal("0.35"), 'Public debout : spectacle avec public statique, fête foraine, rendez-vous sportif avec protection du public par rapport à l’évènement, ...'),
+    ( Decimal("0.4"),  'Public debout : spectacle avec public dynamique, danse, féria, fête votive, carnaval, spectacle de rue, évènement se déroulant sur plusieurs jours avec présence permanente du public')
 )
+
+RISQUES_E1 = (
+    ( Decimal("0.25"), 'Permanente (bâtiment, salle en dur,..) voies publics avec accès dégagés'),
+    ( Decimal("0.3"),  'Non permanente (gradins, tribunes, chapiteaux,..) espace naturels ≤ 2 hectares, brancardage 150m <longueur ≤300m Terrain en pente sur plus de 100 m'),
+    ( Decimal("0.35"), 'Espace naturels : 2 ha < surface ≤ 5 ha, brancardage 300m <longueur ≤600m, terrain en pente sur plus de 150m. Autres conditions d’accès difficile'),
+    ( Decimal("0.4"),  'Espaces naturels : surface > 5 hectares - Brancardage : longueur > 600m. Terrain en pente sur plus de 300m autres conditions d\'accès difficiles. Progression des secours rendue difficile par la présence du public')
+)
+
+RISQUES_E2 = (
+    ( Decimal("0.25"), '≤ 10 minutes'),
+    ( Decimal("0.3"),  '> 10 minutes et ≤ 20 minutes'),
+    ( Decimal("0.35"), '> 20 minutes et ≤ 30 minutes'),
+    ( Decimal("0.4"),  '> 30 minutes')
+)
+
 
 class Dimenssionnement(models.Model):
     class Meta:
@@ -95,9 +109,9 @@ class Dimenssionnement(models.Model):
 
     repas = models.BooleanField()
 
-    P2 = models.DecimalField(max_digits = 3, decimal_places = 2, choices = RISQUES)
-    E1 = models.DecimalField(max_digits = 3, decimal_places = 2, choices = RISQUES)
-    E2 = models.DecimalField(max_digits = 3, decimal_places = 2, choices = RISQUES)
+    P2 = models.DecimalField(max_digits = 3, decimal_places = 2, choices = RISQUES_P2, default = RISQUES_P2[0][0])
+    E1 = models.DecimalField(max_digits = 3, decimal_places = 2, choices = RISQUES_E1, default = RISQUES_E1[0][0])
+    E2 = models.DecimalField(max_digits = 3, decimal_places = 2, choices = RISQUES_E2, default = RISQUES_E2[0][0])
     IS = models.IntegerField(null = True, blank = True)
 
     def __unicode__(self):
