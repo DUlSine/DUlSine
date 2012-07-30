@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 
-from DUlSine.models import DPS, Delegation, Organisateur
+from DUlSine.models import DPS, Delegation, Dimenssionnement, Organisateur
 
 
 class OrganisateurForm(ModelForm):
@@ -26,6 +26,17 @@ class DPSForm(ModelForm):
             'contact_sur_place_civilite': RadioSelect
         }
         exclude = ('hash_id', 'delegation', 'organisateur', 'prix')
+
+
+class DimenssionnementForm(ModelForm):
+    class Meta:
+        model = Dimenssionnement
+        widgets = {
+            'P2': RadioSelect,
+            'E1': RadioSelect,
+            'E2': RadioSelect
+        }
+        exclude = ('DPS', 'IS')
 
 
 
@@ -60,7 +71,28 @@ def nouveau(request, delegation):
 
 
 def dimenssionnement(request, delegation, dps_hash, dim_id=None):
-    return HttpResponse(status=200)
+    # vérifie la délégation et le DPS
+    DL = get_object_or_404(Delegation, numero=delegation)
+    dps = get_object_or_404(DPS, hash_id=dps_hash)
+
+    # Est-ce un nouveau dimenssionnement ?
+    if(dim_id == None):
+        if(request.method == 'POST'):
+            form = DimenssionnementForm(request.POST)
+            if(form.is_valid()):
+                dim = form.save(commit = False)
+                dim.DPS = dps
+                dim.save()
+                return HttpResponseRedirect(reverse('dps.nouveau.dimenssionnement', args=[delegation, dps_hash, dim.id]))
+        else:
+            form = DimenssionnementForm()
+
+    else:
+        dim = get_object_or_404(Dimenssionnement, pk=dim_id)
+        form = DimenssionnementForm(instance=dim)
+
+    return render_to_response('dps/nouveau_dimenssionnement.html', {'form': form}, context_instance=RequestContext(request))
+
 
 
 def calendrier(request, delegation, avant=None, apres=None):

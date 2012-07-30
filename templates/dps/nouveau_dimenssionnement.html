@@ -1,0 +1,152 @@
+<html>
+<body>
+    <h1>Dimenssionnement</h1>
+    <p>Un formulaire ce type est à remplir pour chacun des jours de votre manifestation.</p>
+
+
+    <form action="" method="post">{% csrf_token %}
+    <h3>Horaires de la manifestation :</h3>
+    <table>
+        <tr>
+            <td><label for='id_debut'>Début :</label></td>
+            <td>{{form.debut}} {% for error in form.debut.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
+        </tr>
+        <tr>
+            <td><label for='id_fin'>Fin :</label></td>
+            <td>{{form.fin}} {% for error in form.fin.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
+        </tr>
+    </table>
+
+    <h3>Caractéristiques du lieu :</h3>
+    <table>
+        <tr>
+            <td><label for='id_lieu'>Adresse :</label></td>
+            <td>{{form.lieu}} {% for error in form.lieu.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
+        </tr>
+        <tr>
+            <td><label for='id_lieu'>Circuit :</label></td>
+            <td>{{form.circuit}} {% for error in form.circuit.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
+        </tr>
+        <tr>
+            <td><label for='id_superficie'>Superficie (en m²):</label></td>
+            <td>{{form.superficie}} {% for error in form.superficie.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
+        </tr>
+        <tr>
+            <td><label for='id_distance'>Distance entre les deux points les plus éloingé du site (en m) :</label></td>
+            <td>{{form.distance}} {% for error in form.distance.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
+        </tr>
+        <tr>
+            <td><label for='id_risques'>Risques :</label></td>
+            <td>{{form.risques}} {% for error in form.risques.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
+        </tr>
+    </table>
+
+    <h3>Acteurs :</h3>
+    <p>Ne remplir cette partie que si vous souhaitez prendre en charge les acteurs de la manifestation.</p>
+    <table>
+        <tr>
+            <td><label for='id_effectifs_acteurs'>Effectifs :</label></td>
+            <td>{{form.effectifs_acteurs}} {% for error in form.effectifs_acteurs.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
+        </tr>
+        <tr>
+            <td><label for='id_age_acteurs'>Age :</label></td>
+            <td>{{form.age_acteurs}} {% for error in form.age_acteurs.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
+        </tr>
+        <tr>
+            <td><label for='id_type_acteurs'>Type :</label></td>
+            <td>{{form.type_acteurs}} {% for error in form.type_acteurs.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
+        </tr>
+    </table>
+
+    <h3>Public :</h3>
+    <p>Ne remplir cette partie que si vous souhaitez prendre en charge le public de la manifestation.</p>
+    <table>
+        <tr>
+            <td><label for='id_effectifs_public'>Effectifs :</label></td>
+            <td>{{form.effectifs_public}} {% for error in form.effectifs_public.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
+        </tr>
+        <tr>
+            <td><label for='id_age_public'>Age :</label></td>
+            <td>{{form.age_public}} {% for error in form.age_public.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
+        </tr>
+        <tr>
+            <td><label for='id_besoins_specifiques'>Besoins Spécifiques :</label></td>
+            <td>{{form.besoins_specifiques}} {% for error in form.besoins_specifiques.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
+        </tr>
+    </table>
+
+
+    <h3>Autres secours :</h3>
+    <p>Cette partie permet de préciser la présence de services de secours public ou privés autre quela Croix-Rouge lors de cette manifestation.</p>
+    <table>
+        <tr>
+            <td><label for='id_medecin'>Médecine :</label></td>
+            <td>{{form.medecin}} {% for error in form.medecin.errors %}<strong>{{ error|escape }}</strong>{% endfor %}
+        </tr>
+        <tr>
+            <td><label for='id_infirmier'>Infirmier :</label></td>
+            <td>{{form.infirmier}} {% for error in form.infirmier.errors %}<strong>{{ error|escape }}</strong>{% endfor %}
+        </tr>
+        <tr>
+            <td><label for='id_ambulance_prive'>Ambulance privé :</label></td>
+            <td>{{form.ambulance_prive}} {% for error in form.ambulance_prive.errors %}<strong>{{ error|escape }}</strong>{% endfor %}
+        </tr>
+        <tr>
+            <td><label for='id_secours_public'>Secours public :</label></td>
+            <td>{{form.secours_public}} {% for error in form.secours_public.errors %}<strong>{{ error|escape }}</strong>{% endfor %}
+        </tr>
+        <tr>
+            <td><label for='id_secours_autre'>Secours (non-CRF) :</label></td>
+            <td>{{form.secours_autre}} {% for error in form.secours_autre.errors %}<strong>{{ error|escape }}</strong>{% endfor %}
+        </tr>
+    </table>
+
+    <h3>Centres de Secours :</h3>
+    <table>
+        <tr>
+            <td><label for='id_centre_sdis'>Centre SDIS :</label></td>
+            <td>{{form.centre_sdis}} {% for error in form.centre_sdis.errors %}<strong>{{ error|escape }}</strong>{% endfor %}
+        </tr>
+        <tr>
+            <td><label for='id_hopital'>Hopital :</label></td>
+            <td>{{form.hopital}} {% for error in form.hopital.errors %}<strong>{{ error|escape }}</strong>{% endfor %}
+        </tr>
+    </table>
+
+
+    <h3>Calcul des risques :</h3>
+    <p>Cette partie du formulaire permet de dimenssionner les effectifs présent sur la manifestation suivant les risques prévus pour celle-ci. Merci donc de lire attentivement ce formulaire.</p>
+    <table border='1' width='60%'>
+        <h4>Activité du rassemblement</h4>
+        {% for radio in form.P2 %}
+        <tr>
+            <td width='95%'>{{radio.choice_label}}</td>
+            <td><center>{{radio.tag}}</center></td>
+        </tr>
+        {% endfor %}
+        {% for error in form.P2.errors %}<strong>{{ error|escape }}</strong>{% endfor %}
+    </table>
+    <table border='1' width='60%'>
+        <h4>Caractéristiques de l'environement et accessibilité du site</h4>
+        {% for radio in form.E1 %}
+        <tr>
+            <td width='95%'>{{radio.choice_label}}</td>
+            <td><center>{{radio.tag}}</center></td>
+        </tr>
+        {% endfor %}
+        {% for error in form.E1.errors %}<strong>{{ error|escape }}</strong>{% endfor %}
+    </table>
+    <table border='1' width='60%'>
+        <h4>Délais d'intervention des secours public</h4>
+        {% for radio in form.E2 %}
+        <tr>
+            <td width='95%'>{{radio.choice_label}}</td>
+            <td><center>{{radio.tag}}</center></td>
+        </tr>
+        {% endfor %}
+        {% for error in form.E2.errors %}<strong>{{ error|escape }}</strong>{% endfor %}
+    </table>
+
+    <input type="submit" value="Submit" />
+</body>
+</html>
