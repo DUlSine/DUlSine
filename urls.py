@@ -18,6 +18,10 @@ urlpatterns += patterns('DUlSine.views.DPS',
     url(r'^(?P<delegation>\d+)/DPS/nouveau/$', 'nouveau', name='dps.nouveau'),
     url(r'^(?P<delegation>\d+)/DPS/nouveau/(?P<dps_hash>\w+)(?:/(?P<dim_id>\d+))?/$', 'dimenssionnement', name='dps.nouveau.dimenssionnement'),
 
+
+    # Administration des DPS
+    url(r'^(?P<delegation>\d+)/DPS/admin/(?P<dps_id>\d+)/devis/$', 'devis', name = 'dps.admin.devis'),
+
     # Calendrier au format CalDav
     # Deux arguments optionnels peuvent etre passés via l'url
     # * avant : ne retourne pas les événements de plus de 'avant' jours

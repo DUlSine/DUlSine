@@ -1,0 +1,87 @@
+<html>
+<head>
+    <title>Délégation de {{DL.nom}} - Devis pour un DPS</title>
+</head>
+<body>
+<img src='/static/logo_crf.gif' alt='logo CRF'>
+<p align='right'>{{DL.nom}}, le mercredi 1er août 2012</p>
+<p align='right'>
+{{dps.organisateur.get_contact_civilite_display}} {{dps.organisateur.contact_nom}} {{dps.organisateur.contact_prenom}}<br />
+{{dps.organisateur.nom}}<br />
+{{dps.organisateur.adresse}}
+</p>
+<p><u>Objet :</u> Devis suite à une demande de poste de secours</p>
+<br />
+<p>
+&nbsp;{{dps.organisateur.get_contact_civilite_display}},<br />
+Suite à votre demande à l'occasion de la manifestation :</p>
+</p>
+<p align='center'>
+<strong><u>{{dps.intitule}}</u></strong></center><br />
+Le samedi 06/10/2012 de 9h00 à 18h30<br />
+qui se déroule à l'endroit suivant :<br />
+XXXX Un DPS = même endroit ! XXXX
+</p>
+
+<br />
+<p>&nbsp;&nbsp;Selon nos informations, nous vous proposons de mettre à votre disposition :</p>
+<p><strong><u>Effectifs secouristes :</u></strong>
+<table>
+    <tr>
+        <td>0</td>
+        <td>Equipe(s) de secours (4 à 5 intervenants)</td>
+    </tr>
+    <tr>
+        <td>0</td>
+        <td>Binôme(s) rattaché(s) à l'équipe de secours</td>
+    </tr>
+    <tr>
+        <td>0</td>
+        <td>Point d'alerte et de premiers secours (2 intervenants)</td>
+    </tr>
+    <tr>
+        <td>0</td>
+        <td>Equipe(s) d'évacuation</td>
+    </tr>
+</table>
+</p>
+<p><strong><u>Matériel :</u></strong>
+<table>
+    <tr>
+        <td>0</td>
+        <td>lot(s) A (matériel de  secours avec oxygénothérapie, défibrillateur, moyens d'immobilisation, ...)</td>
+    </tr>
+    <tr>
+        <td>0</td>
+        <td>lot(s) B (sac de premiers secours pour binôme)</td>
+    </tr>
+    <tr>
+        <td>0</td>
+        <td>lot(s) C (sacs de premiers secours et d'oxygénothérapie)</td>
+    </tr>
+</table>
+</p>
+<p><strong><u>Véhicules :</u></strong>
+<table>
+    <tr>
+        <td>0</td>
+        <td>véhicule(s) logistique ou de transport de personel</td>
+    </tr>
+    <tr>
+        <td>0</td>
+        <td>véhicule(s) de premiers secours à personne (VPSP)</td>
+    </tr>
+    <tr>
+        <td>0</td>
+        <td>véhicule(s) tout terrain</td>
+    </tr>
+</table>
+</p>
+
+<br />
+<p>La facturation de cette prestation est estimée à {{dps.prix}}€, pour la prestation et les horaires mentionnés ci-dessus.</p>
+<p>Le dispositif sera installé dans un local permettant la mise en oeuvre du matériel de premiers secours, l'acceuil et la prise en charge d'une victime allongée (20m² minimum).</p>
+<p>Nous rappelons que les secouristes sont bénévoles et ne touchent aucunes indemnités. Nous espérons que vous ferez appel à nos services et à sa qualité.</p>
+<p>Dans l'attente d'une confirmation écrite de votre part, veuillez aggréer, {{dps.organisateur.get_contact_civilite_display}}, mes salutations distinguées.</p>
+</body>
+</html>

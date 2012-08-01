@@ -97,3 +97,10 @@ def dimenssionnement(request, delegation, dps_hash, dim_id=None):
 
 def calendrier(request, delegation, avant=None, apres=None):
     return HttpResponse(status=200)
+
+
+def devis(request, delegation, dps_id):
+    DL = get_object_or_404(Delegation, numero = delegation)
+    dps = get_object_or_404(DPS, pk = dps_id, delegation = DL)
+
+    return render_to_response('dps/devis.html', {'DL': DL, 'dps': dps})
