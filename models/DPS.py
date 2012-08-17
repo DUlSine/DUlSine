@@ -39,6 +39,7 @@ class DPS(models.Model):
     intitule = models.CharField(max_length = 200)
     objet = models.CharField(max_length = 200)
 
+    lieu = models.CharField(max_length=400)
     adresse_rdv = models.CharField(max_length = 500)
     contact_sur_place_nom = models.CharField(max_length=200)
     contact_sur_place_prenom = models.CharField(max_length=200)
@@ -83,7 +84,6 @@ class Dimenssionnement(models.Model):
 
     debut = models.DateTimeField()
     fin = models.DateTimeField()
-    lieu = models.CharField(max_length=400)
 
     circuit = models.CharField(max_length = 1, choices = CIRCUITS, default = CIRCUITS[0][0])
     superficie = models.IntegerField()
