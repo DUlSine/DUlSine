@@ -14,9 +14,9 @@ urlpatterns += patterns('DUlSine.views.DPS',
     # Création d'un nouveau DPS.
     # Deux étapes distinctes :
     # * information sur l'organisateur et le DPS
-    # * gestion des dimenssionnements
+    # * gestion des dimensionnements
     url(r'^(?P<delegation>\d+)/DPS/nouveau/$', 'nouveau', name='dps.nouveau'),
-    url(r'^(?P<delegation>\d+)/DPS/nouveau/(?P<dps_hash>\w+)(?:/(?P<dim_id>\d+))?/$', 'dimenssionnement', name='dps.nouveau.dimenssionnement'),
+    url(r'^(?P<delegation>\d+)/DPS/nouveau/(?P<dps_hash>\w+)(?:/(?P<dim_id>\d+))?/$', 'dimensionnement', name='dps.nouveau.dimensionnement'),
 
 
     # Administration des DPS

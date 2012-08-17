@@ -3,7 +3,7 @@
 from django.utils import unittest
 from django.test.client import Client
 
-from DUlSine.models.DPS import Dimenssionnement
+from DUlSine.models.DPS import Dimensionnement
 
 
 class URLTest(unittest.TestCase):
@@ -54,9 +54,9 @@ class URLTest(unittest.TestCase):
         self.assertEqual(self.client.get('/DUlSine/benevole/4212/calendrier/format/4567/12/erat').status_code, 404)
 
 
-class DimenssionnementTest(unittest.TestCase):
-    def nouveau_dimenssionnement(self, effectif, public, P2, E1, E2):
-        dim = Dimenssionnement()
+class DimensionnementTest(unittest.TestCase):
+    def nouveau_dimensionnement(self, effectif, public, P2, E1, E2):
+        dim = Dimensionnement()
         if(public):
             dim.effectifs_acteurs = 0
             dim.effectifs_public = effectif
@@ -71,48 +71,48 @@ class DimenssionnementTest(unittest.TestCase):
 
 
     def test_RIS(self):
-        self.assertEqual(self.nouveau_dimenssionnement(0, True, 0.25, 0.25, 0.25).calculRIS(True), 0)
-        self.assertEqual(self.nouveau_dimenssionnement(0, False, 0.25, 0.25, 0.25).calculRIS(False), 0)
-        self.assertEqual(self.nouveau_dimenssionnement(0, False, 0.25, 0.25, 0.25).calculRIS(True), 0)
+        self.assertEqual(self.nouveau_dimensionnement(0, True, 0.25, 0.25, 0.25).calculRIS(True), 0)
+        self.assertEqual(self.nouveau_dimensionnement(0, False, 0.25, 0.25, 0.25).calculRIS(False), 0)
+        self.assertEqual(self.nouveau_dimensionnement(0, False, 0.25, 0.25, 0.25).calculRIS(True), 0)
 
-        self.assertEqual(self.nouveau_dimenssionnement(1000, True, 0.25, 0.25, 0.25).calculRIS(True), 0.75)
-        self.assertEqual(self.nouveau_dimenssionnement(2000, True, 0.25, 0.25, 0.25).calculRIS(True), 0.75 * 2)
-        self.assertEqual(self.nouveau_dimenssionnement(10000, True, 0.25, 0.25, 0.25).calculRIS(True), 0.75 * 10)
-        self.assertEqual(self.nouveau_dimenssionnement(100000, True, 0.25, 0.25, 0.25).calculRIS(True), 0.75 * 100)
-        self.assertEqual(self.nouveau_dimenssionnement(101000, True, 0.25, 0.25, 0.25).calculRIS(True), 0.75 * (100 + 0.5))
-        self.assertEqual(self.nouveau_dimenssionnement(102000, True, 0.25, 0.25, 0.25).calculRIS(True), 0.75 * (100 + 1))
+        self.assertEqual(self.nouveau_dimensionnement(1000, True, 0.25, 0.25, 0.25).calculRIS(True), 0.75)
+        self.assertEqual(self.nouveau_dimensionnement(2000, True, 0.25, 0.25, 0.25).calculRIS(True), 0.75 * 2)
+        self.assertEqual(self.nouveau_dimensionnement(10000, True, 0.25, 0.25, 0.25).calculRIS(True), 0.75 * 10)
+        self.assertEqual(self.nouveau_dimensionnement(100000, True, 0.25, 0.25, 0.25).calculRIS(True), 0.75 * 100)
+        self.assertEqual(self.nouveau_dimensionnement(101000, True, 0.25, 0.25, 0.25).calculRIS(True), 0.75 * (100 + 0.5))
+        self.assertEqual(self.nouveau_dimensionnement(102000, True, 0.25, 0.25, 0.25).calculRIS(True), 0.75 * (100 + 1))
 
-        self.assertEqual(self.nouveau_dimenssionnement(1000, False, 0.25, 0.25, 0.25).calculRIS(False), 0.75)
-        self.assertEqual(self.nouveau_dimenssionnement(2000, False, 0.25, 0.25, 0.25).calculRIS(False), 0.75 * 2)
-        self.assertEqual(self.nouveau_dimenssionnement(10000, False, 0.25, 0.25, 0.25).calculRIS(False), 0.75 * 10)
-        self.assertEqual(self.nouveau_dimenssionnement(100000, False, 0.25, 0.25, 0.25).calculRIS(False), 0.75 * 100)
-        self.assertEqual(self.nouveau_dimenssionnement(101000, False, 0.25, 0.25, 0.25).calculRIS(False), 0.75 * (100 + 0.5))
-        self.assertEqual(self.nouveau_dimenssionnement(102000, False, 0.25, 0.25, 0.25).calculRIS(False), 0.75 * (100 + 1))
+        self.assertEqual(self.nouveau_dimensionnement(1000, False, 0.25, 0.25, 0.25).calculRIS(False), 0.75)
+        self.assertEqual(self.nouveau_dimensionnement(2000, False, 0.25, 0.25, 0.25).calculRIS(False), 0.75 * 2)
+        self.assertEqual(self.nouveau_dimensionnement(10000, False, 0.25, 0.25, 0.25).calculRIS(False), 0.75 * 10)
+        self.assertEqual(self.nouveau_dimensionnement(100000, False, 0.25, 0.25, 0.25).calculRIS(False), 0.75 * 100)
+        self.assertEqual(self.nouveau_dimensionnement(101000, False, 0.25, 0.25, 0.25).calculRIS(False), 0.75 * (100 + 0.5))
+        self.assertEqual(self.nouveau_dimensionnement(102000, False, 0.25, 0.25, 0.25).calculRIS(False), 0.75 * (100 + 1))
 
-        self.assertEqual(self.nouveau_dimenssionnement(1000, False, 0.30, 0.25, 0.25).calculRIS(False), 0.30 + 0.25 + 0.25)
-        self.assertEqual(self.nouveau_dimenssionnement(1000, False, 0.35, 0.25, 0.25).calculRIS(False), 0.35 + 0.25 + 0.25)
-        self.assertEqual(self.nouveau_dimenssionnement(1000, False, 0.40, 0.25, 0.25).calculRIS(False), 0.40 + 0.25 + 0.25)
-        self.assertEqual(self.nouveau_dimenssionnement(1000, False, 0.40, 0.30, 0.25).calculRIS(False), 0.40 + 0.30 + 0.25)
-        self.assertEqual(self.nouveau_dimenssionnement(1000, False, 0.40, 0.35, 0.25).calculRIS(False), 0.40 + 0.35 + 0.25)
-        self.assertEqual(self.nouveau_dimenssionnement(1000, False, 0.40, 0.40, 0.25).calculRIS(False), 0.40 + 0.40 + 0.25)
-        self.assertEqual(self.nouveau_dimenssionnement(1000, False, 0.40, 0.40, 0.30).calculRIS(False), 0.40 + 0.40 + 0.30)
-        self.assertEqual(self.nouveau_dimenssionnement(1000, False, 0.40, 0.40, 0.35).calculRIS(False), 0.40 + 0.40 + 0.35)
-        self.assertEqual(self.nouveau_dimenssionnement(1000, False, 0.40, 0.40, 0.40).calculRIS(False), 0.40 + 0.40 + 0.40)
+        self.assertEqual(self.nouveau_dimensionnement(1000, False, 0.30, 0.25, 0.25).calculRIS(False), 0.30 + 0.25 + 0.25)
+        self.assertEqual(self.nouveau_dimensionnement(1000, False, 0.35, 0.25, 0.25).calculRIS(False), 0.35 + 0.25 + 0.25)
+        self.assertEqual(self.nouveau_dimensionnement(1000, False, 0.40, 0.25, 0.25).calculRIS(False), 0.40 + 0.25 + 0.25)
+        self.assertEqual(self.nouveau_dimensionnement(1000, False, 0.40, 0.30, 0.25).calculRIS(False), 0.40 + 0.30 + 0.25)
+        self.assertEqual(self.nouveau_dimensionnement(1000, False, 0.40, 0.35, 0.25).calculRIS(False), 0.40 + 0.35 + 0.25)
+        self.assertEqual(self.nouveau_dimensionnement(1000, False, 0.40, 0.40, 0.25).calculRIS(False), 0.40 + 0.40 + 0.25)
+        self.assertEqual(self.nouveau_dimensionnement(1000, False, 0.40, 0.40, 0.30).calculRIS(False), 0.40 + 0.40 + 0.30)
+        self.assertEqual(self.nouveau_dimensionnement(1000, False, 0.40, 0.40, 0.35).calculRIS(False), 0.40 + 0.40 + 0.35)
+        self.assertEqual(self.nouveau_dimensionnement(1000, False, 0.40, 0.40, 0.40).calculRIS(False), 0.40 + 0.40 + 0.40)
 
 
     def test_IS(self):
-        self.assertEqual(self.nouveau_dimenssionnement(0, True, 0.25, 0.25, 0.25).calculIS(True), 0)
-        self.assertEqual(self.nouveau_dimenssionnement(250, True, 0.40, 0.35, 0.25).calculIS(True), 0)
-        self.assertEqual(self.nouveau_dimenssionnement(251, True, 0.40, 0.35, 0.25).calculIS(True), 2)
-        self.assertEqual(self.nouveau_dimenssionnement(1125, True, 0.40, 0.35, 0.25).calculIS(True), 2)
-        self.assertEqual(self.nouveau_dimenssionnement(1126, True, 0.40, 0.35, 0.25).calculIS(True), 4)
-        self.assertEqual(self.nouveau_dimenssionnement(2450, True, 0.40, 0.35, 0.25).calculIS(True), 4)
-        self.assertEqual(self.nouveau_dimenssionnement(4000, True, 0.40, 0.35, 0.25).calculIS(True), 4)
-        self.assertEqual(self.nouveau_dimenssionnement(4001, True, 0.40, 0.35, 0.25).calculIS(True), 6)
-        self.assertEqual(self.nouveau_dimenssionnement(5001, True, 0.40, 0.35, 0.25).calculIS(True), 6)
-        self.assertEqual(self.nouveau_dimenssionnement(6001, True, 0.40, 0.35, 0.25).calculIS(True), 8)
+        self.assertEqual(self.nouveau_dimensionnement(0, True, 0.25, 0.25, 0.25).calculIS(True), 0)
+        self.assertEqual(self.nouveau_dimensionnement(250, True, 0.40, 0.35, 0.25).calculIS(True), 0)
+        self.assertEqual(self.nouveau_dimensionnement(251, True, 0.40, 0.35, 0.25).calculIS(True), 2)
+        self.assertEqual(self.nouveau_dimensionnement(1125, True, 0.40, 0.35, 0.25).calculIS(True), 2)
+        self.assertEqual(self.nouveau_dimensionnement(1126, True, 0.40, 0.35, 0.25).calculIS(True), 4)
+        self.assertEqual(self.nouveau_dimensionnement(2450, True, 0.40, 0.35, 0.25).calculIS(True), 4)
+        self.assertEqual(self.nouveau_dimensionnement(4000, True, 0.40, 0.35, 0.25).calculIS(True), 4)
+        self.assertEqual(self.nouveau_dimensionnement(4001, True, 0.40, 0.35, 0.25).calculIS(True), 6)
+        self.assertEqual(self.nouveau_dimensionnement(5001, True, 0.40, 0.35, 0.25).calculIS(True), 6)
+        self.assertEqual(self.nouveau_dimensionnement(6001, True, 0.40, 0.35, 0.25).calculIS(True), 8)
 
         # Un PAPS n'est pas suffisant si les secours pubic sont à plus de 30 minutes
-        self.assertEqual(self.nouveau_dimenssionnement(251, True, 0.25, 0.35, 0.40).calculIS(True), 4)
+        self.assertEqual(self.nouveau_dimensionnement(251, True, 0.25, 0.35, 0.40).calculIS(True), 4)
         # Un PAPS n'est pas adapté pour les acteurs
-        self.assertEqual(self.nouveau_dimenssionnement(251, False, 0.40, 0.35, 0.25).calculIS(False), 4)
+        self.assertEqual(self.nouveau_dimensionnement(251, False, 0.40, 0.35, 0.25).calculIS(False), 4)

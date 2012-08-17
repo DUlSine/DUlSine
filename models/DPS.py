@@ -76,7 +76,7 @@ RISQUES_E2 = (
 )
 
 
-class Dimenssionnement(models.Model):
+class Dimensionnement(models.Model):
     class Meta:
         app_label = 'DUlSine'
 
@@ -167,7 +167,7 @@ class PAPS(models.Model):
     class Meta:
         app_label = 'DUlSine'
 
-    dimenssionnement = models.ForeignKey(Dimenssionnement)
+    dimensionnement = models.ForeignKey(Dimensionnement)
     PSE2 = models.ForeignKey(Intervenant, related_name='PAPS_PSE2')
     PSE1 = models.ForeignKey(Intervenant, related_name='PAPS_PSE1')
 
@@ -176,7 +176,7 @@ class Equipe(models.Model):
     class Meta:
         app_label = 'DUlSine'
 
-    dimenssionnement = models.ForeignKey(Dimenssionnement)
+    dimensionnement = models.ForeignKey(Dimensionnement)
     CI     = models.ForeignKey(Intervenant, related_name='Equipe_CI')
     PSE2_1 = models.ForeignKey(Intervenant, related_name='Equipe_PSE2_1')
     PSE2_2 = models.ForeignKey(Intervenant, related_name='Equipe_PSE2_2')
@@ -188,7 +188,7 @@ class Binome(models.Model):
     class Meta:
         app_label = 'DUlSine'
 
-    dimenssionnement = models.ForeignKey(Dimenssionnement)
+    dimensionnement = models.ForeignKey(Dimensionnement)
     Equipe = models.ForeignKey(Equipe)
     PSE2 = models.ForeignKey(Intervenant, related_name='Binome_PSE2')
     PSE1 = models.ForeignKey(Intervenant, related_name='Binome_PSE1')
