@@ -40,6 +40,11 @@ class DPS(models.Model):
     objet = models.CharField(max_length = 200)
 
     lieu = models.CharField(max_length=400)
+    circuit = models.CharField(max_length = 1, choices = CIRCUITS, default = CIRCUITS[0][0])
+    superficie = models.IntegerField()
+    distance = models.IntegerField()
+    risques = models.CharField(max_length=200)
+
     adresse_rdv = models.CharField(max_length = 500)
     contact_sur_place_nom = models.CharField(max_length=200)
     contact_sur_place_prenom = models.CharField(max_length=200)
@@ -84,11 +89,6 @@ class Dimensionnement(models.Model):
 
     debut = models.DateTimeField()
     fin = models.DateTimeField()
-
-    circuit = models.CharField(max_length = 1, choices = CIRCUITS, default = CIRCUITS[0][0])
-    superficie = models.IntegerField()
-    distance = models.IntegerField()
-    risques = models.CharField(max_length=200)
 
     effectifs_acteurs = models.IntegerField()
     age_acteurs       = models.CharField(max_length=50, blank = True)

@@ -124,6 +124,33 @@
                 <td>{{ form_dps.contact_sur_place_telephone }} {% for error in form_dps.contact_sur_place_telephone.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
             </tr>
         </table>
+
+
+        <h3>Caractéristiques du lieu :</h3>
+        <table>
+            <tr>
+                <td><label for='id_lieu'>Adresse :</label></td>
+                <td>{{form_dps.lieu}} {% for error in form_dps.lieu.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
+            </tr>
+            <tr>
+                <td><label for='id_lieu'>Circuit :</label></td>
+                <td>{{form_dps.circuit}} {% for error in form_dps.circuit.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
+            </tr>
+            <tr>
+                <td><label for='id_superficie'>Superficie (en m²):</label></td>
+                <td>{{form_dps.superficie}} {% for error in form_dps.superficie.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
+            </tr>
+            <tr>
+                <td><label for='id_distance'>Distance entre les deux points les plus éloingé du site (en m) :</label></td>
+                <td>{{form_dps.distance}} {% for error in form_dps.distance.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
+            </tr>
+            <tr>
+                <td><label for='id_risques'>Risques :</label></td>
+                <td>{{form_dps.risques}} {% for error in form_dps.risques.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
+            </tr>
+        </table>
+
+
  
     <input type="submit" value="Submit" />
     </form>
