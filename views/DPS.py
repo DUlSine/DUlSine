@@ -41,8 +41,11 @@ class DimensionnementForm(ModelForm):
 
 
 def index(request, delegation):
+    # Check that the DL does exist
+    DL = get_object_or_404(Delegation, numero=delegation)
+
     dimensionnements = Dimensionnement.objects.all()
-    return render_to_response('dps/index.html', {'all_dim': dimensionnements})
+    return render_to_response('dps/index.html', {'DL': DL, 'all_dim': dimensionnements})
 
 
 
