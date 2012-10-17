@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% block titre %}Délégation de {{ DL.nom }} - DPS{% endblock %}
 {% block corps %}
 {% regroup all_dim by debut|date:"F" as all_dim_by_months %}
 {% for month in all_dim_by_months %}
