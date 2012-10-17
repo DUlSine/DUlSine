@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # vim: set ts=4
+from django.http import HttpResponse
 from django.core.urlresolvers import reverse
 from django.forms import ModelForm, RadioSelect
 from django.http import HttpResponse, HttpResponseRedirect, Http404
@@ -104,3 +105,11 @@ def devis(request, delegation, dps_id):
     dps = get_object_or_404(DPS, pk = dps_id, delegation = DL)
 
     return render_to_response('dps/devis.html', {'DL': DL, 'dps': dps})
+
+
+def admin_index(request, delegation):
+    return HttpResponse(status = 200)
+
+
+def admin_details(request, delegation, dps_id):
+    return HttpResponse(status = 200)
