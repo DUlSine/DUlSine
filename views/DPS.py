@@ -18,7 +18,6 @@ class OrganisateurForm(ModelForm):
         }
 
 
-
 class DPSForm(ModelForm):
     class Meta:
         model = DPS
@@ -41,7 +40,8 @@ class DimensionnementForm(ModelForm):
 
 
 def index(request, delegation):
-    return HttpResponse(status=200)
+    dimensionnements = Dimensionnement.objects.all()
+    return render_to_response('dps/index.html', {'all_dim': dimensionnements})
 
 
 

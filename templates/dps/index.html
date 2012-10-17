@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block corps %}
+{% regroup all_dim by debut|date:"F" as all_dim_by_months %}
+{% for month in all_dim_by_months %}
+<table>
+{% if forloop.counter == 1 %}
+  <thead>
+    <tr>
+      <th scope='col'>Date</th>
+      <th scope='col'>Horaire</th>
+      <th scope='col'>Nom</th>
+      <th scope='col'>Status</th>
+      <th scope='col'>CI</th>
+      <th scope='col'>PSE2</th>
+      <th scope='col'>PSE1</th>
+      <th scope='col'>PSC1</th>
+    </tr>
+  </thead>
+{% else %}
+  <tr><th colspan='8'>{{ month.grouper|capfirst }}</th></tr>
+{% endif %}
+    {% for dim in month.list %}
+    <tr class='{% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}'>
+      <td width='15%'>{{ dim.debut|date:"l d" }}</td>
+      <td width='15%'>{{ dim.debut|date:"H:i" }} - {{ dim.fin|date:"H:i" }}</td>
+      <td width='36%'>{{ dim.DPS.intitule }}</td>
+      <td width='8%'>???</td>
+      <td width='6%'>0</td>
+      <td width='6%'>0</td>
+      <td width='6%'>0</td>
+      <td width='6%'>0</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endfor %}
+{% endblock %}
