@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # vim: set ts=4
-from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from django.shortcuts import render_to_response, get_object_or_404
+from django.template import RequestContext
 
 
-@login_required
-def index(request, delegation):
-    return HttpResponse(status=200)
+def index(request):
+    return render_to_response('general/index.html')

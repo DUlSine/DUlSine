@@ -4,7 +4,7 @@
 from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('DUlSine.views.general',
-    url(r'^(?P<delegation>\d+)/$', 'index', name='index')
+    url(r'^$', 'index', name='index')
 )
 
 urlpatterns += patterns('DUlSine.views.DPS',
