@@ -32,7 +32,7 @@ urlpatterns += patterns('DUlSine.views.DPS',
 )
 
 urlpatterns += patterns('DUlSine.views.benevole',
-    url(r'^(?P<delegation>\d+)/benevole/$', 'index', name='benevole.index'),
+    url(r'^(?P<delegation>\d+)/benevoles/$', 'index', name='benevole.index'),
     url(r'^benevole/(?P<benevole_id>\d+)/$', 'details', name='benevole.details'),
     url(r'^benevole/(?P<benevole_id>\d+)/calendrier(?:/(?P<event_type>\w+))?(?:/(?P<avant>\d+)(?:/(?P<apres>\d+))?)?/$', 'calendrier', name='benevole.calendrier'),
 )
