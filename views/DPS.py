@@ -54,10 +54,7 @@ def details(request, delegation, dps_id):
 
 
 
-def nouveau(request, delegation):
-    # Vérifie le numéro de délégation
-    DL = get_object_or_404(Delegation, numero=delegation)
-
+def demande(request):
     if(request.method == 'POST'):
         form_orga = OrganisateurForm(request.POST)
         form_dps = DPSForm(request.POST)
@@ -67,11 +64,11 @@ def nouveau(request, delegation):
             dps.delegation = DL
             dps.organisateur = orga
             dps.save()
-            return HttpResponseRedirect(reverse('dps.nouveau.dimensionnement', args=[delegation, dps.hash_id]))
+            return HttpResponseRedirect(reverse('general.index'))
     else:
         form_orga = OrganisateurForm()
         form_dps = DPSForm()
-    return render_to_response('dps/nouveau.html', {'form_orga': form_orga, 'form_dps': form_dps}, context_instance=RequestContext(request))
+    return render_to_response('dps/demande.html', {'form_orga': form_orga, 'form_dps': form_dps}, context_instance=RequestContext(request))
 
 
 def dimensionnement(request, delegation, dps_hash, dim_id=None):

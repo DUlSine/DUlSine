@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+
+
+{% block titre %}DUlSine - Demande de DPS{% endblock %}
+
+
+{% block navbar %}
+<ul class="nav">
+  <li class="active"><a href="{% url index %}"><i class="icon-home icon-white"></i> Accueil</a></li>
+</ul>
+<form class="navbar-form pull-right">
+  <input class="span2" type="text" placeholder="Email" />
+  <input class="span2" type="password" placeholder="Mot de passe" />
+  <button type="submit" class="btn">Se connecter</button>
+</form>
+{% endblock %}
+
+
+{% block corps %}
+<div class="page-header">
+  <h1>Demande de DPS</h1>
+</div>
+
+<p>Pour faire la demande pour un poste de secours (DPS), veuillez remplir le formulaire suivant aussi précisément que possible.<p>
+
+<h2>Informations sur l'organisateur :</h2>
+<form action="" method="post" class="form-horizontal">
+  {% csrf_token %}
+  <div class="row">
+    <div class="span6">
+      <legend>Contact :</legend>
+      <div class="control-group">
+	<label class="control-label" for="contact_civilite">Civilité</label>
+	<div class="controls">
+	  {{ form_orga.contact_civilite.errors }}
+	  {% for radio in form_orga.contact_civilite %}
+	  {{ radio }}
+	  {% endfor %}
+	</div>
+      </div>
+      <div class="control-group">
+	<label class="control-label" for="id_contact_nom">Nom</label>
+	<div class="controls">
+	  {{form_orga.contact_nom }}
+	</div>
+      </div>
+      <div class="control-group">
+	<label class="control-label" for="id_contact_prenom">Prénom</label>
+	<div class="controls">
+	  {{form_orga.contact_prenom }}
+	</div>
+      </div>
+      <div class="control-group">
+	<label class="control-label" for="id_contact_fonction">Fonction</label>
+	<div class="controls">
+	  {{form_orga.contact_fonction }}
+	</div>
+      </div>
+    </div>
+    <div class="span6">
+      <legend>Représentant légal :</legend>
+      <div class="control-group">
+	<label class="control-label" for="representant_civilite">Civilité</label>
+	<div class="controls">
+	  {% for radio in form_orga.representant_civilite %}
+	  {{ radio }}
+	  {% endfor %}
+	</div>
+      </div>
+      <div class="control-group">
+	<label class="control-label" for="id_representant_nom">Nom</label>
+	<div class="controls">
+	  {{form_orga.representant_nom }}
+	</div>
+      </div>
+      <div class="control-group">
+	<label class="control-label" for="id_representant_prenom">Prénom</label>
+	<div class="controls">
+	  {{form_orga.representant_prenom }}
+	</div>
+      </div>
+      <div class="control-group">
+	<label class="control-label" for="id_representant_fonction">Fonction</label>
+	<div class="controls">
+	  {{form_orga.representant_fonction }}
+	</div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <legend>Organisation :</legend>
+      <div class="row">
+	<div class="span6">
+	  <div class="control-group">
+	    <label class="control-label" for="id_nom">Nom</label>
+	    <div class="controls">
+	      {{ form_orga.nom }}
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <label class="control-label" for="id_adresse">Adresse</label>
+	    <div class="controls">
+	      {{ form_orga.adresse }}
+	    </div>
+	  </div>
+	</div>
+	<div class="span6">
+	  <div class="control-group">
+	    <label class="control-label" for="id_telephone">Téléphone</label>
+	    <div class="controls">
+	      {{ form_orga.telephone }}
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <label class="control-label" for="id_portable">Portable</label>
+	    <div class="controls">
+	      {{ form_orga.portable }}
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <label class="control-label" for="id_fax">Fax</label>
+	    <div class="controls">
+	      {{ form_orga.fax }}
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <label class="control-label" for="id_email">Email</label>
+	    <div class="controls">
+	      {{ form_orga.email }}
+	    </div>
+	  </div>
+	</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Information sur la manifestation :</h2>
+  <div class="row">
+    <div class="span6">
+      <legend>Informations générales</legend>
+      <div class="control-group">
+	<label class="control-label" for="id_intitule">Intitulé</label>
+	<div class="controls">
+	  {{ form_dps.intitule }}
+	</div>
+      </div>
+      <div class="control-group">
+	<label class="control-label" for="id_intitule">Objet</label>
+	<div class="controls">
+	  {{ form_dps.objet }}
+	</div>
+      </div>
+      <div class="control-group">
+	<label class="control-label" for="id_intitule">Adresse de rendez-vous</label>
+	<div class="controls">
+	  {{ form_dps.adresse_rdv }}
+	</div>
+      </div>
+    </div>
+    <div class="span6">
+      <legend>Contact sur place</legend>
+      <div class="control-group">
+	<label class="control-label" for="contact_sur_place_civilite">Civilite</label>
+	<div class="controls">
+	  {% for radio in form_dps.contact_sur_place_civilite %}
+	  {{ radio }}
+	  {% endfor %}
+	</div>
+      </div>
+      <div class="control-group">
+	<label class="control-label" for="id_contact_sur_place_nom">Nom</label>
+	<div class="controls">
+	  {{ form_dps.contact_sur_place_nom }}
+	</div>
+      </div>
+      <div class="control-group">
+	<label class="control-label" for="id_contact_sur_place_prenom">Prénom</label>
+	<div class="controls">
+	  {{ form_dps.contact_sur_place_prenom }}
+	</div>
+      </div>
+      <div class="control-group">
+	<label class="control-label" for="id_contact_sur_place_telephone">Téléphone</label>
+	<div class="controls">
+	  {{ form_dps.contact_sur_place_telephone }}
+	</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="span12">
+      <legend>Caractéristiques du lieu</legend>
+      <div class="control-group">
+	<label class="control-label" for="id_lieu">Adresse</label>
+	<div class="controls">
+	  {{ form_dps.lieu }}
+	</div>
+      </div>
+      <div class="control-group">
+	<label class="control-label" for="id_circuit">Circuit</label>
+	<div class="controls">
+	  {{ form_dps.circuit }}
+	</div>
+      </div>
+      <div class="control-group">
+	<label class="control-label" for="id_distance">Distance entre les deux points les plus éloingé du site</label>
+	<div class="controls">
+	  <div class="input-append">
+	  {{ form_dps.distance }}<span class="add-on"> mètres</span>
+	  </div>
+	</div>
+      </div>
+      <div class="control-group">
+	<label class="control-label" for="id_risques">Risques</label>
+	<div class="controls">
+	  {{ form_dps.risques }}
+	</div>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn">Envoyer la demande</button>
+</form>
+{% endblock %}

@@ -5,7 +5,7 @@
 
 {% block navbar %}
 <ul class="nav">
-  <li class="active"><a href=""><i class="icon-home icon-white"></i> Accueil</a></li>
+  <li class="active"><a href="{% url index %}"><i class="icon-home icon-white"></i> Accueil</a></li>
 </ul>
 <form class="navbar-form pull-right">
   <input class="span2" type="text" placeholder="Email" />
@@ -38,7 +38,7 @@
 </div>
 <div class="row">
   <div class="span6">
-    <p class="text-center"><a href="#" class="btn btn-large">Faire une demande de DPS</a></p>
+    <p class="text-center"><a href="{% url dps.demande %}" class="btn btn-large">Faire une demande de DPS</a></p>
   </div>
   <div class="span6">
     <p class="text-center"><a href="#" class="btn btn-large">Se connecter</a></p>
