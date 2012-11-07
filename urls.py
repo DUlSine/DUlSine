@@ -11,23 +11,22 @@ urlpatterns += patterns('DUlSine.views.DPS',
     url(r'^(?P<delegation>\d+)/DPS/$', 'index', name='dps.index'),
     url(r'^(?P<delegation>\d+)/DPS/(?P<dps_id>\d+)/$', 'details', name='dps.details'),
 
-    # Création d'un nouveau DPS.
-    # Deux étapes distinctes :
-    # * information sur l'organisateur et le DPS
-    # * gestion des dimensionnements
+    # Creating a new DPS in 2 steps:
+    # * information on the organizer and on the DPS
+    # * details for every days
     url(r'^DPS/demande/$', 'demande', name='dps.demande'),
     url(r'^(?P<delegation>\d+)/DPS/nouveau/(?P<dps_hash>\w+)(?:/(?P<dim_id>\d+))?/$', 'dimensionnement', name='dps.nouveau.dimensionnement'),
 
 
-    # Administration des DPS
+    # Managing DPS
     url(r'^(?P<delegation>\d+)/DPS/admin/$', 'admin_index', name = 'dps.admin.index'),
     url(r'^(?P<delegation>\d+)/DPS/admin/(?P<dps_id>\d+)$', 'admin_details', name = 'dps.admin.details'),
     url(r'^(?P<delegation>\d+)/DPS/admin/(?P<dps_id>\d+)/devis/$', 'devis', name = 'dps.admin.devis'),
 
-    # Calendrier au format CalDav
-    # Deux arguments optionnels peuvent etre passés via l'url
-    # * avant : ne retourne pas les événements de plus de 'avant' jours
-    # * apres : ne retourne pas les événements dans plus de 'apres' jours
+    # Calendars in CalDav format
+    # Two optional arguments given throug the url:
+    # * avant : only return events that happend less than 'avant' days before
+    # * apres : do not return events in more than 'apres' days
     url(r'^(?P<delegation>\d+)/DPS/calendrier(?:/(?P<avant>\d+)(?:/(?P<apres>\d+))?)?/$', 'calendrier', name='dps.calendrier'),
 )
 
