@@ -7,6 +7,11 @@ urlpatterns = patterns('DUlSine.views.general',
     url(r'^$', 'index', name='index')
 )
 
+# Authentication
+urlpatterns += patterns('django.contrib.auth.views',
+    url(r'^accounts/login$', 'login', name='accounts.login'),
+)
+
 urlpatterns += patterns('DUlSine.views.DPS',
     url(r'^(?P<delegation>\d+)/DPS/$', 'index', name='dps.index'),
     url(r'^(?P<delegation>\d+)/DPS/(?P<dps_id>\d+)/$', 'details', name='dps.details'),
