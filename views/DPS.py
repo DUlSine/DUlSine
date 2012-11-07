@@ -72,11 +72,11 @@ def demande(request):
 
 
 def dimensionnement(request, delegation, dps_hash, dim_id=None):
-    # vérifie la délégation et le DPS
+    # Check that the DL does exist
     DL = get_object_or_404(Delegation, numero=delegation)
     dps = get_object_or_404(DPS, hash_id=dps_hash)
 
-    # Est-ce un nouveau dimensionnement ?
+    # Is it a new dimensionnement ?
     if(dim_id == None):
         if(request.method == 'POST'):
             form = DimensionnementForm(request.POST)

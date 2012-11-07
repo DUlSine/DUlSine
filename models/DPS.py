@@ -24,7 +24,7 @@ TYPES_ACTEURS = (
 
 
 def random_hash():
-    """ Retourne une chaine aléatoire """
+    """ Create a random string of size 15 """
     return binascii.b2a_hex(os.urandom(15))
 
 
@@ -119,9 +119,9 @@ class Dimensionnement(models.Model):
 
     def calculRIS(self, public):
         """
-         Calcul le RIS suivant les informations disponible
-          @param public: True si le DPS concerne le public, False pour les acteurs
-          @return le RIS
+         Compute the RIS (number of first aiders) according to the given informations
+          @param public: True if the DPS is targetting the public. False for the actors.
+          @return the RIS
         """
         indice = self.P2 + self.E1 + self.E2
         P = 0
@@ -138,24 +138,24 @@ class Dimensionnement(models.Model):
 
     def calculIS(self, public):
         """
-         Calcul le nombre d'IS minimum sur le DPS
-          @params public: True si le DPS concerne le public, False pour les acteurs
-          @return le nombre minimum d'IS pour le DPS.
+         Compute the minimal number of first aiders
+          @param public: True if the DPS is targetting the public. False for the actors.
+          @return the minimal number of first aiders
         """
         ris = self.calculRIS(public)
         if(ris <= 0.25):
             num_is = 0
         elif(ris <= 1.125):
             num_is = 2
-            # Un PAPS n'est pas suffisant pour les acteurs ou dans le cas où
-            # les secours public sont à plus de 30 minutes (E2 = 0.40)
+            # A PAPS is not enough when protecting actors and if the public
+            # helps took more than 30 minutes to come (E2 = 0.40)
             if(public == False or self.E2 == 0.40):
                 num_is = 4
         elif(ris <= 4):
             num_is = 4
         else:
             num_is = math.ceil(ris)
-            # Arrondis à l'entier pair supérieur
+            # Round to the nearest odd number (upper bound)
             if(num_is % 2 == 1):
                 num_is += 1
 
