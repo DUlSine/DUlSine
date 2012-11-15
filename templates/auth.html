@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block navbar %}
+{% if user.is_authenticated %}
 <ul class="nav">
   <li><a href="#"><i class="icon-home"></i> Accueil</a></li>
   <li><a href="#"><i class="icon-user"></i> Bénévoles</a></li>
@@ -17,7 +18,7 @@
 </ul>
 <ul class="nav pull-right">
   <li class="active dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i> Guillaume DEDRIE <b class="caret"></b></a>
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i>{{ user.get_full_name }}<b class="caret"></b></a>
     <ul class="dropdown-menu">
       <li><a href="#">Mon compte</a></li>
       <li><a href="#">Aide</a></li>
@@ -26,4 +27,14 @@
     </ul>
   </li>
 </ul>
+{% else %}
+<ul class="nav">
+  <li class="active"><a href="{% url 'index' %}"><i class="icon-home icon-white"></i> Accueil</a></li>
+</ul>
+<form class="navbar-form pull-right">
+  <input class="span2" type="text" placeholder="Email" />
+  <input class="span2" type="password" placeholder="Mot de passe" />
+  <button type="submit" class="btn">Se connecter</button>
+</form>
+{% endif %}
 {% endblock %}
