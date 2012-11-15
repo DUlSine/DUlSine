@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 
-from DUlSine.models import DPS, Delegation, Dimensionnement, Organisateur
+from DUlSine.models import DPS, Structure, Dimensionnement, Organisateur
 
 
 class OrganisateurForm(ModelForm):
@@ -25,7 +25,7 @@ class DPSForm(ModelForm):
         widgets = {
             'contact_sur_place_civilite': RadioSelect
         }
-        exclude = ('hash_id', 'delegation', 'organisateur', 'prix')
+        exclude = ('hash_id', 'structure', 'organisateur', 'prix')
 
 
 class DimensionnementForm(ModelForm):
@@ -40,16 +40,16 @@ class DimensionnementForm(ModelForm):
 
 
 
-def index(request, delegation):
-    # Check that the DL does exist
-    DL = get_object_or_404(Delegation, numero=delegation)
+def index(request, structure):
+    # Check that the structure does exist
+    Struct = get_object_or_404(Structure, numero = structure)
 
     dimensionnements = Dimensionnement.objects.all()
-    return render_to_response('dps/index.html', {'DL': DL, 'all_dim': dimensionnements}, context_instance=RequestContext(request))
+    return render_to_response('dps/index.html', {'structure': Struct, 'all_dim': dimensionnements}, context_instance=RequestContext(request))
 
 
 
-def details(request, delegation, dps_id):
+def details(request, structure, dps_id):
     return HttpResponse(status=200)
 
 
@@ -61,7 +61,7 @@ def demande(request):
         if(form_orga.is_valid() and form_dps.is_valid()):
             orga = form_orga.save()
             dps = form_dps.save(commit=False)
-            dps.delegation = DL
+#            dps.structure = Struct
             dps.organisateur = orga
             dps.save()
             return HttpResponseRedirect(reverse('general.index'))
@@ -71,9 +71,9 @@ def demande(request):
     return render_to_response('dps/demande.html', {'form_orga': form_orga, 'form_dps': form_dps}, context_instance=RequestContext(request))
 
 
-def dimensionnement(request, delegation, dps_hash, dim_id=None):
-    # Check that the DL does exist
-    DL = get_object_or_404(Delegation, numero=delegation)
+def dimensionnement(request, structure, dps_hash, dim_id=None):
+    # Check that the structure does exist
+    Struct = get_object_or_404(Structure, numero = structure)
     dps = get_object_or_404(DPS, hash_id=dps_hash)
 
     # Is it a new dimensionnement ?
@@ -84,7 +84,7 @@ def dimensionnement(request, delegation, dps_hash, dim_id=None):
                 dim = form.save(commit = False)
                 dim.DPS = dps
                 dim.save()
-                return HttpResponseRedirect(reverse('dps.nouveau.dimensionnement', args=[delegation, dps_hash, dim.id]))
+                return HttpResponseRedirect(reverse('dps.nouveau.dimensionnement', args=[structure, dps_hash, dim.id]))
         else:
             form = DimensionnementForm()
 
@@ -96,20 +96,20 @@ def dimensionnement(request, delegation, dps_hash, dim_id=None):
 
 
 
-def calendrier(request, delegation, avant=None, apres=None):
+def calendrier(request, structure, avant=None, apres=None):
     return HttpResponse(status=200)
 
 
-def devis(request, delegation, dps_id):
-    DL = get_object_or_404(Delegation, numero = delegation)
-    dps = get_object_or_404(DPS, pk = dps_id, delegation = DL)
+def devis(request, structure, dps_id):
+    Struct = get_object_or_404(Structure, numero = structure)
+    dps = get_object_or_404(DPS, pk = dps_id, structure = Struct)
 
-    return render_to_response('dps/devis.html', {'DL': DL, 'dps': dps}, context_instance=RequestContext(request))
+    return render_to_response('dps/devis.html', {'structure': Struct, 'dps': dps}, context_instance=RequestContext(request))
 
 
-def admin_index(request, delegation):
+def admin_index(request, structure):
     return HttpResponse(status = 200)
 
 
-def admin_details(request, delegation, dps_id):
+def admin_details(request, structure, dps_id):
     return HttpResponse(status = 200)

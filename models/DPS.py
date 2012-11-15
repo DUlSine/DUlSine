@@ -6,7 +6,7 @@ import os, binascii
 
 from django.db import models
 
-from delegation import Delegation
+from structure import Structure
 from organisateur import Organisateur, CIVILITES
 from intervenant import Intervenant
 
@@ -33,7 +33,7 @@ class DPS(models.Model):
         app_label = 'DUlSine'
 
     hash_id = models.CharField(unique=True, max_length = 30, default = random_hash)
-    delegation = models.ForeignKey(Delegation)
+    structure = models.ForeignKey(Structure)
 
     organisateur = models.ForeignKey(Organisateur)
     intitule = models.CharField(max_length = 200)

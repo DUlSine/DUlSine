@@ -2,7 +2,7 @@
 # vim: set ts=4
 from django.http import HttpResponse
 
-def index(request, delegation):
+def index(request, structure):
     return HttpResponse(status=200)
 
 def details(request, benevole_id):

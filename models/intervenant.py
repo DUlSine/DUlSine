@@ -2,10 +2,10 @@
 # vim: set ts=4
 from django.db import models
 
-from delegation import Delegation
+from structure import Structure
 
 class Intervenant(models.Model):
     class Meta:
         app_label = 'DUlSine'
 
-    delegation = models.ForeignKey(Delegation)
+    structure = models.ForeignKey(Structure)
