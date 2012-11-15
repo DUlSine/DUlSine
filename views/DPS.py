@@ -45,7 +45,7 @@ def index(request, delegation):
     DL = get_object_or_404(Delegation, numero=delegation)
 
     dimensionnements = Dimensionnement.objects.all()
-    return render_to_response('dps/index.html', {'DL': DL, 'all_dim': dimensionnements})
+    return render_to_response('dps/index.html', {'DL': DL, 'all_dim': dimensionnements}, context_instance=RequestContext(request))
 
 
 
@@ -104,7 +104,7 @@ def devis(request, delegation, dps_id):
     DL = get_object_or_404(Delegation, numero = delegation)
     dps = get_object_or_404(DPS, pk = dps_id, delegation = DL)
 
-    return render_to_response('dps/devis.html', {'DL': DL, 'dps': dps})
+    return render_to_response('dps/devis.html', {'DL': DL, 'dps': dps}, context_instance=RequestContext(request))
 
 
 def admin_index(request, delegation):
