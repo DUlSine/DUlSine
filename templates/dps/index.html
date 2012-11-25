@@ -1,6 +1,6 @@
 {% extends 'auth.html' %}
 
-{% block titre %}Délégation de {{ DL.nom }} - DPS{% endblock %}
+{% block titre %}{{structure.nom }} - DPS{% endblock %}
 {% block corps %}
 <div class="page-header">
   <h1>Liste des %Évenement% <small>gestion d'événements</small></h1>
@@ -9,34 +9,30 @@
 {% regroup all_dim by debut|date:"F" as all_dim_by_months %}
 {% for month in all_dim_by_months %}
 <table>
-{% if forloop.counter == 1 %}
-  <thead>
     <tr>
-      <th scope='col'>Date</th>
-      <th scope='col'>Horaire</th>
-      <th scope='col'>Nom</th>
-      <th scope='col'>Status</th>
-      <th scope='col'>CI</th>
-      <th scope='col'>PSE2</th>
-      <th scope='col'>PSE1</th>
-      <th scope='col'>PSC1</th>
+      <th rowspan='0' width='10%'>{{ month.grouper|capfirst }}</th>
+      <th scope='col' width='10%'>Date</th>
+      <th scope='col' width='10%'>Horaire</th>
+      <th scope='col' width='38%'>Nom</th>
+      <th scope='col' width='8%'>Status</th>
+      <th scope='col' width='6%'>CI</th>
+      <th scope='col' width='6%'>PSE2</th>
+      <th scope='col' width='6%'>PSE1</th>
+      <th scope='col' width='6%'>PSC1</th>
     </tr>
-  </thead>
-{% else %}
-  <tr><th colspan='8'>{{ month.grouper|capfirst }}</th></tr>
-{% endif %}
     {% for dim in month.list %}
     <tr class='{% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}'>
-      <td width='15%'>{{ dim.debut|date:"l d" }}</td>
-      <td width='15%'>{{ dim.debut|date:"H:i" }} - {{ dim.fin|date:"H:i" }}</td>
-      <td width='36%'>{{ dim.DPS.intitule }}</td>
-      <td width='8%'>???</td>
-      <td width='6%'>0</td>
-      <td width='6%'>0</td>
-      <td width='6%'>0</td>
-      <td width='6%'>0</td>
+      <td>{{ dim.debut|date:"l d" }}</td>
+      <td>{{ dim.debut|date:"H:i" }} - {{ dim.fin|date:"H:i" }}</td>
+      <td>{{ dim.DPS.intitule }}</td>
+      <td>???</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     {% endfor %}
 </table>
+<br />
 {% endfor %}
 {% endblock %}
