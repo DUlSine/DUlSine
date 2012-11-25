@@ -8,11 +8,20 @@
   <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-book"></i> Événements <b class="caret"></b></a>
     <ul class="dropdown-menu">
-      <li><a href="#">Tous</a></li>
+      <li><a href="/">Tous</a></li>
       <li class="divider"></li>
-      <li><a href="#">DPS</a></li>
+      <li><a href="{% url 'dps.index' user.benevole.structure.numero %}">DPS</a></li>
+      <li><a href="/">Formations</a></li>
+      <li><a href="/">Divers</a></li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a href="admin" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-book"></i>Gestion<b class="caret"></b></a>
+    <ul class="dropdown-menu">
+      <li><a href="/admin">Tous</a></li>
+      <li class="divider"></li>
+      <li><a href="{% url 'dps.admin.index' user.benevole.structure.numero %}">DPS</a></li>
       <li><a href="#">Formations</a></li>
-      <li><a href="#">Divers</a></li>
     </ul>
   </li>
 </ul>
@@ -23,7 +32,7 @@
       <li><a href="#">Mon compte</a></li>
       <li><a href="#">Aide</a></li>
       <li class="divider"></li>
-      <li><a href="#">Déconnexion</a></li>
+      <li><a href="{% url 'accounts.logout' %}">Déconnexion</a></li>
     </ul>
   </li>
 </ul>
