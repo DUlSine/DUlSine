@@ -49,8 +49,12 @@ def index(request, structure):
 
 
 
-def details(request, structure, dps_id):
-    return HttpResponse(status=200)
+def details(request, structure, dim_id):
+    # Check that the structure does exist
+    Struct = get_object_or_404(Structure, numero = structure)
+    dimensionnement = get_object_or_404(Dimensionnement, pk = dim_id)
+
+    return render_to_response('dps/details.html', {'structure': Struct, 'dim': dimensionnement}, context_instance = RequestContext(request))
 
 
 
