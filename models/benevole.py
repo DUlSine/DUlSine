@@ -10,7 +10,7 @@ class Benevole(models.Model):
     def __unicode__(self):
         return self.user.get_full_name() + ' (' + self.structure.nom + ')'
 
-    user = models.ForeignKey(User)
+    user = models.OneToOneField(User)
     structure = models.ForeignKey(Structure)
 
     # TODO: use https://docs.djangoproject.com/en/dev/ref/contrib/localflavor/
