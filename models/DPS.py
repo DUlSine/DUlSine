@@ -8,7 +8,7 @@ from django.db import models
 
 from structure import Structure
 from organisateur import Organisateur, CIVILITES
-from intervenant import Intervenant
+from benevole import Benevole
 
 CIRCUITS = (
         ('O', 'ouvert'),
@@ -168,8 +168,8 @@ class PAPS(models.Model):
         app_label = 'DUlSine'
 
     dimensionnement = models.ForeignKey(Dimensionnement)
-    PSE2 = models.ForeignKey(Intervenant, related_name='PAPS_PSE2')
-    PSE1 = models.ForeignKey(Intervenant, related_name='PAPS_PSE1')
+    PSE2 = models.ForeignKey(Benevole, related_name='PAPS_PSE2')
+    PSE1 = models.ForeignKey(Benevole, related_name='PAPS_PSE1')
 
 
 class Equipe(models.Model):
@@ -177,11 +177,11 @@ class Equipe(models.Model):
         app_label = 'DUlSine'
 
     dimensionnement = models.ForeignKey(Dimensionnement)
-    CI     = models.ForeignKey(Intervenant, related_name='Equipe_CI')
-    PSE2_1 = models.ForeignKey(Intervenant, related_name='Equipe_PSE2_1')
-    PSE2_2 = models.ForeignKey(Intervenant, related_name='Equipe_PSE2_2')
-    PSE1   = models.ForeignKey(Intervenant, related_name='Equipe_PSE1')
-    PSC1   = models.ForeignKey(Intervenant, related_name='Equipe_PSC1', null=True, blank = True)
+    CI     = models.ForeignKey(Benevole, related_name='Equipe_CI')
+    PSE2_1 = models.ForeignKey(Benevole, related_name='Equipe_PSE2_1')
+    PSE2_2 = models.ForeignKey(Benevole, related_name='Equipe_PSE2_2')
+    PSE1   = models.ForeignKey(Benevole, related_name='Equipe_PSE1')
+    PSC1   = models.ForeignKey(Benevole, related_name='Equipe_PSC1', null=True, blank = True)
 
 
 class Binome(models.Model):
@@ -190,6 +190,6 @@ class Binome(models.Model):
 
     dimensionnement = models.ForeignKey(Dimensionnement)
     Equipe = models.ForeignKey(Equipe)
-    PSE2 = models.ForeignKey(Intervenant, related_name='Binome_PSE2')
-    PSE1 = models.ForeignKey(Intervenant, related_name='Binome_PSE1')
+    PSE2 = models.ForeignKey(Benevole, related_name='Binome_PSE2')
+    PSE1 = models.ForeignKey(Benevole, related_name='Binome_PSE1')
 
