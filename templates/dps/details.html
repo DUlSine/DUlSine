@@ -3,6 +3,41 @@
 {% block titre %}{{ structure.nom }} - {{ dim }}{% endblock %}
 {% block corps %}
 <div class="page-header">
-  <h1>Details du DPS</h1>
+  <h1>{{ dim }}</h1>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <legend>Informations générales</legend>
+    <div class="control-group">
+      <div class="controls">
+        Intitulé : {{ dim }}
+      </div>
+      <div class="controls">
+        Lieux : {{ dim.DPS.lieu }}
+      </div>
+      <div class="controls">
+        {% if dim.debut|date:"d/m/y" == dim.fin|date:"d/m/y" %}
+          Le {{ dim.debut|date:"l d/m/y" }} de {{ dim.debut|date:"H:i" }} à {{ dim.fin|date:"H:i" }}
+        {% else %}
+          Du {{ dim.debut|date:"l d/m/y" }} à {{ dim.debut|date:"H:i" }} au {{ dim.fin|date:"l d/m/y" }} à {{ dim.fin|date:"H:i" }}
+        {% endif %}
+      </div>
+      {% if dim.DPS.remarques %}
+      <div class="controls">
+        Remarques : {{ dim.DPS.remarques }}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="span12">
+    <legend>Equipes</legend>
+  </div>
+  <div class="span12">
+    <legend>Véhicules</legend>
+  </div>
+  <div class="span12">
+    <legend>Matériels</legend>
+  </div>
 </div>
 {% endblock %}
