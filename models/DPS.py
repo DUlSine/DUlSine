@@ -87,6 +87,8 @@ class Dimensionnement(models.Model):
 
     DPS = models.ForeignKey(DPS)
 
+    # If the name is not given, the DPS name is used instead
+    nom = models.CharField(max_length = 200, null = True, blank = True)
     debut = models.DateTimeField()
     fin = models.DateTimeField()
 
@@ -115,7 +117,10 @@ class Dimensionnement(models.Model):
     IS = models.IntegerField(null = True, blank = True)
 
     def __unicode__(self):
-        return str(self.debut) + ' - ' + str(self.fin)
+        if self.nom != None:
+            return str(self.DPS) + ' : ' + self.nom
+        else:
+            return str(self.DPS) + ' : ' + str(self.debut) + ' - ' + str(self.fin)
 
     def calculRIS(self, public):
         """
