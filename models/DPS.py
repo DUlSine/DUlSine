@@ -52,7 +52,7 @@ class DPS(models.Model):
     contact_sur_place_telephone = models.CharField(max_length = 20)
 
     prix = models.IntegerField(null = True, blank = True)
-    remarques = models.CharField(max_length = 500, blank = True)
+    remarques = models.CharField(max_length = 500, null = True, blank = True)
 
 
     def __unicode__(self):
