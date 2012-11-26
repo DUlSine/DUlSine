@@ -112,7 +112,10 @@ def devis(request, structure, dps_id):
 
 
 def admin_index(request, structure):
-    return HttpResponse(status = 200)
+    Struct = get_object_or_404(Structure, numero = structure)
+    all_dim = Dimensionnement.objects.all()
+
+    return render_to_response('dps/admin/index.html',  {'structure': Struct, 'all_dim': all_dim}, context_instance=RequestContext(request))
 
 
 def admin_details(request, structure, dps_id):

@@ -6,7 +6,7 @@ class Structure(models.Model):
     class Meta:
         app_label = 'DUlSine'
 
-    numero = models.IntegerField(primary_key=True)
+    numero = models.IntegerField(primary_key = True)
     nom = models.CharField(max_length = 50)
     adresse = models.CharField(max_length = 500)
     parent = models.ForeignKey('Structure', null = True)

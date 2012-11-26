@@ -32,26 +32,26 @@ class DPS(models.Model):
     class Meta:
         app_label = 'DUlSine'
 
-    hash_id = models.CharField(unique=True, max_length = 30, default = random_hash)
+    hash_id = models.CharField(unique = True, max_length = 30, default = random_hash)
     structure = models.ForeignKey(Structure, null = True, blank = True)
 
     organisateur = models.ForeignKey(Organisateur)
     intitule = models.CharField(max_length = 200)
     objet = models.CharField(max_length = 200)
 
-    lieu = models.CharField(max_length=400)
+    lieu = models.CharField(max_length = 400)
     circuit = models.CharField(max_length = 1, choices = CIRCUITS, default = CIRCUITS[0][0])
     superficie = models.IntegerField()
     distance = models.IntegerField()
-    risques = models.CharField(max_length=200)
+    risques = models.CharField(max_length = 200)
 
     adresse_rdv = models.CharField(max_length = 500)
-    contact_sur_place_nom = models.CharField(max_length=200)
-    contact_sur_place_prenom = models.CharField(max_length=200)
-    contact_sur_place_civilite = models.CharField(max_length=4, choices=CIVILITES, default=CIVILITES[0][0])
+    contact_sur_place_nom = models.CharField(max_length = 200)
+    contact_sur_place_prenom = models.CharField(max_length = 200)
+    contact_sur_place_civilite = models.CharField(max_length = 4, choices = CIVILITES, default = CIVILITES[0][0])
     contact_sur_place_telephone = models.CharField(max_length = 20)
 
-    prix = models.IntegerField(null = True, blank = True)
+    prix = models.IntegerField(default = 0)
     remarques = models.CharField(max_length = 500, null = True, blank = True)
 
 
@@ -92,22 +92,22 @@ class Dimensionnement(models.Model):
     debut = models.DateTimeField()
     fin = models.DateTimeField()
 
-    effectifs_acteurs = models.IntegerField()
-    age_acteurs       = models.CharField(max_length=50, blank = True)
-    type_acteurs      = models.CharField(max_length=1, choices=TYPES_ACTEURS, blank = True)
+    effectifs_acteurs = models.IntegerField(default = 0)
+    age_acteurs       = models.CharField(max_length = 50, blank = True)
+    type_acteurs      = models.CharField(max_length = 1, choices = TYPES_ACTEURS, blank = True)
 
-    effectifs_public    = models.IntegerField()
-    age_public          = models.CharField(max_length=50, blank = True)
-    besoins_specifiques = models.CharField(max_length=200, blank = True)
+    effectifs_public    = models.IntegerField(default = 0)
+    age_public          = models.CharField(max_length = 50, blank = True)
+    besoins_specifiques = models.CharField(max_length = 200, blank = True)
 
-    medecin = models.CharField(max_length=200, blank = True)
+    medecin = models.CharField(max_length = 200, blank = True)
     infirmier = models.BooleanField(default = False)
     ambulance_prive = models.BooleanField(default = False)
-    secours_public = models.CharField(max_length=200, blank=True)
-    secours_autre = models.CharField(max_length=200, blank=True)
+    secours_public = models.CharField(max_length = 200, blank = True)
+    secours_autre = models.CharField(max_length = 200, blank = True)
 
-    centre_sdis = models.CharField(max_length=200)
-    hopital = models.CharField(max_length=200)
+    centre_sdis = models.CharField(max_length = 200)
+    hopital = models.CharField(max_length = 200)
 
     repas = models.BooleanField()
 
@@ -173,8 +173,8 @@ class PAPS(models.Model):
         app_label = 'DUlSine'
 
     dimensionnement = models.ForeignKey(Dimensionnement)
-    PSE2 = models.ForeignKey(Benevole, related_name='PAPS_PSE2')
-    PSE1 = models.ForeignKey(Benevole, related_name='PAPS_PSE1')
+    PSE2 = models.ForeignKey(Benevole, related_name = 'PAPS_PSE2')
+    PSE1 = models.ForeignKey(Benevole, related_name = 'PAPS_PSE1')
 
 
 class Equipe(models.Model):
@@ -182,11 +182,11 @@ class Equipe(models.Model):
         app_label = 'DUlSine'
 
     dimensionnement = models.ForeignKey(Dimensionnement)
-    CI     = models.ForeignKey(Benevole, related_name='Equipe_CI')
-    PSE2_1 = models.ForeignKey(Benevole, related_name='Equipe_PSE2_1')
-    PSE2_2 = models.ForeignKey(Benevole, related_name='Equipe_PSE2_2')
-    PSE1   = models.ForeignKey(Benevole, related_name='Equipe_PSE1')
-    PSC1   = models.ForeignKey(Benevole, related_name='Equipe_PSC1', null=True, blank = True)
+    CI     = models.ForeignKey(Benevole, related_name = 'Equipe_CI')
+    PSE2_1 = models.ForeignKey(Benevole, related_name = 'Equipe_PSE2_1')
+    PSE2_2 = models.ForeignKey(Benevole, related_name = 'Equipe_PSE2_2')
+    PSE1   = models.ForeignKey(Benevole, related_name = 'Equipe_PSE1')
+    PSC1   = models.ForeignKey(Benevole, related_name = 'Equipe_PSC1', null = True, blank = True)
 
 
 class Binome(models.Model):
@@ -195,6 +195,6 @@ class Binome(models.Model):
 
     dimensionnement = models.ForeignKey(Dimensionnement)
     Equipe = models.ForeignKey(Equipe)
-    PSE2 = models.ForeignKey(Benevole, related_name='Binome_PSE2')
-    PSE1 = models.ForeignKey(Benevole, related_name='Binome_PSE1')
+    PSE2 = models.ForeignKey(Benevole, related_name = 'Binome_PSE2')
+    PSE1 = models.ForeignKey(Benevole, related_name = 'Binome_PSE1')
 

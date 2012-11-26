@@ -10,6 +10,7 @@ urlpatterns = patterns('DUlSine.views.general',
 # Authentication
 urlpatterns += patterns('django.contrib.auth.views',
     url(r'^accounts/login$', 'login', name='accounts.login'),
+    url(r'^accounts/logout$', 'logout', {'template_name': 'registration/logged_out.html'}, name='accounts.logout'),#, {'template_name': 'template/registration/logged_out.html'}),
 )
 
 urlpatterns += patterns('DUlSine.views.DPS',
