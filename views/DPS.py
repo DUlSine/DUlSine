@@ -68,7 +68,7 @@ def demande(request):
 #            dps.structure = Struct
             dps.organisateur = orga
             dps.save()
-            return HttpResponseRedirect(reverse('general.index'))
+            return HttpResponseRedirect(reverse('index'))
     else:
         form_orga = OrganisateurForm()
         form_dps = DPSForm()
