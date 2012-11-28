@@ -33,7 +33,7 @@ class DPS(models.Model):
         app_label = 'DUlSine'
 
     hash_id = models.CharField(unique=True, max_length = 30, default = random_hash)
-    structure = models.ForeignKey(Structure)
+    structure = models.ForeignKey(Structure, null = True, blank = True)
 
     organisateur = models.ForeignKey(Organisateur)
     intitule = models.CharField(max_length = 200)
