@@ -21,7 +21,7 @@ urlpatterns += patterns('DUlSine.views.DPS',
     # * information on the organizer and on the DPS
     # * details for every days
     url(r'^DPS/demande/$', 'demande', name='dps.demande'),
-    url(r'^(?P<srtructure>\d+)/DPS/nouveau/(?P<dps_hash>\w+)(?:/(?P<dim_id>\d+))?/$', 'dimensionnement', name='dps.nouveau.dimensionnement'),
+    url(r'^(?P<structure>\d+)/DPS/nouveau/(?P<dps_hash>\w+)(?:/(?P<dim_id>\d+))?/$', 'dimensionnement', name='dps.nouveau.dimensionnement'),
 
 
     # Managing DPS
