@@ -1,128 +1,162 @@
-<html>
-<body>
-    <h1>Dimensionnement</h1>
-    <p>Un formulaire ce type est à remplir pour chacun des jours de votre manifestation.</p>
+{% extends 'auth.html' %}
 
+{% block titre %}DUlSine - Demande de DPS : Dimensionnement{% endblock %}
 
-    <form action="" method="post">{% csrf_token %}
-    <h3>Horaires de la manifestation :</h3>
-    <table>
-        <tr>
-            <td><label for='id_debut'>Début :</label></td>
-            <td>{{form.debut}} {% for error in form.debut.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
-        </tr>
-        <tr>
-            <td><label for='id_fin'>Fin :</label></td>
-            <td>{{form.fin}} {% for error in form.fin.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
-        </tr>
-    </table>
+{% block corps %}
+<div class="page-header">
+  <h1>Nouveau dimensionnement</h1>
+</div>
 
-    <h3>Acteurs :</h3>
-    <p>Ne remplir cette partie que si vous souhaitez prendre en charge les acteurs de la manifestation.</p>
-    <table>
-        <tr>
-            <td><label for='id_effectifs_acteurs'>Effectifs :</label></td>
-            <td>{{form.effectifs_acteurs}} {% for error in form.effectifs_acteurs.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
-        </tr>
-        <tr>
-            <td><label for='id_age_acteurs'>Age :</label></td>
-            <td>{{form.age_acteurs}} {% for error in form.age_acteurs.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
-        </tr>
-        <tr>
-            <td><label for='id_type_acteurs'>Type :</label></td>
-            <td>{{form.type_acteurs}} {% for error in form.type_acteurs.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
-        </tr>
-    </table>
+<form action="" method="post" class="form-horizontal">
+  {% csrf_token %}
 
-    <h3>Public :</h3>
-    <p>Ne remplir cette partie que si vous souhaitez prendre en charge le public de la manifestation.</p>
-    <table>
-        <tr>
-            <td><label for='id_effectifs_public'>Effectifs :</label></td>
-            <td>{{form.effectifs_public}} {% for error in form.effectifs_public.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
-        </tr>
-        <tr>
-            <td><label for='id_age_public'>Age :</label></td>
-            <td>{{form.age_public}} {% for error in form.age_public.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
-        </tr>
-        <tr>
-            <td><label for='id_besoins_specifiques'>Besoins Spécifiques :</label></td>
-            <td>{{form.besoins_specifiques}} {% for error in form.besoins_specifiques.errors %}<strong>{{ error|escape }}</strong>{% endfor %}</td>
-        </tr>
-    </table>
+  <h2>Information generales</h2>
+  <div class="row">
+    <div class="span6">
+      <legend>Dimensionnement :</legend>
+      <div class="control-group">
+        <label class="control-label" for="id_nom">Nom</label>
+        <div class="controls">
+          {{ form.nom }}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="id_debut">Debut</label>
+        <div class="controls">
+          {{ form.debut }}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="id_fin">Fin</label>
+        <div class="controls">
+          {{ form.fin }}
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="span6">
+      <legend>Public :</legend>
+      <div class="control-group">
+        <label class="control-label" for"=id_effectifs_public">Effectifs</label>
+        <div class="controls">
+          {{ form.effectifs_public }}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for"=id_age_public">Age</label>
+        <div class="controls">
+          {{ form.age_public }}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for"=id_besoins_specifiques">Besoins specifiques</label>
+        <div class="controls">
+          {{ form.besoins_specifiques }}
+        </div>
+      </div>
+    </div>
+    <div class="span6">
+      <legend>Acteurs :</legend>
+      <div class="control-group">
+        <label class="control-label" for"=id_effectifs_acteurs">Effectifs</label>
+        <div class="controls">
+          {{ form.effectifs_acteurs }}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for"=id_age_acteurs">Age</label>
+        <div class="controls">
+          {{ form.age_acteurs }}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for"=id_type_acteurs">Type</label>
+        <div class="controls">
+          {{ form.type_acteurs }}
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <h3>Autres secours :</h3>
-    <p>Cette partie permet de préciser la présence de services de secours public ou privés autre quela Croix-Rouge lors de cette manifestation.</p>
-    <table>
-        <tr>
-            <td><label for='id_medecin'>Médecine :</label></td>
-            <td>{{form.medecin}} {% for error in form.medecin.errors %}<strong>{{ error|escape }}</strong>{% endfor %}
-        </tr>
-        <tr>
-            <td><label for='id_infirmier'>Infirmier :</label></td>
-            <td>{{form.infirmier}} {% for error in form.infirmier.errors %}<strong>{{ error|escape }}</strong>{% endfor %}
-        </tr>
-        <tr>
-            <td><label for='id_ambulance_prive'>Ambulance privé :</label></td>
-            <td>{{form.ambulance_prive}} {% for error in form.ambulance_prive.errors %}<strong>{{ error|escape }}</strong>{% endfor %}
-        </tr>
-        <tr>
-            <td><label for='id_secours_public'>Secours public :</label></td>
-            <td>{{form.secours_public}} {% for error in form.secours_public.errors %}<strong>{{ error|escape }}</strong>{% endfor %}
-        </tr>
-        <tr>
-            <td><label for='id_secours_autre'>Secours (non-CRF) :</label></td>
-            <td>{{form.secours_autre}} {% for error in form.secours_autre.errors %}<strong>{{ error|escape }}</strong>{% endfor %}
-        </tr>
-    </table>
+  <div class="row">
+    <div class="span12">
+      <legend>Risques</legend>
+      <div class="control-group">
+        <label class="control-label" for="id_P2">Comportement du public</label>
+        <div class="controls">
+          {{ form.P2 }}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="id_E1">Environnement</label>
+        <div class="controls">
+          {{ form.E1 }}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="id_E2">Temps d'arrive des secours public</label>
+        <div class="controls">
+          {{ form.E2 }}
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <h3>Centres de Secours :</h3>
-    <table>
-        <tr>
-            <td><label for='id_centre_sdis'>Centre SDIS :</label></td>
-            <td>{{form.centre_sdis}} {% for error in form.centre_sdis.errors %}<strong>{{ error|escape }}</strong>{% endfor %}
-        </tr>
-        <tr>
-            <td><label for='id_hopital'>Hopital :</label></td>
-            <td>{{form.hopital}} {% for error in form.hopital.errors %}<strong>{{ error|escape }}</strong>{% endfor %}
-        </tr>
-    </table>
+  <h2>Secours present</h2>
+  <div class="row">
+    <div class="span6">
+      <legend>Secours prives :</legend>
+      <div class="control-group">
+        <label class="control-label" for="id_medecin">Medecin</label>
+        <div class="controls">
+          {{ form.medecin }}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="id_infirmier">Infirmier</label>
+        <div class="controls">
+          {{ form.infirmier }}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="id_ambulance_prive">Ambulance Prive</label>
+        <div class="controls">
+          {{ form.ambulance_prive }}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="id_secours_atures">Autres secours</label>
+        <div class="controls">
+          {{ form.secours_autre }}
+        </div>
+      </div>
+    </div>
+    <div class="span6">
+      <legend>Secours publics :</legend>
+      <div class="control-group">
+        <label class="control-label" for="id_centre_sdis">Centre de secours</label>
+        <div class="controls">
+          {{ form.centre_sdis }}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="id_hopital">Hopital</label>
+        <div class="controls">
+          {{ form.hopital }}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="id_secours_public">Presence de secours publics</label>
+        <div class="controls">
+          {{ form.secours_public }}
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <button type="submit" class="btn">Ajouter le dimensionnement</button>
+</form>
 
-    <h3>Calcul des risques :</h3>
-    <p>Cette partie du formulaire permet de dimensionner les effectifs présent sur la manifestation suivant les risques prévus pour celle-ci. Merci donc de lire attentivement ce formulaire.</p>
-    <table border='1' width='60%'>
-        <h4>Activité du rassemblement</h4>
-        {% for radio in form.P2 %}
-        <tr>
-            <td width='95%'>{{radio.choice_label}}</td>
-            <td><center>{{radio.tag}}</center></td>
-        </tr>
-        {% endfor %}
-        {% for error in form.P2.errors %}<strong>{{ error|escape }}</strong>{% endfor %}
-    </table>
-    <table border='1' width='60%'>
-        <h4>Caractéristiques de l'environement et accessibilité du site</h4>
-        {% for radio in form.E1 %}
-        <tr>
-            <td width='95%'>{{radio.choice_label}}</td>
-            <td><center>{{radio.tag}}</center></td>
-        </tr>
-        {% endfor %}
-        {% for error in form.E1.errors %}<strong>{{ error|escape }}</strong>{% endfor %}
-    </table>
-    <table border='1' width='60%'>
-        <h4>Délais d'intervention des secours public</h4>
-        {% for radio in form.E2 %}
-        <tr>
-            <td width='95%'>{{radio.choice_label}}</td>
-            <td><center>{{radio.tag}}</center></td>
-        </tr>
-        {% endfor %}
-        {% for error in form.E2.errors %}<strong>{{ error|escape }}</strong>{% endfor %}
-    </table>
-
-    <input type="submit" value="Submit" />
-</body>
-</html>
+{% endblock %}
