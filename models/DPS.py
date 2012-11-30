@@ -52,7 +52,7 @@ class DPS(models.Model):
     contact_sur_place_telephone = models.CharField(max_length = 20)
 
     prix = models.IntegerField(default = 0)
-    remarques = models.CharField(max_length = 500, null = True, blank = True)
+    remarques = models.CharField(max_length = 500, blank = True)
 
 
     def __unicode__(self):
@@ -88,7 +88,7 @@ class Dimensionnement(models.Model):
     DPS = models.ForeignKey(DPS)
 
     # If the name is not given, the DPS name is used instead
-    nom = models.CharField(max_length = 200, null = True, blank = True)
+    nom = models.CharField(max_length = 200, blank = True)
     debut = models.DateTimeField()
     fin = models.DateTimeField()
 
