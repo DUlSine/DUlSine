@@ -9,7 +9,7 @@ class Structure(models.Model):
     numero = models.IntegerField(primary_key = True)
     nom = models.CharField(max_length = 50)
     adresse = models.CharField(max_length = 500)
-    parent = models.ForeignKey('Structure', null = True)
+    parent = models.ForeignKey('Structure', null = True, blank = True)
 
     def __unicode__(self):
         return self.nom
