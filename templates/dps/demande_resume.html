@@ -1,0 +1,114 @@
+{% extends 'auth.html' %}
+
+{% block titre %}DUlSine - Résumé du DPS{% endblock %}
+
+{% block corps %}
+<div class="page-header">
+  <h1>Résumé du DPS</h1>
+</div>
+
+<p>Merci de lire attentivement le résumé de la demande que vous venez de faire. Il est possible de modifier cette demande en cliquant sur le bouton en bas de page.</p>
+<p>Vous pourrez ensuite passez à la seconde et dernière étape de la demande.</p>
+<h2>Informations sur l'organisateur :</h2>
+<div class="row">
+  <div class="span6">
+    <legend>Organisation :</legend>
+    <div class="control-group">
+      <div class="controls">
+        Organisation : {{ dps.organisateur.nom }}
+      </div> 
+      <div class="controls">
+        Adresse : {{ dps.organisateur.adresse }}
+      </div>
+      {% if dps.organisateur.telephone %}
+      <div class="controls">
+        Téléphone : {{ dps.organisateur.telephone }}
+      </div>
+      {% endif %}
+      {% if dps.organisateur.portable %}
+      <div class="controls">
+        Portable : {{ dps.organisateur.portable }}
+      </div>
+      {% endif %}
+      {% if dps.organisateur.fax %}
+      <div class="controls">
+        Fax : {{ dps.organisateur.fax }}
+      </div>
+      {% endif %}
+      <div class="controls">
+        Email : {{ dps.organisateur.email }}
+      </div>
+    </div>
+  </div>
+  <div class="span6">
+    <legend>Contacts :</legend>
+    <div class="control-group">
+      <div class="controls">
+        <div class="controls">
+          Contact : {{ dps.organisateur.contact_civilite }} {{ dps.organisateur.contact_nom }} {{ dps.organisateur.contact_prenom }}, {{ dps.organisateur.contact_fonction }}
+        </div>
+        <div class="controls">
+          Représentant légale : {{ dps.organisateur.representant_civilite }} {{ dps.organisateur.representant_nom }} {{ dps.organisateur.representant_prenom }}, {{ dps.organisateur.representant_fonction }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2>Information sur la manifestation :</h2>
+<div class="row">
+  <div class="span6">
+    <legend>Manifestation :</legend>
+    <div class="control-group">
+      <div class="controls">
+        Intitulé : {{ dps.intitule }}
+      </div>
+      <div class="controls">
+        Object : {{ dps.objet }}
+      </div>
+      <div class="controls">
+        Rendez-vous : {{ dps.adresse_rdv }}
+      </div>
+    </div>
+  </div>
+  <div class="span6">
+    <legend>Contact sur place:</legend>
+    <div class="control-group">
+      <div class="controls">
+        Contact : {{ dps.contact_sur_place_civilite }} {{ dps.contact_sur_place_nom }} {{ dps.contact_sur_place_prenom }}
+      </div>
+      <div class="controls">
+        Téléphone : {{ dps.contact_sur_place_telephone }}
+      </div>
+    </div>
+  </div>
+  <div class="span12">
+    <legend>Caractéristiques du lieu :</legend>
+    <div class="row">
+      <div class="span6">
+        <div class="control-group">
+          <div class="controls">
+            Adresse : {{ dps.lieu }}
+          </div>
+          <div class="controls">
+            Circuit : {{ dps.circuit }}
+          </div>
+          <div class="controls">
+            Distance maximale : {{ dps.distance }} m
+          </div>
+        </div>
+      </div>
+      <div class="span6">
+        <div class="control-group">
+          <div class="controls">
+            Superficie : {{ dps.superficie }} m²
+          </div>
+          <div class="controls">
+            Risques : {{ dps.risques }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

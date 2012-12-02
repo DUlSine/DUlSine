@@ -58,22 +58,26 @@ def details(request, structure, dim_id):
 
 
 
-def demande(request):
-    if(request.method == 'POST'):
-        form_orga = OrganisateurForm(request.POST)
-        form_dps = DPSForm(request.POST)
-        if(form_orga.is_valid() and form_dps.is_valid()):
-            orga = form_orga.save()
-            dps = form_dps.save(commit=False)
-#            dps.structure = Struct
-            dps.organisateur = orga
-            dps.save()
-            return HttpResponseRedirect(reverse('index'))
-    else:
-        form_orga = OrganisateurForm()
-        form_dps = DPSForm()
-    return render_to_response('dps/demande.html', {'form_orga': form_orga, 'form_dps': form_dps}, context_instance=RequestContext(request))
+def demande(request, dps_hash = None):
+    if dps_hash == None:
+      if(request.method == 'POST'):
+          form_orga = OrganisateurForm(request.POST)
+          form_dps = DPSForm(request.POST)
+          if(form_orga.is_valid() and form_dps.is_valid()):
+              orga = form_orga.save()
+              dps = form_dps.save(commit=False)
+#              dps.structure = Struct
+              dps.organisateur = orga
+              dps.save()
+              return HttpResponseRedirect(reverse('dps.demande', args = (dps.hash_id)))
+      else:
+          form_orga = OrganisateurForm()
+          form_dps = DPSForm()
+      return render_to_response('dps/demande.html', {'form_orga': form_orga, 'form_dps': form_dps}, context_instance=RequestContext(request))
 
+    else:
+      dps = get_object_or_404(DPS, hash_id = dps_hash)
+      return render_to_response('dps/demande_resume.html', {'dps': dps }, context_instance=RequestContext(request))
 
 def dimensionnement(request, structure, dps_hash, dim_id=None):
     # Check that the structure does exist

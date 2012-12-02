@@ -20,7 +20,7 @@ urlpatterns += patterns('DUlSine.views.DPS',
     # Creating a new DPS in 2 steps:
     # * information on the organizer and on the DPS
     # * details for every days
-    url(r'^DPS/demande/$', 'demande', name='dps.demande'),
+    url(r'^DPS/demande/(?P<dps_hash>\w+)?$', 'demande', name='dps.demande'),
     url(r'^(?P<structure>\d+)/DPS/nouveau/(?P<dps_hash>\w+)(?:/(?P<dim_id>\d+))?/$', 'dimensionnement', name='dps.nouveau.dimensionnement'),
 
 
