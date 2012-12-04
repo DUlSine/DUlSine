@@ -58,36 +58,50 @@ def details(request, structure, dim_id):
 
 
 
-def demande(request, dps_hash = None):
-    if dps_hash == None:
-      if(request.method == 'POST'):
-          form_orga = OrganisateurForm(request.POST)
-          form_dps = DPSForm(request.POST)
-          if(form_orga.is_valid() and form_dps.is_valid()):
-              orga = form_orga.save()
-              dps = form_dps.save(commit=False)
-#              dps.structure = Struct
-              dps.organisateur = orga
-              dps.save()
-              return HttpResponseRedirect(reverse('dps.demande', args = (dps.hash_id)))
-      else:
-          form_orga = OrganisateurForm()
-          form_dps = DPSForm()
-      return render_to_response('dps/demande.html', {'form_orga': form_orga, 'form_dps': form_dps}, context_instance=RequestContext(request))
-
+def demande(request):
+    if(request.method == 'POST'):
+        form_orga = OrganisateurForm(request.POST)
+        form_dps = DPSForm(request.POST)
+        if(form_orga.is_valid() and form_dps.is_valid()):
+            orga = form_orga.save()
+            dps = form_dps.save(commit=False)
+            dps.organisateur = orga
+            dps.save()
+            return HttpResponseRedirect(reverse('dps.demande.verification', args = [dps.hash_id]))
     else:
-      dps = get_object_or_404(DPS, hash_id = dps_hash)
-      return render_to_response('dps/demande_resume.html', {'dps': dps }, context_instance=RequestContext(request))
+        form_orga = OrganisateurForm()
+        form_dps = DPSForm()
+    return render_to_response('dps/demande.html', {'form_orga': form_orga, 'form_dps': form_dps}, context_instance=RequestContext(request))
 
 
 
 def demande_verification(request, dps_hash):
-    return HttpResponse(status = 200)
+    dps = get_object_or_404(DPS, hash_id = dps_hash)
+    return render_to_response('dps/demande_resume.html', {'dps': dps }, context_instance=RequestContext(request))
 
 
 
 def demande_modification(request, dps_hash):
-    return HttpResponse(status = 200)
+    # Get the already existing DPS and corresponding Orga
+    dps = get_object_or_404(DPS, hash_id = dps_hash)
+    orga = get_object_or_404(Organisateur, pk = dps.organisateur.pk)
+
+    if(request.method == 'POST'):
+        # validate the data and save it
+        form_orga = OrganisateurForm(request.POST, instance = orga)
+        form_dps = DPSForm(request.POST, instance = dps)
+        if(form_orga.is_valid() and form_dps.is_valid()):
+            orga = form_orga.save()
+            dps = form_dps.save()
+            # redirect to the varification page
+            return HttpResponseRedirect(reverse('dps.demande.verification', args = [dps.hash_id]))
+
+    else:
+        # Give default values to the forms
+        form_orga = OrganisateurForm(instance = orga)
+        form_dps = DPSForm(instance = dps)
+
+    return render_to_response('dps/demande.html', {'form_orga': form_orga, 'form_dps': form_dps}, context_instance=RequestContext(request))
 
 
 
