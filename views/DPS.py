@@ -130,7 +130,9 @@ def dimensionnement(request, dps_hash, dim_id=None):
 
 
 def dimensionnement_verification(request, dps_hash, dim_id):
-  return HttpResponse(status = 200)
+    dps = get_object_or_404(DPS, hash_id = dps_hash)
+    dim = get_object_or_404(Dimensionnement, pk = dim_id, DPS = dps)
+    return render_to_response('dps/demande_dimensionnement_resume.html', {'dps': dps, 'dim': dim }, context_instance=RequestContext(request))
 
 
 
