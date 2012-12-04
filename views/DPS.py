@@ -122,7 +122,7 @@ def dimensionnement(request, dps_hash, dim_id=None):
             form = DimensionnementForm()
 
     else:
-        dim = get_object_or_404(Dimensionnement, pk=dim_id)
+        dim = get_object_or_404(Dimensionnement, pk = dim_id, DPS = dps)
         form = DimensionnementForm(instance=dim)
 
     return render_to_response('dps/nouveau_dimensionnement.html', {'form': form}, context_instance=RequestContext(request))
