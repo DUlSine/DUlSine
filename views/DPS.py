@@ -79,9 +79,20 @@ def demande(request, dps_hash = None):
       dps = get_object_or_404(DPS, hash_id = dps_hash)
       return render_to_response('dps/demande_resume.html', {'dps': dps }, context_instance=RequestContext(request))
 
-def dimensionnement(request, structure, dps_hash, dim_id=None):
-    # Check that the structure does exist
-    Struct = get_object_or_404(Structure, numero = structure)
+
+
+def demande_verification(request, dps_hash):
+    return HttpResponse(status = 200)
+
+
+
+def demande_modification(request, dps_hash):
+    return HttpResponse(status = 200)
+
+
+
+def dimensionnement(request, dps_hash, dim_id=None):
+    # Check that the DPS does exist
     dps = get_object_or_404(DPS, hash_id=dps_hash)
 
     # Is it a new dimensionnement ?
@@ -92,7 +103,7 @@ def dimensionnement(request, structure, dps_hash, dim_id=None):
                 dim = form.save(commit = False)
                 dim.DPS = dps
                 dim.save()
-                return HttpResponseRedirect(reverse('dps.nouveau.dimensionnement', args=[structure, dps_hash, dim.id]))
+                return HttpResponseRedirect(reverse('dps.demande.dimensionnement', args=[dps_hash, dim.id]))
         else:
             form = DimensionnementForm()
 
@@ -104,8 +115,19 @@ def dimensionnement(request, structure, dps_hash, dim_id=None):
 
 
 
+def dimensionnement_verification(request, dps_hash, dim_id):
+  return HttpResponse(status = 200)
+
+
+
+def dimensionnement_modification(request, dps_hash, dim_id):
+  return HttpResponse(status = 200)
+
+
+
 def calendrier(request, structure, avant=None, apres=None):
     return HttpResponse(status=200)
+
 
 
 def devis(request, structure, dps_id):
@@ -115,11 +137,13 @@ def devis(request, structure, dps_id):
     return render_to_response('dps/devis.html', {'structure': Struct, 'dps': dps}, context_instance=RequestContext(request))
 
 
+
 def admin_index(request, structure):
     Struct = get_object_or_404(Structure, numero = structure)
     all_dim = Dimensionnement.objects.all()
 
     return render_to_response('dps/admin/index.html',  {'structure': Struct, 'all_dim': all_dim}, context_instance=RequestContext(request))
+
 
 
 def admin_details(request, structure, dps_id):

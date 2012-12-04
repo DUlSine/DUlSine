@@ -20,9 +20,13 @@ urlpatterns += patterns('DUlSine.views.DPS',
     # Creating a new DPS in 2 steps:
     # * information on the organizer and on the DPS
     # * details for every days
-    url(r'^DPS/demande/(?P<dps_hash>\w+)?$', 'demande', name='dps.demande'),
-    url(r'^(?P<structure>\d+)/DPS/nouveau/(?P<dps_hash>\w+)(?:/(?P<dim_id>\d+))?/$', 'dimensionnement', name='dps.nouveau.dimensionnement'),
-
+    url(r'^DPS/demande/(?P<dps_hash>[0-9a-f]+)?$', 'demande', name='dps.demande'),
+    url(r'^DPS/demande/(?P<dps_hash>[0-9a-f]+)/verification/$', 'demande_verification', name='dps.demande.verification'),
+    url(r'^DPS/demande/(?P<dps_hash>[0-9a-f]+)/modification/$', 'demande_modification', name='dps.demande.modification'),
+    url(r'^DPS/demande/(?P<dps_hash>[0-9a-f]+)/dimensionnement/$', 'dimensionnement', name='dps.demande.dimensionnement'),
+    url(r'^DPS/demande/(?P<dps_hash>[0-9a-f]+)/dimensionnement/(?P<dim_id>\d+)/$', 'dimensionnement', name='dps.demande.dimensionnement'),
+    url(r'^DPS/demande/(?P<dps_hash>[0-9a-f]+)/dimensionnement/(?P<dim_id>\d+)/verification/$', 'dimensionnement_verification', name='dps.demande.dimensionnement.verification'),
+    url(r'^DPS/demande/(?P<dps_hash>[0-9a-f]+)/dimensionnement/(?P<dim_id>\d+)/modification/$', 'dimensionnement_modification', name='dps.demande.dimensionnement.modification'),
 
     # Managing DPS
     url(r'^(?P<structure>\d+)/DPS/admin/$', 'admin_index', name = 'dps.admin.index'),
