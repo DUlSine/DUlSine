@@ -17,10 +17,14 @@ urlpatterns += patterns('DUlSine.views.DPS',
     url(r'^(?P<structure>\d+)/DPS/$', 'index', name='dps.index'),
     url(r'^(?P<structure>\d+)/DPS/(?P<dim_id>\d+)/$', 'details', name='dimensionnement.details'),
 
-    # Creating a new DPS in 2 steps:
+    # Creating a new DPS in  steps:
     # * information on the organizer and on the DPS
-    # * details for every days
+    #  * loop between 'modification' and 'verification'
+    # * list of every days
+    # * adding a new day
+    # * looping between 'modification' and 'verification'
     url(r'^DPS/demande/$', 'demande', name='dps.demande'),
+    url(r'^DPS/demande/(?P<dps_hash>[0-9a-f]+)/$', 'demande_details', name='dps.demande.details'),
     url(r'^DPS/demande/(?P<dps_hash>[0-9a-f]+)/verification/$', 'demande_verification', name='dps.demande.verification'),
     url(r'^DPS/demande/(?P<dps_hash>[0-9a-f]+)/modification/$', 'demande_modification', name='dps.demande.modification'),
     url(r'^DPS/demande/(?P<dps_hash>[0-9a-f]+)/dimensionnement/$', 'dimensionnement', name='dps.demande.dimensionnement'),
