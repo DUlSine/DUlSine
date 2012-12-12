@@ -143,7 +143,24 @@ def dimensionnement_verification(request, dps_hash, dim_id):
 
 
 def dimensionnement_modification(request, dps_hash, dim_id):
-  return HttpResponse(status = 200)
+    # Get the already existing DPS and corresponding Dimensionnement
+    dps = get_object_or_404(DPS, hash_id = dps_hash)
+    dim = get_object_or_404(Dimensionnement, pk = dim_id, DPS = dps)
+
+    if(request.method == 'POST'):
+        # validate the data and save it
+        form = DimensionnementForm(request.POST, instance = dim)
+        if(form.is_valid()):
+            dim = form.save()
+            # redirect to the verification page
+            return HttpResponseRedirect(reverse('dps.demande.dimensionnement.verification', args = [dps.hash_id, dim.id]))
+
+    else:
+        # Give default values to the form
+        form = DimensionnementForm(instance = dim)
+
+    return render_to_response('dps/nouveau_dimensionnement.html', {'form': form}, context_instance = RequestContext(request))
+
 
 
 
