@@ -45,7 +45,7 @@ def index(request, structure):
     Struct = get_object_or_404(Structure, numero = structure)
 
     dimensionnements = Dimensionnement.objects.all()
-    return render_to_response('dps/index.html', {'structure': Struct, 'all_dim': dimensionnements}, context_instance=RequestContext(request))
+    return render_to_response('dps/index.html', {'structure': Struct, 'all_dim': dimensionnements}, context_instance = RequestContext(request))
 
 
 
@@ -64,14 +64,14 @@ def demande(request):
         form_dps = DPSForm(request.POST)
         if(form_orga.is_valid() and form_dps.is_valid()):
             orga = form_orga.save()
-            dps = form_dps.save(commit=False)
+            dps = form_dps.save(commit = False)
             dps.organisateur = orga
             dps.save()
             return HttpResponseRedirect(reverse('dps.demande.verification', args = [dps.hash_id]))
     else:
         form_orga = OrganisateurForm()
         form_dps = DPSForm()
-    return render_to_response('dps/demande.html', {'form_orga': form_orga, 'form_dps': form_dps}, context_instance=RequestContext(request))
+    return render_to_response('dps/demande.html', {'form_orga': form_orga, 'form_dps': form_dps}, context_instance = RequestContext(request))
 
 
 
@@ -83,7 +83,7 @@ def demande_details(request, dps_hash):
 
 def demande_verification(request, dps_hash):
     dps = get_object_or_404(DPS, hash_id = dps_hash)
-    return render_to_response('dps/demande_resume.html', {'dps': dps }, context_instance=RequestContext(request))
+    return render_to_response('dps/demande_resume.html', {'dps': dps }, context_instance = RequestContext(request))
 
 
 
@@ -107,13 +107,13 @@ def demande_modification(request, dps_hash):
         form_orga = OrganisateurForm(instance = orga)
         form_dps = DPSForm(instance = dps)
 
-    return render_to_response('dps/demande.html', {'form_orga': form_orga, 'form_dps': form_dps}, context_instance=RequestContext(request))
+    return render_to_response('dps/demande.html', {'form_orga': form_orga, 'form_dps': form_dps}, context_instance = RequestContext(request))
 
 
 
-def dimensionnement(request, dps_hash, dim_id=None):
+def dimensionnement(request, dps_hash, dim_id = None):
     # Check that the DPS does exist
-    dps = get_object_or_404(DPS, hash_id=dps_hash)
+    dps = get_object_or_404(DPS, hash_id = dps_hash)
 
     # Is it a new dimensionnement ?
     if(dim_id == None):
@@ -123,22 +123,22 @@ def dimensionnement(request, dps_hash, dim_id=None):
                 dim = form.save(commit = False)
                 dim.DPS = dps
                 dim.save()
-                return HttpResponseRedirect(reverse('dps.demande.dimensionnement', args=[dps_hash, dim.id]))
+                return HttpResponseRedirect(reverse('dps.demande.dimensionnement', args = [dps_hash, dim.id]))
         else:
             form = DimensionnementForm()
 
     else:
         dim = get_object_or_404(Dimensionnement, pk = dim_id, DPS = dps)
-        form = DimensionnementForm(instance=dim)
+        form = DimensionnementForm(instance = dim)
 
-    return render_to_response('dps/nouveau_dimensionnement.html', {'form': form}, context_instance=RequestContext(request))
+    return render_to_response('dps/nouveau_dimensionnement.html', {'form': form}, context_instance = RequestContext(request))
 
 
 
 def dimensionnement_verification(request, dps_hash, dim_id):
     dps = get_object_or_404(DPS, hash_id = dps_hash)
     dim = get_object_or_404(Dimensionnement, pk = dim_id, DPS = dps)
-    return render_to_response('dps/demande_dimensionnement_resume.html', {'dps': dps, 'dim': dim }, context_instance=RequestContext(request))
+    return render_to_response('dps/demande_dimensionnement_resume.html', {'dps': dps, 'dim': dim }, context_instance = RequestContext(request))
 
 
 
@@ -147,8 +147,8 @@ def dimensionnement_modification(request, dps_hash, dim_id):
 
 
 
-def calendrier(request, structure, avant=None, apres=None):
-    return HttpResponse(status=200)
+def calendrier(request, structure, avant = None, apres = None):
+    return HttpResponse(status = 200)
 
 
 
@@ -156,7 +156,7 @@ def devis(request, structure, dps_id):
     Struct = get_object_or_404(Structure, numero = structure)
     dps = get_object_or_404(DPS, pk = dps_id, structure = Struct)
 
-    return render_to_response('dps/devis.html', {'structure': Struct, 'dps': dps}, context_instance=RequestContext(request))
+    return render_to_response('dps/devis.html', {'structure': Struct, 'dps': dps}, context_instance = RequestContext(request))
 
 
 
@@ -164,7 +164,7 @@ def admin_index(request, structure):
     Struct = get_object_or_404(Structure, numero = structure)
     all_dim = Dimensionnement.objects.all()
 
-    return render_to_response('dps/admin/index.html',  {'structure': Struct, 'all_dim': all_dim}, context_instance=RequestContext(request))
+    return render_to_response('dps/admin/index.html',  {'structure': Struct, 'all_dim': all_dim}, context_instance = RequestContext(request))
 
 
 
