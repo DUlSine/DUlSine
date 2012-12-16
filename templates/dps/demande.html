@@ -217,6 +217,6 @@
       </div>
     </div>
   </div>
-  <button type="submit" class="btn">Envoyer la demande</button>
+  <button type="submit" class="btn">{% if nouveau %}Envoyer la demande{% else %}Enregistrer{% endif %}</button>
 </form>
 {% endblock %}

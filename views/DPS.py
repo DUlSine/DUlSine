@@ -71,7 +71,7 @@ def demande(request):
     else:
         form_orga = OrganisateurForm()
         form_dps = DPSForm()
-    return render_to_response('dps/demande.html', {'form_orga': form_orga, 'form_dps': form_dps}, context_instance = RequestContext(request))
+    return render_to_response('dps/demande.html', {'form_orga': form_orga, 'form_dps': form_dps, 'nouveau': True}, context_instance = RequestContext(request))
 
 
 
@@ -107,7 +107,7 @@ def demande_modification(request, dps_hash):
         form_orga = OrganisateurForm(instance = orga)
         form_dps = DPSForm(instance = dps)
 
-    return render_to_response('dps/demande.html', {'form_orga': form_orga, 'form_dps': form_dps}, context_instance = RequestContext(request))
+    return render_to_response('dps/demande.html', {'form_orga': form_orga, 'form_dps': form_dps, 'nouveau': False}, context_instance = RequestContext(request))
 
 
 
