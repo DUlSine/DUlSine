@@ -77,7 +77,8 @@ def demande(request):
 
 def demande_details(request, dps_hash):
     dps = get_object_or_404(DPS, hash_id = dps_hash)
-    return render_to_response('dps/demande_details.html', {'dps': dps}, context_instance = RequestContext(request))
+    dims = Dimensionnement.objects.filter(DPS = dps)
+    return render_to_response('dps/demande_details.html', {'dps': dps, 'dims': dims}, context_instance = RequestContext(request))
 
 
 

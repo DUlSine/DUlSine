@@ -4,6 +4,23 @@
 
 {% block corps %}
 <div class="page-header">
-  <h1>Résumé de la demande</h1>
+  <h1>{{ dps.intitule }}</h1>
+</div>
+
+<p>Cette page liste les différents dimensionnements de votre manifestation. Chaque dimensionnement correspond à une journée.</p>
+
+<h2>Liste des dimensionnements</h2>
+<div class="row">
+<table>
+{% for dim in dims %}
+<tr>
+  <td>{{ dim.debut|date:"l d"}}</td>
+  <td>{{ dim.debut|date:"H:id"}} - {{ dim.fin|date:"H:i" }}</td>
+  <td>{{ dim.nom }}</td>
+  <td><a href="{% url 'dps.demande.dimensionnement.modification' dps.hash_id dim.id %}">Modifier</a></td>
+</tr>
+{% endfor %}
+</table>
+<p>Vous pouvez aussi <a href="{% url 'dps.demande.dimensionnement' dps.hash_id %}">ajouter un dimensionnement</a>.</p>
 </div>
 {% endblock %}
