@@ -156,7 +156,7 @@
     </div>
   </div>
 
-  <button type="submit" class="btn">Ajouter le dimensionnement</button>
+  <button type="submit" class="btn">{% if nouveau %}Ajouter le dimensionnement{% else %}Enregistrer{% endif %}</button>
 </form>
 
 {% endblock %}
