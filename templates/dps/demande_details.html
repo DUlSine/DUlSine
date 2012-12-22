@@ -25,10 +25,10 @@
   <td>{{ dim.debut|date:"l d"}}</td>
   <td>{{ dim.debut|date:"H:id"}} - {{ dim.fin|date:"H:i" }}</td>
   <td>{{ dim.nom }}</td>
-  <td><a href="{% url 'dps.demande.dimensionnement.modification' dps.hash_id dim.id %}">Modifier</a></td>
+  <td><a href="{% url 'dps.demande.dimensionnement.modification' dps.hash_id dim.id %}" class="btn btn-primary btn-small">Modifier</a></td>
 </tr>
 {% endfor %}
 </table>
-<p>Vous pouvez aussi <a href="{% url 'dps.demande.dimensionnement' dps.hash_id %}">ajouter un dimensionnement</a>.</p>
+<p><a href="{% url 'dps.demande.dimensionnement' dps.hash_id %}" class="btn btn-default">ajouter un dimensionnement</a></p>
 </div>
 {% endblock %}
