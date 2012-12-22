@@ -124,7 +124,7 @@ def dimensionnement(request, dps_hash, dim_id = None):
                 dim = form.save(commit = False)
                 dim.DPS = dps
                 dim.save()
-                return HttpResponseRedirect(reverse('dps.demande.dimensionnement', args = [dps_hash, dim.id]))
+                return HttpResponseRedirect(reverse('dps.demande.dimensionnement.verification', args = [dps_hash, dim.id]))
         else:
             form = DimensionnementForm()
 
