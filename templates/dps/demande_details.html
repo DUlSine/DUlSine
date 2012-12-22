@@ -22,8 +22,8 @@
 </thead>
 {% for dim in dims %}
 <tr>
-  <td>{{ dim.debut|date:"l d"}}</td>
-  <td>{{ dim.debut|date:"H:id"}} - {{ dim.fin|date:"H:i" }}</td>
+  <td>{{ dim.debut|date:"D d/m/y"|capfirst}}</td>
+  <td>{{ dim.debut|date:"H:i"}} - {{ dim.fin|date:"H:i" }}</td>
   <td>{{ dim.nom }}</td>
   <td><a href="{% url 'dps.demande.dimensionnement.modification' dps.hash_id dim.id %}" class="btn btn-primary btn-small">Modifier</a></td>
 </tr>
