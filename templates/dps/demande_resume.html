@@ -111,6 +111,6 @@
     </div>
   </div>
 </div>
-<a href="{% url 'dps.demande.modification' dps.hash_id %}">Modification</a>
-<a href="{% url 'dps.demande.details' dps.hash_id %}">Continuer</a>
+<a href="{% url 'dps.demande.modification' dps.hash_id %}" class="btn btn-warning">Modifier</a>
+<a href="{% url 'dps.demande.details' dps.hash_id %}" class="btn btn-success">Continuer</a>
 {% endblock %}
