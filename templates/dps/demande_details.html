@@ -11,7 +11,15 @@
 
 <h2>Liste des dimensionnements</h2>
 <div class="row">
-<table>
+<table class="table table-striped">
+<thead>
+<tr>
+  <th>Jour</th>
+  <th>Horaire</th>
+  <th>Intitulé</th>
+  <th></th>
+</tr>
+</thead>
 {% for dim in dims %}
 <tr>
   <td>{{ dim.debut|date:"l d"}}</td>
