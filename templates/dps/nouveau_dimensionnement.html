@@ -14,22 +14,31 @@
   <div class="row">
     <div class="span6">
       <legend>Dimensionnement :</legend>
-      <div class="control-group">
+      <div class="control-group {% if form.nom.errors %}error{% endif %}">
         <label class="control-label" for="id_nom">Nom</label>
         <div class="controls">
           {{ form.nom }}
+          {% for error in form.nom.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
-      <div class="control-group">
+      <div class="control-group {% if form.debut.errors %}error{% endif %}">
         <label class="control-label" for="id_debut">Début</label>
         <div class="controls">
           {{ form.debut }}
+          {% for error in form.debut.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
-      <div class="control-group">
+      <div class="control-group {% if form.fin.errors %}error{% endif %}">
         <label class="control-label" for="id_fin">Fin</label>
         <div class="controls">
           {{ form.fin }}
+          {% for error in form.fin.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -38,43 +47,61 @@
   <div class="row">
     <div class="span6">
       <legend>Public :</legend>
-      <div class="control-group">
+      <div class="control-group {% if form.effectifs_public.errors %}error{% endif %}">
         <label class="control-label" for"=id_effectifs_public">Effectifs</label>
         <div class="controls">
           {{ form.effectifs_public }}
+          {% for error in form.effectifs_public.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
-      <div class="control-group">
+      <div class="control-group {% if form.age_public.errors %}error{% endif %}">
         <label class="control-label" for"=id_age_public">Age</label>
         <div class="controls">
           {{ form.age_public }}
+          {% for error in form.age_public.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
-      <div class="control-group">
+      <div class="control-group {% if form.besoins_specifiques.errors %}error{% endif %}">
         <label class="control-label" for"=id_besoins_specifiques">Besoins spécifiques</label>
         <div class="controls">
           {{ form.besoins_specifiques }}
+          {% for error in form.besoins_specifiques.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
     </div>
     <div class="span6">
       <legend>Acteurs :</legend>
-      <div class="control-group">
+      <div class="control-group {% if form.effectifs_acteurs.errors %}error{% endif %}">
         <label class="control-label" for"=id_effectifs_acteurs">Effectifs</label>
         <div class="controls">
           {{ form.effectifs_acteurs }}
+          {% for error in form.effectifs_acteurs.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
-      <div class="control-group">
+      <div class="control-group {% if form.age_acteurs.errors %}error{% endif %}">
         <label class="control-label" for"=id_age_acteurs">Age</label>
         <div class="controls">
           {{ form.age_acteurs }}
+          {% for error in form.age_acteurs.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
-      <div class="control-group">
+      <div class="control-group {% if form.type_acteurs.errors %}error{% endif %}">
         <label class="control-label" for"=id_type_acteurs">Type</label>
         <div class="controls">
           {{ form.type_acteurs }}
+          {% for error in form.type_acteurs.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -83,22 +110,31 @@
   <div class="row">
     <div class="span12">
       <legend>Risques</legend>
-      <div class="control-group">
+      <div class="control-group {% if form.P2.errors %}error{% endif %}">
         <label class="control-label" for="id_P2">Comportement du public</label>
         <div class="controls">
           {{ form.P2 }}
+          {% for error in form.P2.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
-      <div class="control-group">
+      <div class="control-group {% if form.E1.errors %}error{% endif %}">
         <label class="control-label" for="id_E1">Environnement</label>
         <div class="controls">
           {{ form.E1 }}
+          {% for error in form.E1.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
-      <div class="control-group">
+      <div class="control-group {% if form.E2.errors %}error{% endif %}">
         <label class="control-label" for="id_E2">Temps d'arrivée des secours public</label>
         <div class="controls">
           {{ form.E2 }}
+          {% for error in form.E2.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -108,49 +144,70 @@
   <div class="row">
     <div class="span6">
       <legend>Secours prives :</legend>
-      <div class="control-group">
+      <div class="control-group {% if form.medecin.errors %}error{% endif %}">
         <label class="control-label" for="id_medecin">Médecin</label>
         <div class="controls">
           {{ form.medecin }}
+          {% for error in form.medecin.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
-      <div class="control-group">
+      <div class="control-group {% if form.infirmier.errors %}error{% endif %}">
         <label class="control-label" for="id_infirmier">Infirmier</label>
         <div class="controls">
           {{ form.infirmier }}
+          {% for error in form.infirmier.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
-      <div class="control-group">
+      <div class="control-group {% if form.ambulance_prive.errors %}error{% endif %}">
         <label class="control-label" for="id_ambulance_prive">Ambulance Privée</label>
         <div class="controls">
           {{ form.ambulance_prive }}
+          {% for error in form.ambulance_prive.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
-      <div class="control-group">
+      <div class="control-group {% if form.secours_autre.errors %}error{% endif %}">
         <label class="control-label" for="id_secours_atures">Autres secours</label>
         <div class="controls">
           {{ form.secours_autre }}
+          {% for error in form.secours_autre.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
     </div>
     <div class="span6">
       <legend>Secours publics :</legend>
-      <div class="control-group">
+      <div class="control-group {% if form.centre_sdis.errors %}error{% endif %}">
         <label class="control-label" for="id_centre_sdis">Centre de secours</label>
         <div class="controls">
           {{ form.centre_sdis }}
+          {% for error in form.centre_sdis.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
-      <div class="control-group">
+      <div class="control-group {% if form.hopital.errors %}error{% endif %}">
         <label class="control-label" for="id_hopital">Hopital</label>
         <div class="controls">
           {{ form.hopital }}
+          {% for error in form.hopital.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
-      <div class="control-group">
+      <div class="control-group {% if form.secours_public.errors %}error{% endif %}">
         <label class="control-label" for="id_secours_public">Présence de secours publics</label>
         <div class="controls">
           {{ form.secours_public }}
+          {% for error in form.secours_public.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
     </div>
