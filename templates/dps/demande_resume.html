@@ -12,8 +12,8 @@
 <h2>Informations sur l'organisateur :</h2>
 <div class="row">
   <div class="span6">
-    <legend>Organisation :</legend>
-    <div class="control-group">
+    <fieldset>
+      <legend>Organisation :</legend>
       <div class="controls">
         Organisation : {{ dps.organisateur.nom }}
       </div> 
@@ -38,11 +38,11 @@
       <div class="controls">
         Email : {{ dps.organisateur.email }}
       </div>
-    </div>
+    </fieldset>
   </div>
   <div class="span6">
-    <legend>Contacts :</legend>
-    <div class="control-group">
+    <fieldset>
+      <legend>Contacts :</legend>
       <div class="controls">
         <div class="controls">
           Contact : {{ dps.organisateur.contact_civilite }} {{ dps.organisateur.contact_nom }} {{ dps.organisateur.contact_prenom }}, {{ dps.organisateur.contact_fonction }}
@@ -51,15 +51,15 @@
           Représentant légale : {{ dps.organisateur.representant_civilite }} {{ dps.organisateur.representant_nom }} {{ dps.organisateur.representant_prenom }}, {{ dps.organisateur.representant_fonction }}
         </div>
       </div>
-    </div>
+    </fieldset>
   </div>
 </div>
 
 <h2>Information sur la manifestation :</h2>
 <div class="row">
   <div class="span6">
-    <legend>Manifestation :</legend>
-    <div class="control-group">
+    <fieldset>
+      <legend>Manifestation :</legend>
       <div class="controls">
         Intitulé : {{ dps.intitule }}
       </div>
@@ -69,24 +69,25 @@
       <div class="controls">
         Rendez-vous : {{ dps.adresse_rdv }}
       </div>
-    </div>
+    </fieldset>
   </div>
   <div class="span6">
-    <legend>Contact sur place:</legend>
-    <div class="control-group">
+    <fieldset>
+      <legend>Contact sur place:</legend>
       <div class="controls">
         Contact : {{ dps.contact_sur_place_civilite }} {{ dps.contact_sur_place_nom }} {{ dps.contact_sur_place_prenom }}
       </div>
       <div class="controls">
         Téléphone : {{ dps.contact_sur_place_telephone }}
       </div>
-    </div>
+    </fieldset>
   </div>
   <div class="span12">
+    <fieldset>
     <legend>Caractéristiques du lieu :</legend>
     <div class="row">
       <div class="span6">
-        <div class="control-group">
+        <fieldset>
           <div class="controls">
             Adresse : {{ dps.lieu }}
           </div>
@@ -96,19 +97,20 @@
           <div class="controls">
             Distance maximale : {{ dps.distance }} m
           </div>
-        </div>
+        </fieldset>
       </div>
       <div class="span6">
-        <div class="control-group">
+        <fieldset>
           <div class="controls">
             Superficie : {{ dps.superficie }} m²
           </div>
           <div class="controls">
             Risques : {{ dps.risques }}
           </div>
-        </div>
+        </fieldset>
       </div>
     </div>
+    </fieldset>
   </div>
 </div>
 <a href="{% url 'dps.demande.modification' dps.hash_id %}" class="btn btn-warning">Modifier</a>
