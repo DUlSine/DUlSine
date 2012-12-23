@@ -74,7 +74,7 @@
 </div>
 
 <center>
-<a href="{% url 'dps.demande.modification' dps.hash_id %}" class="btn btn-warning">Modifier</a>
+<a href="{% url 'dps.demande.dimensionnement.modification' dps.hash_id dim.id %}" class="btn btn-warning">Modifier</a>
 <a href="{% url 'dps.demande.details' dps.hash_id %}" class="btn btn-success">Continuer</a>
 </center>
 {% endblock %}
