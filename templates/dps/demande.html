@@ -24,24 +24,36 @@
           {% for radio in form_orga.contact_civilite %}
           {{ radio }}
           {% endfor %}
+          {% for error in form_orga.contact_civilite.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
       <div class="control-group {% if form_orga.contact_nom.errors %}error{% endif %}">
         <label class="control-label" for="id_contact_nom">Nom</label>
         <div class="controls">
           {{form_orga.contact_nom }}
+          {% for error in form_orga.contact_nom.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
       <div class="control-group {% if form_orga.contact_prenom.errors %}error{% endif %}">
         <label class="control-label" for="id_contact_prenom">Prénom</label>
         <div class="controls">
           {{form_orga.contact_prenom }}
+          {% for error in form_orga.contact_prenom.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
       <div class="control-group {% if form_orga.contact_fonction.errors %}error{% endif %}">
         <label class="control-label" for="id_contact_fonction">Fonction</label>
         <div class="controls">
           {{form_orga.contact_fonction }}
+          {% for error in form_orga.contact_fonction.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -53,24 +65,36 @@
           {% for radio in form_orga.representant_civilite %}
           {{ radio }}
           {% endfor %}
+          {% for error in form_orga.representant_civilite.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
       <div class="control-group {% if form_orga.representant_nom.errors %}error{% endif %}">
         <label class="control-label" for="id_representant_nom">Nom</label>
         <div class="controls">
           {{form_orga.representant_nom }}
+          {% for error in form_orga.representant_nom.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
       <div class="control-group {% if form_orga.representant_prenom.errors %}error{% endif %}">
         <label class="control-label" for="id_representant_prenom">Prénom</label>
         <div class="controls">
           {{form_orga.representant_prenom }}
+          {% for error in form_orga.representant_prenom.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
       <div class="control-group {% if form_orga.representant_fonction.errors %}error{% endif %}">
         <label class="control-label" for="id_representant_fonction">Fonction</label>
         <div class="controls">
           {{form_orga.representant_fonction }}
+          {% for error in form_orga.representant_fonction.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -85,12 +109,18 @@
             <label class="control-label" for="id_nom">Nom</label>
             <div class="controls">
               {{ form_orga.nom }}
+              {% for error in form_orga.nom.errors %}
+              <span class="help-inline">{{ error }}</span>
+              {% endfor %}
             </div>
           </div>
           <div class="control-group {% if form_orga.adresse.errors %}error{% endif %}">
             <label class="control-label" for="id_adresse">Adresse</label>
             <div class="controls">
               {{ form_orga.adresse }}
+              {% for error in form_orga.adresse.errors %}
+              <span class="help-inline">{{ error }}</span>
+              {% endfor %}
             </div>
           </div>
         </div>
@@ -99,24 +129,36 @@
             <label class="control-label" for="id_telephone">Téléphone</label>
             <div class="controls">
               {{ form_orga.telephone }}
+              {% for error in form_orga.telephone.errors %}
+              <span class="help-inline">{{ error }}</span>
+              {% endfor %}
             </div>
           </div>
           <div class="control-group {% if form_orga.portable.errors %}error{% endif %}">
             <label class="control-label" for="id_portable">Portable</label>
             <div class="controls">
               {{ form_orga.portable }}
+              {% for error in form_orga.portable.errors %}
+              <span class="help-inline">{{ error }}</span>
+              {% endfor %}
             </div>
           </div>
           <div class="control-group {% if form_orga.fax.errors %}error{% endif %}">
             <label class="control-label" for="id_fax">Fax</label>
             <div class="controls">
               {{ form_orga.fax }}
+              {% for error in form_orga.fax.errors %}
+              <span class="help-inline">{{ error }}</span>
+              {% endfor %}
             </div>
           </div>
           <div class="control-group {% if form_orga.email.errors %}error{% endif %}">
             <label class="control-label" for="id_email">Email</label>
             <div class="controls">
               {{ form_orga.email }}
+              {% for error in form_orga.email.errors %}
+              <span class="help-inline">{{ error }}</span>
+              {% endfor %}
             </div>
           </div>
         </div>
@@ -132,18 +174,27 @@
         <label class="control-label" for="id_intitule">Intitulé</label>
         <div class="controls">
           {{ form_dps.intitule }}
+          {% for error in form_dps.intitule.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
       <div class="control-group {% if form_dps.objet.errors %}error{% endif %}">
         <label class="control-label" for="id_object">Objet</label>
         <div class="controls">
           {{ form_dps.objet }}
+          {% for error in form_dps.objet.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
       <div class="control-group {% if form_dps.adresse_rdv.errors %}error{% endif %}">
         <label class="control-label" for="id_adresse_rdv">Adresse de rendez-vous</label>
         <div class="controls">
           {{ form_dps.adresse_rdv }}
+          {% for error in form_dps.adresse_rdv.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -155,24 +206,36 @@
           {% for radio in form_dps.contact_sur_place_civilite %}
           {{ radio }}
           {% endfor %}
+          {% for error in form_dps.contact_sur_place_civilite.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
       <div class="control-group {% if form_dps.contact_sur_place_nom.errors %}error{% endif %}">
         <label class="control-label" for="id_contact_sur_place_nom">Nom</label>
         <div class="controls">
           {{ form_dps.contact_sur_place_nom }}
+          {% for error in form_dps.contact_sur_place_nom.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
       <div class="control-group {% if form_dps.contact_sur_place_prenom.errors %}error{% endif %}">
         <label class="control-label" for="id_contact_sur_place_prenom">Prénom</label>
         <div class="controls">
           {{ form_dps.contact_sur_place_prenom }}
+          {% for error in form_dps.contact_sur_place_prenom.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
       <div class="control-group {% if form_dps.contact_sur_place_telephone.errors %}error{% endif %}">
         <label class="control-label" for="id_contact_sur_place_telephone">Téléphone</label>
         <div class="controls">
           {{ form_dps.contact_sur_place_telephone }}
+          {% for error in form_dps.contact_sur_place_telephone.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -185,12 +248,18 @@
         <label class="control-label" for="id_lieu">Adresse</label>
         <div class="controls">
           {{ form_dps.lieu }}
+          {% for error in form_dps.lieu.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
       <div class="control-group {% if form_dps.circuit.errors %}error{% endif %}">
         <label class="control-label" for="id_circuit">Circuit</label>
         <div class="controls">
           {{ form_dps.circuit }}
+          {% for error in form_dps.circuit.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
       <div class="control-group {% if form_dps.distance.errors %}error{% endif %}">
@@ -199,6 +268,9 @@
           <div class="input-append">
             {{ form_dps.distance }}<span class="add-on"> mètres</span>
           </div>
+          {% for error in form_dps.distance.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
       <div class="control-group {% if form_dps.superficie.errors %}error{% endif %}">
@@ -207,12 +279,18 @@
           <div class="input-append">
             {{ form_dps.superficie }}<span class="add-on"> mètre carrés</span>
           </div>
+          {% for error in form_dps.superficie.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
       <div class="control-group {% if form_dps.risques.errors %}error{% endif %}">
         <label class="control-label" for="id_risques">Risques</label>
         <div class="controls">
           {{ form_dps.risques }}
+          {% for error in form_dps.risques.errors %}
+          <span class="help-inline">{{ error }}</span>
+          {% endfor %}
         </div>
       </div>
     </div>
