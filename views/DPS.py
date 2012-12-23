@@ -71,20 +71,20 @@ def demande(request):
     else:
         form_orga = OrganisateurForm()
         form_dps = DPSForm()
-    return render_to_response('dps/demande.html', {'form_orga': form_orga, 'form_dps': form_dps, 'nouveau': True}, context_instance = RequestContext(request))
+    return render_to_response('dps/demande/nouveau.html', {'form_orga': form_orga, 'form_dps': form_dps, 'nouveau': True}, context_instance = RequestContext(request))
 
 
 
 def demande_details(request, dps_hash):
     dps = get_object_or_404(DPS, hash_id = dps_hash)
     dims = Dimensionnement.objects.filter(DPS = dps)
-    return render_to_response('dps/demande_details.html', {'dps': dps, 'dims': dims}, context_instance = RequestContext(request))
+    return render_to_response('dps/demande/index.html', {'dps': dps, 'dims': dims}, context_instance = RequestContext(request))
 
 
 
 def demande_verification(request, dps_hash):
     dps = get_object_or_404(DPS, hash_id = dps_hash)
-    return render_to_response('dps/demande_resume.html', {'dps': dps }, context_instance = RequestContext(request))
+    return render_to_response('dps/demande/resume.html', {'dps': dps }, context_instance = RequestContext(request))
 
 
 
@@ -108,7 +108,7 @@ def demande_modification(request, dps_hash):
         form_orga = OrganisateurForm(instance = orga)
         form_dps = DPSForm(instance = dps)
 
-    return render_to_response('dps/demande.html', {'form_orga': form_orga, 'form_dps': form_dps, 'nouveau': False}, context_instance = RequestContext(request))
+    return render_to_response('dps/demande/nouveau.html', {'form_orga': form_orga, 'form_dps': form_dps, 'nouveau': False}, context_instance = RequestContext(request))
 
 
 
@@ -132,14 +132,14 @@ def dimensionnement(request, dps_hash, dim_id = None):
         dim = get_object_or_404(Dimensionnement, pk = dim_id, DPS = dps)
         form = DimensionnementForm(instance = dim)
 
-    return render_to_response('dps/nouveau_dimensionnement.html', {'form': form, 'nouveau': True}, context_instance = RequestContext(request))
+    return render_to_response('dps/demande/dimensionnement_nouveau.html', {'form': form, 'nouveau': True}, context_instance = RequestContext(request))
 
 
 
 def dimensionnement_verification(request, dps_hash, dim_id):
     dps = get_object_or_404(DPS, hash_id = dps_hash)
     dim = get_object_or_404(Dimensionnement, pk = dim_id, DPS = dps)
-    return render_to_response('dps/demande_dimensionnement_resume.html', {'dps': dps, 'dim': dim }, context_instance = RequestContext(request))
+    return render_to_response('dps/demande/dimensionnement_resume.html', {'dps': dps, 'dim': dim }, context_instance = RequestContext(request))
 
 
 
@@ -160,7 +160,7 @@ def dimensionnement_modification(request, dps_hash, dim_id):
         # Give default values to the form
         form = DimensionnementForm(instance = dim)
 
-    return render_to_response('dps/nouveau_dimensionnement.html', {'form': form, 'nouveau': False}, context_instance = RequestContext(request))
+    return render_to_response('dps/demande/dimensionnement_nouveau.html', {'form': form, 'nouveau': False}, context_instance = RequestContext(request))
 
 
 
