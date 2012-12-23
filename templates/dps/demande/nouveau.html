@@ -155,7 +155,10 @@
           <div class="control-group {% if form_orga.email.errors %}error{% endif %}">
             <label class="control-label" for="id_email">Email</label>
             <div class="controls">
-              {{ form_orga.email }}
+              <div class="input-prepend">
+                <span class="add-on"><i class="icon-envelope"></i></span>
+                {{ form_orga.email }}
+              </div>
               {% for error in form_orga.email.errors %}
               <span class="help-inline">{{ error }}</span>
               {% endfor %}
