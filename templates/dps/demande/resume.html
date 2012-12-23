@@ -9,110 +9,84 @@
 
 <p>Merci de lire attentivement le résumé de la demande que vous venez de faire. Il est possible de modifier cette demande en cliquant sur le bouton en bas de page.</p>
 <p>Vous pourrez ensuite passez à la seconde et dernière étape de la demande.</p>
-<h2>Informations sur l'organisateur :</h2>
+<h4>L'organisateur :</h4>
 <div class="row">
   <div class="span6">
-    <fieldset>
-      <legend>Organisation :</legend>
-      <div class="controls">
-        Organisation : {{ dps.organisateur.nom }}
-      </div> 
-      <div class="controls">
-        Adresse : {{ dps.organisateur.adresse }}
-      </div>
+    <dl class="dl-horizontal">
+      <dt>Nom</dt>
+      <dd>{{ dps.organisateur.nom }}</dd>
+      <dt>Adresse</dt>
+      <dd>{{ dps.organisateur.adresse }}</dd>
       {% if dps.organisateur.telephone %}
-      <div class="controls">
-        Téléphone : {{ dps.organisateur.telephone }}
-      </div>
+      <dt>Téléphone</dt>
+      <dd>{{ dps.organisateur.telephone }}</dd>
       {% endif %}
       {% if dps.organisateur.portable %}
-      <div class="controls">
-        Portable : {{ dps.organisateur.portable }}
-      </div>
+      <dt>Portable</dt>
+      <dd>{{ dps.organisateur.portable }}</dd>
       {% endif %}
       {% if dps.organisateur.fax %}
-      <div class="controls">
-        Fax : {{ dps.organisateur.fax }}
-      </div>
+      <dt>Fax</dt>
+      <dd>{{ dps.organisateur.fax }}</dd>
       {% endif %}
-      <div class="controls">
-        Email : {{ dps.organisateur.email }}
-      </div>
-    </fieldset>
+   </dl>
   </div>
   <div class="span6">
-    <fieldset>
-      <legend>Contacts :</legend>
-      <div class="controls">
-        <div class="controls">
-          Contact : {{ dps.organisateur.contact_civilite }} {{ dps.organisateur.contact_nom }} {{ dps.organisateur.contact_prenom }}, {{ dps.organisateur.contact_fonction }}
-        </div>
-        <div class="controls">
-          Représentant légale : {{ dps.organisateur.representant_civilite }} {{ dps.organisateur.representant_nom }} {{ dps.organisateur.representant_prenom }}, {{ dps.organisateur.representant_fonction }}
-        </div>
-      </div>
-    </fieldset>
+    <dl class="dl-horizontal">
+      <dt>Contact</dt>
+      <dd>{{ dps.organisateur.contact_civilite }} {{ dps.organisateur.contact_nom }} {{ dps.organisateur.contact_prenom }}, {{ dps.organisateur.contact_fonction }}</dd>
+      <dt>Représentant légale</dt>
+      <dd>{{ dps.organisateur.representant_civilite }} {{ dps.organisateur.representant_nom }} {{ dps.organisateur.representant_prenom }}, {{ dps.organisateur.representant_fonction }}</dd>
+    </dl>
   </div>
 </div>
 
-<h2>Information sur la manifestation :</h2>
+<h4>La manifestation :</h4>
 <div class="row">
   <div class="span6">
-    <fieldset>
-      <legend>Manifestation :</legend>
-      <div class="controls">
-        Intitulé : {{ dps.intitule }}
-      </div>
-      <div class="controls">
-        Object : {{ dps.objet }}
-      </div>
-      <div class="controls">
-        Rendez-vous : {{ dps.adresse_rdv }}
-      </div>
-    </fieldset>
+    <dl class="dl-horizontal">
+      <dt>Intitulé</dt>
+      <dd>{{ dps.intitule }}</dd>
+      <dt>Object</dt>
+      <dd>{{ dps.objet }}</dd>
+      <dt>Rendez-vous</dt>
+      <dd>{{ dps.adresse_rdv }}</dd>
+    </dl>
   </div>
   <div class="span6">
-    <fieldset>
-      <legend>Contact sur place:</legend>
-      <div class="controls">
-        Contact : {{ dps.contact_sur_place_civilite }} {{ dps.contact_sur_place_nom }} {{ dps.contact_sur_place_prenom }}
-      </div>
-      <div class="controls">
-        Téléphone : {{ dps.contact_sur_place_telephone }}
-      </div>
-    </fieldset>
-  </div>
-  <div class="span12">
-    <fieldset>
-    <legend>Caractéristiques du lieu :</legend>
-    <div class="row">
-      <div class="span6">
-        <fieldset>
-          <div class="controls">
-            Adresse : {{ dps.lieu }}
-          </div>
-          <div class="controls">
-            Circuit : {{ dps.get_circuit_display }}
-          </div>
-          <div class="controls">
-            Distance maximale : {{ dps.distance }} m
-          </div>
-        </fieldset>
-      </div>
-      <div class="span6">
-        <fieldset>
-          <div class="controls">
-            Superficie : {{ dps.superficie }} m²
-          </div>
-          <div class="controls">
-            Risques : {{ dps.risques }}
-          </div>
-        </fieldset>
-      </div>
-    </div>
-    </fieldset>
+    <dl class="dl-horizontal">
+      <dt>Contact sur place</dt>
+      <dd>{{ dps.contact_sur_place_civilite }} {{ dps.contact_sur_place_nom }} {{ dps.contact_sur_place_prenom }}</dd>
+      <dt>Téléphone</dt>
+      <dd>{{ dps.contact_sur_place_telephone }}</dd>
+    </dl>
   </div>
 </div>
+
+<h4>Le lieu :</h4>
+<div class="row">
+  <div class="span6">
+    <dl class="dl-horizontal">
+      <dt>Adresse</dt>
+      <dd>{{ dps.lieu }}</dd>
+      <dt>Circuit</dt>
+      <dd>{{ dps.get_circuit_display }}</dd>
+      <dt>Distance maximale</dt>
+      <dd>{{ dps.distance }} m</dd>
+    </dl>
+  </div>
+  <div class="span6">
+    <dl class="dl-horizontal">
+      <dt>Superficie</dt>
+      <dd>{{ dps.superficie }} m²</dd>
+      <dt>Risques</dt>
+      <dd>{{ dps.risques }}</dd>
+    </dl>
+  </div>
+</div>
+
+<center>
 <a href="{% url 'dps.demande.modification' dps.hash_id %}" class="btn btn-warning">Modifier</a>
 <a href="{% url 'dps.demande.details' dps.hash_id %}" class="btn btn-success">Continuer</a>
+</center>
 {% endblock %}
