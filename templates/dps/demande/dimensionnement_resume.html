@@ -7,103 +7,74 @@
   <h1>Resume du dimensionnement</h1>
 </div>
 
-<h2>Informations generales :</h2>
-<div class="row">
-  <div class="span6">
-    <legend>Dimensionnement :</legend>
-    <div class="control-group">
-      <div class="controls">
-        Intitule : {{ dim.nom }}
-      </div> 
-      <div class="controls">
-        {% if dim.debut|date:"d/m/y" == dim.fin|date:"d/m/y" %}
-          Le {{ dim.debut|date:"l d/m/y" }} de {{ dim.debut|date:"H:i" }} à {{ dim.fin|date:"H:i" }}
-        {% else %}
-          Du {{ dim.debut|date:"l d/m/y" }} à {{ dim.debut|date:"H:i" }} au {{ dim.fin|date:"l d/m/y" }} à {{ dim.fin|date:"H:i" }}
-        {% endif %}
-      </div>
-    </div>
-  </div>
-  <div class="span6">
-    <legend>Participants :</legend>
-    <div class="control-group">
-      <div class="controls">
-        {% if dim.effectifs_public > 0 %}
-        <div class="controls">
-          Public : {{ dim.effectifs_public }} personnes de {{ dim.age_public }} (besoins specifiques : {{ dim.besoins_specifiques }})
-        </div>
-        {% endif %}
-        {% if dim.effectifs_acteurs > 0 %}
-        <div class="controls">
-          Acteurs : {{ dim.effectifs_acteurs }} personnes de {{ dim.age_acteurs }} ({{ dim.get_type_acteurs_display }})
-        </div>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</div>
+<h4>Dimensionnement</h4>
 <div class="row">
   <div class="span12">
-    <legend>Risques :</legend>
-    <div class="control-group">
-      <div class="controls">
-        {{ dim.get_P2_display }}
-      </div>
-      <div class="controls">
-        Structure : {{ dim.get_E1_display }}
-      </div>
-      <div class="controls">
-        temps d'arrive des secours public : {{ dim.get_E2_display }}
-      </div>
-    </div>
+    <dl class="dl-horizontal">
+      <dt>Intitulé</dt>
+      <dd>{{ dim.nom }}
+      <dt>Date</dt>
+      {% if dim.debut|date:"d/m/y" == dim.fin|date:"d/m/y" %}
+      <dd>Le {{ dim.debut|date:"l d/m/y" }} de {{ dim.debut|date:"H:i" }} à {{ dim.fin|date:"H:i" }}</dd>
+      {% else %}
+      <dd>Du {{ dim.debut|date:"l d/m/y" }} à {{ dim.debut|date:"H:i" }} au {{ dim.fin|date:"l d/m/y" }} à {{ dim.fin|date:"H:i" }}</dd>
+      {% endif %}
+      {% if dim.effectifs_public > 0 %}
+      <dt>Public</dt>
+      <dd>{{ dim.effectifs_public }} personnes de {{ dim.age_public }} (besoins specifiques : {{ dim.besoins_specifiques }})</dd>
+      {% endif %}
+      {% if dim.effectifs_acteurs > 0 %}
+      <dt>Acteurs</dt>
+      <dd>{{ dim.effectifs_acteurs }} personnes de {{ dim.age_acteurs }} ({{ dim.get_type_acteurs_display }})
+      {% endif %}
+    </dl>
   </div>
 </div>
 
-<h2>Autres Secours :</h2>
+<h4>Risques</h4>
 <div class="row">
-  <div class="span6">
-    <legend>Public :</legend>
-    <div class="control-group">
-      <div class="controls">
-        Centre de secours : {{ dim.centre_sdis }}
-      </div>
-      <div class="controls">
-        Hoptial : {{ dim.hopital }}
-      </div>
-      {% if dim.secours_public %}
-      <div class="controls">
-        Secours public present : {{ dim.secours_public }}
-      </div>
-      {% endif %}
-    </div>
+  <div class="span12">
+    <dl class="dl-horizontal">
+      <dt>Comportement</dt>
+      <dd>{{ dim.get_P2_display }}</dd>
+      <dt>Structure</dt>
+      <dd>{{ dim.get_E1_display }}</dd>
+      <dt>Secours public</dt>
+      <dd>{{ dim.get_E2_display }}</dd>
+    </dl>
   </div>
-  <div class="span6">
-    <legend>Prives :</legend>
-    <div class="control-group">
+</div>
+
+<h4>Services de secours</h4>
+<div class="row">
+  <div class="span12">
+    <dl class="dl-horizontal">
+      <dt>Centre de secours</dt>
+      <dd>{{ dim.centre_sdis }}</dd>
+      <dt>Hopital</dt>
+      <dd>{{ dim.hopital }}</dd>
+      {% if dim.secours_public %}
+      <dt>Secours public présent</dt>
+      <dd>{{ dim.secours_public }}</dd>
+      {% endif %}
       {% if dim.medecin %}
-      <div class="controls">
-        Medecin : {{ dim.medecin }}
-      </div>
+      <dt>Médecin</dt>
+      <dd>{{ dim.medecin }}</dd>
       {% endif %}
       {% if dim.infirmier %}
-      <div class="controls">
-        Presence d'un infirmier
-      </div>
+      <dt>Présence d'un infirmier</dt>
+      <dd>Oui</dd>
       {% endif %}
       {% if dim.ambulance_prive %}
-      <div class="controls">
-        Presence d'une ambulance privee
-      </div>
+      <dt>Ambulance privée</dt>
+      <dd>Oui</dd>
       {% endif %}
-      {% if dim.secours_autre %}
-      <div class="controls">
-        Autres secours : {{ dim.secours_autre }}
-      </div>
-      {% endif %}
-    </div>
+    </dl>
   </div>
 </div>
 
+<center>
 <a href="{% url 'dps.demande.modification' dps.hash_id %}" class="btn btn-warning">Modifier</a>
 <a href="{% url 'dps.demande.details' dps.hash_id %}" class="btn btn-success">Continuer</a>
+</center>
 {% endblock %}
