@@ -6,33 +6,39 @@
   <h1>Liste des DPS <small>gestion d'événements</small></h1>
 </div>
 
-{% regroup all_dim by debut|date:"F" as all_dim_by_months %}
+{% regroup all_dim by debut|date:"F o" as all_dim_by_months %}
 {% for month in all_dim_by_months %}
-<table>
-    <tr>
-      <th rowspan='0' width='10%'>{{ month.grouper|capfirst }}</th>
-      <th scope='col' width='10%'>Date</th>
-      <th scope='col' width='10%'>Horaire</th>
-      <th scope='col' width='38%'>Nom</th>
-      <th scope='col' width='8%'>Status</th>
-      <th scope='col' width='6%'>CI</th>
-      <th scope='col' width='6%'>PSE2</th>
-      <th scope='col' width='6%'>PSE1</th>
-      <th scope='col' width='6%'>PSC1</th>
-    </tr>
-    {% for dim in month.list %}
-    <tr class='{% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}'>
-      <td>{{ dim.debut|date:"l d" }}</td>
-      <td>{{ dim.debut|date:"H:i" }} - {{ dim.fin|date:"H:i" }}</td>
-      <td>{{ dim }}</td>
-      <td>???</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    {% endfor %}
+
+<div class="span12">
+<h4>{{ month.grouper|capfirst }}</h4>
+<table class="table table-striped">
+<thead>
+<tr>
+ <th>Date</th>
+ <th>Horaire</th>
+ <th>Nom</th>
+ <th>Status</th>
+ <th>CI</th>
+ <th>PSE2</th>
+ <th>PSE1</th>
+ <th>PSC1</th>
+</tr>
+</thead>
+
+{% for dim in month.list %}
+<tr>
+  <td>{{ dim.debut|date:"D d"|capfirst }}</td>
+  <td>{{ dim.debut|date:"H:i" }} - {{ dim.fin|date:"H:i" }}</td>
+  <td>{{ dim }}</td>
+  <td>???</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+</tr>
+{% endfor %}
 </table>
-<br />
+</div>
+
 {% endfor %}
 {% endblock %}
