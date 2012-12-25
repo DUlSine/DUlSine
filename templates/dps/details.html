@@ -8,36 +8,28 @@
 
 <div class="row">
   <div class="span12">
-    <legend>Informations générales</legend>
-    <div class="control-group">
-      <div class="controls">
-        Intitulé : {{ dim }}
-      </div>
-      <div class="controls">
-        Lieux : {{ dim.DPS.lieu }}
-      </div>
-      <div class="controls">
-        {% if dim.debut|date:"d/m/y" == dim.fin|date:"d/m/y" %}
-          Le {{ dim.debut|date:"l d/m/y" }} de {{ dim.debut|date:"H:i" }} à {{ dim.fin|date:"H:i" }}
-        {% else %}
-          Du {{ dim.debut|date:"l d/m/y" }} à {{ dim.debut|date:"H:i" }} au {{ dim.fin|date:"l d/m/y" }} à {{ dim.fin|date:"H:i" }}
-        {% endif %}
-      </div>
-      {% if dim.DPS.remarques %}
-      <div class="controls">
-        Remarques : {{ dim.DPS.remarques }}
-      </div>
+    <h4>Informations générales</h4>
+    <dl class="dl-horizontal">
+      <dt>Intitulé</dt>
+      <dd>{{ dim }}</dd>
+      <dt>Lieu</dt>
+      <dd>{{ dim.DPS.lieu }}</dd>
+      <dt>Date</dt>
+      {% if dim.debut|date:"d/m/y" == dim.fin|date:"d/m/y" %}
+      <dd>Le {{ dim.debut|date:"l d/m/y" }} de {{ dim.debut|date:"H:i" }} à {{ dim.fin|date:"H:i" }}</dd>
+      {% else %}
+      <dd>Du {{ dim.debut|date:"l d/m/y" }} à {{ dim.debut|date:"H:i" }} au {{ dim.fin|date:"l d/m/y" }} à {{ dim.fin|date:"H:i" }}</dd>
       {% endif %}
-    </div>
+    </dl>
   </div>
   <div class="span12">
-    <legend>Equipes</legend>
+    <h4>Equipes</h4>
   </div>
   <div class="span12">
-    <legend>Véhicules</legend>
+    <h4>Véhicules</h4>
   </div>
   <div class="span12">
-    <legend>Matériels</legend>
+    <h4>Matériels</h4>
   </div>
 </div>
 {% endblock %}
