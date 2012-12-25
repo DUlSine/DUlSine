@@ -9,8 +9,8 @@ urlpatterns = patterns('DUlSine.views.general',
 
 # Authentication
 urlpatterns += patterns('django.contrib.auth.views',
-    url(r'^accounts/login$', 'login', name = 'accounts.login'),
-    url(r'^accounts/logout$', 'logout', {'template_name': 'registration/logged_out.html'}, name = 'accounts.logout'),#, {'template_name': 'template/registration/logged_out.html'}),
+    url(r'^accounts/login/$', 'login', name = 'accounts.login'),
+    url(r'^accounts/logout/$', 'logout', {'template_name': 'registration/logged_out.html'}, name = 'accounts.logout'),#, {'template_name': 'template/registration/logged_out.html'}),
 )
 
 urlpatterns += patterns('DUlSine.views.DPS',
@@ -33,7 +33,7 @@ urlpatterns += patterns('DUlSine.views.DPS',
 
     # Managing DPS
     url(r'^(?P<structure>\d+)/DPS/admin/$', 'admin_index', name = 'dps.admin.index'),
-    url(r'^(?P<structure>\d+)/DPS/admin/(?P<dps_id>\d+)$', 'admin_details', name = 'dps.admin.details'),
+    url(r'^(?P<structure>\d+)/DPS/admin/(?P<dps_id>\d+)/$', 'admin_details', name = 'dps.admin.details'),
     url(r'^(?P<structure>\d+)/DPS/admin/(?P<dps_id>\d+)/devis/$', 'devis', name = 'dps.admin.devis'),
 
     # Calendars in CalDav format
