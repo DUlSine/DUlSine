@@ -34,7 +34,7 @@ urlpatterns += patterns('DUlSine.views.DPS',
     # Managing DPS
     url(r'^(?P<structure>\d+)/admin/DPS/$', 'admin_index', name = 'dps.admin.index'),
     url(r'^(?P<structure>\d+)/admin/DPS/(?P<dps_id>\d+)/$', 'admin_details', name = 'dps.admin.details'),
-    url(r'^(?P<structure>\d+)/admin/DPS/(?P<dps_id>\d+)/(?P<dim_id>\d+)/$', 'admin_dimensionnement', name = 'dps.admin.dimensionnement.details'),
+    url(r'^(?P<structure>\d+)/admin/DPS/(?P<dps_id>\d+)/dimensionnement/(?P<dim_id>\d+)/$', 'admin_dimensionnement', name = 'dps.admin.dimensionnement.details'),
     url(r'^(?P<structure>\d+)/admin/DPS/(?P<dps_id>\d+)/devis/$', 'devis', name = 'dps.admin.devis'),
 
     # Calendars in CalDav format
