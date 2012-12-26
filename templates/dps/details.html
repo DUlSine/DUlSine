@@ -3,7 +3,11 @@
 {% block titre %}{{ structure.nom }} - {{ dim }}{% endblock %}
 {% block corps %}
 <div class="page-header">
+{% if user.is_staff %}
+  <h1><a href="{% url 'dps.admin.details' dim.DPS.structure.numero dim.DPS.id %}">{{ dim }}</a></h1>
+{% else %}
   <h1>{{ dim }}</h1>
+{% endif %}
 </div>
 
 <div class="row">
