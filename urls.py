@@ -32,10 +32,10 @@ urlpatterns += patterns('DUlSine.views.DPS',
     url(r'^DPS/demande/(?P<dps_hash>[0-9a-f]+)/dimensionnement/(?P<dim_id>\d+)/modification/$', 'dimensionnement_modification', name = 'dps.demande.dimensionnement.modification'),
 
     # Managing DPS
-    url(r'^(?P<structure>\d+)/DPS/admin/$', 'admin_index', name = 'dps.admin.index'),
-    url(r'^(?P<structure>\d+)/DPS/admin/(?P<dps_id>\d+)/$', 'admin_details', name = 'dps.admin.details'),
-    url(r'^(?P<structure>\d+)/DPS/admin/(?P<dps_id>\d+)/(?P<dim_id>\d+)/$', 'admin_dimensionnement', name = 'dps.admin.dimensionnement.details'),
-    url(r'^(?P<structure>\d+)/DPS/admin/(?P<dps_id>\d+)/devis/$', 'devis', name = 'dps.admin.devis'),
+    url(r'^(?P<structure>\d+)/admin/DPS/$', 'admin_index', name = 'dps.admin.index'),
+    url(r'^(?P<structure>\d+)/admin/DPS/(?P<dps_id>\d+)/$', 'admin_details', name = 'dps.admin.details'),
+    url(r'^(?P<structure>\d+)/admin/DPS/(?P<dps_id>\d+)/(?P<dim_id>\d+)/$', 'admin_dimensionnement', name = 'dps.admin.dimensionnement.details'),
+    url(r'^(?P<structure>\d+)/admin/DPS/(?P<dps_id>\d+)/devis/$', 'devis', name = 'dps.admin.devis'),
 
     # Calendars in CalDav format
     # Two optional arguments given throug the url:
