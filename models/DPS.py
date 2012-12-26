@@ -122,6 +122,12 @@ class Dimensionnement(models.Model):
         else:
             return str(self.DPS) + ' : ' + str(self.debut) + ' - ' + str(self.fin)
 
+    def shortName(self):
+        if self.nom != None:
+            return self.nom
+        else:
+            return str(self.debut) + ' - ' + str(self.fin)
+
     def calculRIS(self, public):
         """
          Compute the RIS (number of first aiders) according to the given informations
