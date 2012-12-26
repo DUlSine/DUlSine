@@ -138,16 +138,15 @@ def dimensionnement(request, dps_hash, dim_id = None):
 
 
 def dimensionnement_verification(request, dps_hash, dim_id):
-    dps = get_object_or_404(DPS, hash_id = dps_hash)
-    dim = get_object_or_404(Dimensionnement, pk = dim_id, DPS = dps)
-    return render_to_response('dps/demande/dimensionnement_resume.html', {'dps': dps, 'dim': dim }, context_instance = RequestContext(request))
+    # Check that the Dimensionnement does exist and is associated with the right DPS
+    dim = get_object_or_404(Dimensionnement, pk = dim_id, DPS__hash_id = dps_hash)
+    return render_to_response('dps/demande/dimensionnement_resume.html', {'dps_hash': dps_hash, 'dim': dim }, context_instance = RequestContext(request))
 
 
 
 def dimensionnement_modification(request, dps_hash, dim_id):
     # Get the already existing DPS and corresponding Dimensionnement
-    dps = get_object_or_404(DPS, hash_id = dps_hash)
-    dim = get_object_or_404(Dimensionnement, pk = dim_id, DPS = dps)
+    dim = get_object_or_404(Dimensionnement, pk = dim_id, DPS__hash_id = dps_hash)
 
     if(request.method == 'POST'):
         # validate the data and save it
@@ -155,7 +154,7 @@ def dimensionnement_modification(request, dps_hash, dim_id):
         if(form.is_valid()):
             dim = form.save()
             # redirect to the verification page
-            return HttpResponseRedirect(reverse('dps.demande.dimensionnement.verification', args = [dps.hash_id, dim.id]))
+            return HttpResponseRedirect(reverse('dps.demande.dimensionnement.verification', args = [dps_hash, dim.id]))
 
     else:
         # Give default values to the form
