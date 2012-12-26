@@ -180,9 +180,10 @@ def devis(request, structure, dps_id):
 
 def admin_index(request, structure):
     Struct = get_object_or_404(Structure, numero = structure)
-    all_dim = Dimensionnement.objects.all()
+    # Get all the dimensionnements for that structure
+    dimensionnements = Dimensionnement.objects.filter(DPS__structure = Struct)
 
-    return render_to_response('dps/admin/index.html',  {'structure': Struct, 'all_dim': all_dim}, context_instance = RequestContext(request))
+    return render_to_response('dps/admin/index.html',  {'structure': Struct, 'all_dim': dimensionnements}, context_instance = RequestContext(request))
 
 
 
