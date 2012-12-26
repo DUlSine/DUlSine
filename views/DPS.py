@@ -44,7 +44,8 @@ def index(request, structure):
     # Check that the structure does exist
     Struct = get_object_or_404(Structure, numero = structure)
 
-    dimensionnements = Dimensionnement.objects.all()
+    # Get all the dimensionnements for that structure
+    dimensionnements = Dimensionnement.objects.filter(DPS__structure = Struct)
     return render_to_response('dps/index.html', {'structure': Struct, 'all_dim': dimensionnements}, context_instance = RequestContext(request))
 
 
