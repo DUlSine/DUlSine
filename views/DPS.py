@@ -189,3 +189,7 @@ def admin_index(request, structure):
 
 def admin_details(request, structure, dps_id):
     return HttpResponse(status = 200)
+
+
+def admin_dimensionnement(request, structure, dps_id, dim_id):
+    return HttpResponse(status = 200)
