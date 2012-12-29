@@ -6,6 +6,7 @@
   <h1>Liste des DPS <small>Inscription</small></h1>
 </div>
 
+<div class="row">
 {% regroup all_dim by debut|date:"F o" as all_dim_by_months %}
 {% for month in all_dim_by_months %}
 
@@ -41,4 +42,5 @@
 </div>
 
 {% endfor %}
+</div>
 {% endblock %}
