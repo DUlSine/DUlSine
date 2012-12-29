@@ -1,0 +1,86 @@
+{% extends 'auth.html' %}
+
+{% block titre %}{{ structure }} - {{ dps }}{% endblock %}
+
+{% block corps %}
+<div class="page-header">
+  <h1>{{ dps }}</h1>
+</div>
+
+<h2>Informations générales</h2>
+<div class="row">
+  <div class="span6">
+    <dl class="dl-horizontal">
+      <dt>Contact</dt>
+      <dd>{{ dps.organisateur.contact_civilite }} {{ dps.organisateur.contact_nom }} {{ dps.organisateur.contact_prenom }}, {{ dps.organisateur.contact_fonction }}</dd>
+      <dt>Représentant légale</dt>
+      <dd>{{ dps.organisateur.representant_civilite }} {{ dps.organisateur.representant_nom }} {{ dps.organisateur.representant_prenom }}, {{ dps.organisateur.representant_fonction }}</dd>
+      <dt>Contact sur place</dt>
+      <dd>{{ dps.contact_sur_place_civilite }} {{ dps.contact_sur_place_nom }} {{ dps.contact_sur_place_prenom }}</dd>
+    </dl>
+  </div>
+  <div class="span6">
+    <dl class="dl-horizontal">
+      <dt>Adresse</dt>
+      <dd>{{ dps.organisateur.adresse }}</dd>
+      {% if dps.organisateur.telephone %}
+      <dt>Téléphone</dt>
+      <dd><a href="tel:{{ dps.organisateur.telephone }}">{{ dps.organisateur.telephone }}</a></dd>
+      {% endif %}
+      {% if dps.organisateur.portable %}
+      <dt>Portable</dt>
+      <dd><a href="tel:{{ dps.organisateur.portable }}">{{ dps.organisateur.portable }}</a></dd>
+      {% endif %}
+      {% if dps.organisateur.fax %}
+      <dt>Fax</dt>
+      <dd>{{ dps.organisateur.fax }}</dd>
+      {% endif %}
+      <dt>email</dt>
+      <dd><a href="mailto:{{ dps.organisateur.email }}">{{ dps.organisateur.email }}</a></dd>
+   </dl>
+  </div>
+
+</div>
+
+
+<h2>Dimensionnements</h2>
+<div class="row">
+{% regroup all_dim by debut|date:"F o" as all_dim_by_months %}
+{% for month in all_dim_by_months %}
+<div class="span12">
+<h4>{{ month.grouper|capfirst }}</h4>
+<table class="table table-striped">
+<thead>
+<tr>
+ <th width="10%">Date</th>
+ <th width="10%">Horaire</th>
+ <th width="25%">DPS</th>
+ <th width="25%">Dimensionnement</th>
+ <th width="10%">Status</th>
+ <th width="5%">CI</th>
+ <th width="5%">PSE2</th>
+ <th width="5%">PSE1</th>
+ <th width="5%">PSC1</th>
+</tr>
+</thead>
+
+{% for dim in month.list %}
+<tr>
+  <td>{{ dim.debut|date:"D d"|capfirst }}</td>
+  <td>{{ dim.debut|date:"H:i" }} - {{ dim.fin|date:"H:i" }}</td>
+  <td>{{ dim.DPS.intitule }}</td>
+  <td><a href="{% url 'dps.admin.dimensionnement.details' dim.DPS.structure.pk dim.DPS.id dim.id %}">{{ dim.shortName }}</a></td>
+  <td>???</td>
+  <td><span class="badge badge-important">0/1</span></td>
+  <td><span class="badge badge-warning">1/2</span></td>
+  <td><span class="badge badge-success">1/1</span></td>
+  <td><span class="badge badge-info">0/1</span></td>
+</tr>
+{% endfor %}
+</table>
+</div>
+
+{% endfor %}
+</div>
+
+{% endblock %}

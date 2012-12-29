@@ -188,7 +188,11 @@ def admin_index(request, structure):
 
 
 def admin_details(request, structure, dps_id):
-    return HttpResponse(status = 200)
+    Struct = get_object_or_404(Structure, numero = structure)
+    dps = get_object_or_404(DPS, pk = dps_id)
+    dimensionnements = Dimensionnement.objects.filter(DPS = dps)
+
+    return render_to_response('dps/admin/details.html', {'structure': Struct, 'dps': dps, 'all_dim': dimensionnements}, context_instance = RequestContext(request))
 
 
 def admin_dimensionnement(request, structure, dps_id, dim_id):
