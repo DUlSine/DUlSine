@@ -128,6 +128,21 @@ class Dimensionnement(models.Model):
         else:
             return str(self.debut) + ' - ' + str(self.fin)
 
+
+    def getIndice(self):
+        """
+         Compute the risque indicator according to the law
+          @return the indicator
+        """
+        return self.P2 + self.E1 + self.E2
+
+
+    def calculRISPublic(self):
+        return self.calculRIS(True)
+
+    def calculRISActeur(self):
+        return self.calculRIS(False)
+
     def calculRIS(self, public):
         """
          Compute the RIS (number of first aiders) according to the given informations
@@ -146,6 +161,12 @@ class Dimensionnement(models.Model):
 
         return indice * P / 1000
 
+
+    def calculISPublic(self):
+        return self.calculIS(True)
+
+    def calculISActeur(self):
+        return self.calculIS(False)
 
     def calculIS(self, public):
         """
