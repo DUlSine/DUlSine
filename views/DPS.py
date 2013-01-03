@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 
-from DUlSine.models import DPS, Structure, Dimensionnement, Organisateur
+from DUlSine.models import DPS, Structure, Dimensionnement, Organisateur, Souhait, FORMATIONS
 
 
 class OrganisateurForm(ModelForm):
@@ -56,6 +56,27 @@ def details(request, structure, dim_id):
     dimensionnement = get_object_or_404(Dimensionnement, pk = dim_id)
 
     return render_to_response('dps/details.html', {'structure': Struct, 'dim': dimensionnement}, context_instance = RequestContext(request))
+
+
+def inscription(request, structure, dim_id, fonction):
+    # Check that the structure and dimensionnement does exists
+    Struct = get_object_or_404(Structure, numero = structure)
+    dimensionnement = get_object_or_404(Dimensionnement, pk = dim_id)
+
+    # Add the wish for this user to the dimensionnement
+    # TODO: check that the require formation for the function is ok
+
+    # Check that the values are in [0: CI, 3: PSC1]
+    fonction = int(fonction)
+    if fonction < 0 and fonction > 3:
+        raise Http404()
+
+    # Create the wish
+    # TODO: check that only one wish per user is created
+    new_wish = Souhait(benevole = request.user.benevole, dimensionnement = dimensionnement, fonction = FORMATIONS[fonction][0])
+    new_wish.save()
+
+    return HttpResponse(status = 200)
 
 
 
