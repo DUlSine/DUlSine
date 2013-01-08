@@ -194,3 +194,22 @@ class Dimensionnement(models.Model):
         return num_is
 
 
+    # Compute the required number of the given person
+    def nombreISMax(self, formation):
+        if(formation == 'CI'):
+            return (self.IS - self.IS % 4) / 4
+        elif(formation == 'PSE2'):
+            return (self.IS - self.IS % 4) / 2 + (self.IS % 4) / 2
+        elif(formation == 'PSE1'):
+            return (self.IS - self.IS % 4) / 4 + (self.IS % 4) / 2
+        elif(formation == 'PSC1'):
+            return Team.objects.filter(dimensionnement = self, team_type = 1).count()
+        else:
+            return -1
+
+    # Compute the current number of the given person
+    def nombreIS(self, formation):
+        return Inscription.objects.filter(team__dimensionnement = self, fonction = formation).count()
+
+
+from team import Team, Inscription
