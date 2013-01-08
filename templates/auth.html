@@ -42,9 +42,12 @@
 <ul class="nav">
   <li class="active"><a href="{% url 'index' %}"><i class="icon-home icon-white"></i> Accueil</a></li>
 </ul>
-<form class="navbar-form pull-right">
-  <input class="span2" type="text" placeholder="Email" />
-  <input class="span2" type="password" placeholder="Mot de passe" />
+
+<form class="navbar-form pull-right" method="post" action="{% url 'accounts.login' %}">
+  {% csrf_token %}
+  <input class="span2" id="id_username" type="text" name="username" maxlength="50" placeholder="Identifiant" />
+  <input class="span2" id="id_password" type="password" name="password" placeholder="Mot de passe" />
+  <input type="hidden" name="next" value="{% url 'index' %}" />
   <button type="submit" class="btn">Se connecter</button>
 </form>
 {% endif %}
