@@ -1,5 +1,7 @@
 {% extends 'auth.html' %}
 
+{% load dulsine_extras %}
+
 {% block titre %}{{ structure.nom }} - DPS{% endblock %}
 {% block corps %}
 <div class="page-header">
@@ -32,10 +34,10 @@
   <td>{{ dim.debut|date:"H:i" }} - {{ dim.fin|date:"H:i" }}</td>
   <td><a href="{% url 'dps.dimensionnement.details' dim.DPS.structure.pk dim.id %}">{{ dim }}</a></td>
   <td>???</td>
-  <td><span class="badge badge-important">0/1</span></td>
-  <td><span class="badge badge-warning">1/2</span></td>
-  <td><span class="badge badge-success">1/1</span></td>
-  <td><span class="badge badge-info">0/1</span></td>
+  <td>{% badge dim.id 'CI' %}</td>
+  <td>{% badge dim.id 'PSE2' %}</td>
+  <td>{% badge dim.id 'PSE1' %}</td>
+  <td>{% badge dim.id 'PSC1' %}</td>
 </tr>
 {% endfor %}
 </table>
