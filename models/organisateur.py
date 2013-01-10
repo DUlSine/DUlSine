@@ -2,7 +2,7 @@
 # vim: set ts=4
 from django.db import models
 
-CIVILITES= (
+CIVILITES = (
     ('M.', 'Monsieur'),
     ('Mme', 'Madame'),
     ('Mlle', 'Mademoiselle')
