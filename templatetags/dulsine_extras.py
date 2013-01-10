@@ -16,7 +16,7 @@ def badge(dim_id, function):
     required = dim.nombreISMax(function)
 
     # Filter out the badge if the function is not needed
-    if(required == 0):
+    if(required == 0 or required == 0):
         return u'';
 
     # Select the right badge

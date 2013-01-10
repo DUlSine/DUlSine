@@ -196,6 +196,9 @@ class Dimensionnement(models.Model):
 
     # Compute the required number of the given person
     def nombreISMax(self, formation):
+        if(self.IS == None):
+            return 0
+
         if(formation == 'CI'):
             return (self.IS - self.IS % 4) / 4
         elif(formation == 'PSE2'):
