@@ -9,82 +9,86 @@
 
 <div class="row">
   <div class="span12">
-    <h4 class="modal-header">Dimensionnement</h4>
-    <dl class="dl-horizontal">
-      <dt>Intitulé</dt>
-      <dd>{{ dim.nom }}
-      <dt>Date</dt>
-      {% if dim.debut|date:"d/m/y" == dim.fin|date:"d/m/y" %}
-      <dd>Le {{ dim.debut|date:"l d/m/y" }} de {{ dim.debut|date:"H:i" }} à {{ dim.fin|date:"H:i" }}</dd>
-      {% else %}
-      <dd>Du {{ dim.debut|date:"l d/m/y" }} à {{ dim.debut|date:"H:i" }} au {{ dim.fin|date:"l d/m/y" }} à {{ dim.fin|date:"H:i" }}</dd>
-      {% endif %}
-      {% if dim.effectifs_public > 0 %}
-      <dt>Public</dt>
-      <dd>{{ dim.effectifs_public }} personnes de {{ dim.age_public }} (besoins specifiques : {{ dim.besoins_specifiques }})</dd>
-      {% endif %}
-      {% if dim.effectifs_acteurs > 0 %}
-      <dt>Acteurs</dt>
-      <dd>{{ dim.effectifs_acteurs }} personnes de {{ dim.age_acteurs }} ({{ dim.get_type_acteurs_display }})
-      {% endif %}
-    </dl>
-  </div>
-
-  <div class="span6">
-    <h4 class="modal-header">Risques</h4>
-    <dl class="dl-horizontal">
-      <dt>Comportement</dt>
-      <dd>{{ dim.get_P2_display }}</dd>
-      <dt>Structure</dt>
-      <dd>{{ dim.get_E1_display }}</dd>
-      <dt>Secours public</dt>
-      <dd>{{ dim.get_E2_display }}</dd>
-    </dl>
-  </div>
-  <div class="span6">
-    <h4 class="modal-header">RIS</h4>
-    <dl class="dl-horizontal">
-      <dt>P2+E1+E2</dt>
-      <dd>{{ dim.P2 }} + {{ dim.E1 }} + {{ dim.E2 }} = {{ dim.getIndice }}</dd>
-      {% if dim.effectifs_public %}
-      <dt>IS public</dt>
-      <dd>{{ dim.calculISPublic }} (RIS : {{ dim.calculRISPublic }})</dd>
-      {% endif %}
-      {% if dim.effectifs_acteurs %}
-      <dt>IS acteur</dt>
-      <dd>{{ dim.calculISActeur }} (RIS : {{ dim.calculRISActeur }})</dd>
-      {% endif %}
-      <dt>IS effectif</dt>
-      <dd>{{ dim.IS }}</dd>
-    </dl>
-  </div>
-
-  <div class="span12">
-    <h4 class="modal-header">Services de secours</h4>
-    <dl class="dl-horizontal">
-      <dt>Centre de secours</dt>
-      <dd>{{ dim.centre_sdis }}</dd>
-      <dt>Hopital</dt>
-      <dd>{{ dim.hopital }}</dd>
-      {% if dim.secours_public %}
-      <dt>Secours public présent</dt>
-      <dd>{{ dim.secours_public }}</dd>
-      {% endif %}
-      {% if dim.medecin %}
-      <dt>Médecin</dt>
-      <dd>{{ dim.medecin }}</dd>
-      {% endif %}
-      {% if dim.infirmier %}
-      <dt>Présence d'un infirmier</dt>
-      <dd>Oui</dd>
-      {% endif %}
-      {% if dim.ambulance_prive %}
-      <dt>Ambulance privée</dt>
-      <dd>Oui</dd>
-      {% endif %}
-    </dl>
+    <div class="tabbable tabs-left">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab1" data-toggle="tab">Dimensionnement</a></li>
+        <li><a href="#tab2" data-toggle="tab">Risques</a></li>
+        <li><a href="#tab3" data-toggle="tab">RIS</a></li>
+        <li><a href="#tab4" data-toggle="tab">Secours</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+          <dl class="dl-horizontal">
+            <dt>Intitulé</dt>
+            <dd>{{ dim.nom }}
+            <dt>Date</dt>
+            {% if dim.debut|date:"d/m/y" == dim.fin|date:"d/m/y" %}
+            <dd>Le {{ dim.debut|date:"l d/m/y" }} de {{ dim.debut|date:"H:i" }} à {{ dim.fin|date:"H:i" }}</dd>
+            {% else %}
+            <dd>Du {{ dim.debut|date:"l d/m/y" }} à {{ dim.debut|date:"H:i" }} au {{ dim.fin|date:"l d/m/y" }} à {{ dim.fin|date:"H:i" }}</dd>
+            {% endif %}
+            {% if dim.effectifs_public > 0 %}
+            <dt>Public</dt>
+            <dd>{{ dim.effectifs_public }} personnes de {{ dim.age_public }} (besoins specifiques : {{ dim.besoins_specifiques }})</dd>
+            {% endif %}
+            {% if dim.effectifs_acteurs > 0 %}
+            <dt>Acteurs</dt>
+            <dd>{{ dim.effectifs_acteurs }} personnes de {{ dim.age_acteurs }} ({{ dim.get_type_acteurs_display }})
+            {% endif %}
+          </dl>
+        </div>
+        <div class="tab-pane" id="tab2">
+          <dl class="dl-horizontal">
+            <dt>Comportement</dt>
+            <dd>{{ dim.get_P2_display }}</dd>
+            <dt>Structure</dt>
+            <dd>{{ dim.get_E1_display }}</dd>
+            <dt>Secours public</dt>
+            <dd>{{ dim.get_E2_display }}</dd>
+          </dl>
+        </div>
+        <div class="tab-pane" id="tab3">
+          <dl class="dl-horizontal">
+            <dt>P2+E1+E2</dt>
+            <dd>{{ dim.P2 }} + {{ dim.E1 }} + {{ dim.E2 }} = {{ dim.getIndice }}</dd>
+            {% if dim.effectifs_public %}
+            <dt>IS public</dt>
+            <dd>{{ dim.calculISPublic }} (RIS : {{ dim.calculRISPublic }})</dd>
+            {% endif %}
+            {% if dim.effectifs_acteurs %}
+            <dt>IS acteur</dt>
+            <dd>{{ dim.calculISActeur }} (RIS : {{ dim.calculRISActeur }})</dd>
+            {% endif %}
+            <dt>IS effectif</dt>
+            <dd>{{ dim.IS }}</dd>
+          </dl>
+        </div>
+        <div class="tab-pane" id="tab4">
+          <dl class="dl-horizontal">
+            <dt>Centre de secours</dt>
+            <dd>{{ dim.centre_sdis }}</dd>
+            <dt>Hopital</dt>
+            <dd>{{ dim.hopital }}</dd>
+            {% if dim.secours_public %}
+            <dt>Secours public présent</dt>
+            <dd>{{ dim.secours_public }}</dd>
+            {% endif %}
+            {% if dim.medecin %}
+            <dt>Médecin</dt>
+            <dd>{{ dim.medecin }}</dd>
+            {% endif %}
+            {% if dim.infirmier %}
+            <dt>Présence d'un infirmier</dt>
+            <dd>Oui</dd>
+            {% endif %}
+            {% if dim.ambulance_prive %}
+            <dt>Ambulance privée</dt>
+            <dd>Oui</dd>
+            {% endif %}
+          </dl>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
-
 {% endblock %}
