@@ -7,6 +7,8 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 
+from django.contrib.auth.decorators import login_required
+
 from DUlSine.models import DPS, Structure, Dimensionnement, Organisateur, Souhait, FORMATIONS
 
 
@@ -39,7 +41,7 @@ class DimensionnementForm(ModelForm):
         exclude = ('DPS', 'IS')
 
 
-
+@login_required
 def index(request, structure):
     # Check that the structure does exist
     Struct = get_object_or_404(Structure, numero = structure)
@@ -50,6 +52,7 @@ def index(request, structure):
 
 
 
+@login_required
 def details(request, structure, dim_id):
     # Check that the structure does exist
     Struct = get_object_or_404(Structure, numero = structure)
@@ -58,6 +61,8 @@ def details(request, structure, dim_id):
     return render_to_response('dps/details.html', {'structure': Struct, 'dim': dimensionnement}, context_instance = RequestContext(request))
 
 
+
+@login_required
 def inscription(request, structure, dim_id, fonction):
     # Check that the structure and dimensionnement does exists
     Struct = get_object_or_404(Structure, numero = structure)
