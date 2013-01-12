@@ -118,15 +118,15 @@ class Dimensionnement(models.Model):
 
     def __unicode__(self):
         if self.nom != None:
-            return unicode(self.DPS) + ' : ' + self.nom
+            return u"%s : %s" %(self.DPS, self.nom)
         else:
-            return unicode(self.DPS) + ' : ' + unicode(self.debut) + ' - ' + unicode(self.fin)
+            return u"%s : %s - %s" %(self.DPS, self.debut, self.fin)
 
     def shortName(self):
         if self.nom != None:
             return self.nom
         else:
-            return unicode(self.debut) + ' - ' + unicode(self.fin)
+            return u"%s - %s" %(self.debut, self.fin)
 
 
     def getIndice(self):

@@ -8,7 +8,7 @@ class Benevole(models.Model):
         app_label = 'DUlSine'
 
     def __unicode__(self):
-        return self.user.get_full_name() + ' (' + self.structure.nom + ')'
+        return u"%s (%s)" %(self.user.get_full_name(), self.structure.nom)
 
     user = models.OneToOneField(User)
     structure = models.ForeignKey(Structure)

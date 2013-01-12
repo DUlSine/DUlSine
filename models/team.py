@@ -36,7 +36,7 @@ class Team(models.Model):
     taille = models.IntegerField()
 
     def __unicode__(self):
-        return unicode(self.dimensionnement) + ' (' + TEAM_TYPES[self.team_type][1] + ')'
+        return u"%s (%s)" %(self.dimensionnement, TEAM_TYPES[self.team_type][1])
 
 
 
@@ -50,7 +50,7 @@ class Souhait(models.Model):
     date = models.DateTimeField(auto_now_add = True)
 
     def __unicode__(self):
-        return unicode(self.dimensionnement) + ' => ' + self.fonction + ' : ' + unicode(self.benevole)
+        return u"%s => %s : %s" %(self.dimensionnement,  self.fonction, self.benevole)
 
 
 
@@ -63,5 +63,5 @@ class Inscription(models.Model):
     fonction = models.CharField(max_length = 6, choices = FORMATIONS)
 
     def __unicode__(self):
-        return unicode(self.team) + ' => ' + self.fonction + ' : ' + unicode(self.benevole)
+        return u"%s => %s : %s" %(self.team, self.fonction, self.benevole)
 
