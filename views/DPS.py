@@ -9,7 +9,7 @@ from django.template import RequestContext
 
 from django.contrib.auth.decorators import login_required
 
-from DUlSine.models import DPS, Structure, Dimensionnement, Organisateur, Souhait, FORMATIONS
+from DUlSine.models import DPS, Structure, Dimensionnement, Organisateur, Souhait, DIPLOME_SECOURS
 
 
 class OrganisateurForm(ModelForm):
@@ -78,7 +78,7 @@ def inscription(request, structure, dim_id, fonction):
 
     # Create the wish
     # TODO: check that only one wish per user is created
-    new_wish = Souhait(benevole = request.user.benevole, dimensionnement = dimensionnement, fonction = FORMATIONS[fonction][0])
+    new_wish = Souhait(benevole = request.user.benevole, dimensionnement = dimensionnement, fonction = DIPLOME_SECOURS[fonction][0])
     new_wish.save()
 
     return HttpResponse(status = 200)

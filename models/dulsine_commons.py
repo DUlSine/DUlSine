@@ -29,16 +29,31 @@ TEAM_TYPES = (
 )
 
 
-FORMATIONS = (
-    ('CI',      'Chef d\'Intervention'),
-    ('PSE2',    'Equipier Secouriste'),
-    ('PSE1',    'Secouriste'),
-    ('PSC1',    'Sauveteur'),
-    ('IPS',     'IPS'),
+DIPLOME_SECOURS = (
+    (0, 'CI'),
+    (1, 'PSE2'),
+    (2, 'PSE1'),
+    (3, 'PSC1'),
+    (4, 'IPS'),
 
-    ('CH',      'Chauffeur'),
-    ('CHA',     'Chauffeur Ambulance')
+    (5, 'CDPE')
 )
+
+DIPLOME_CONDUCTEURS = (
+    (10, 'CH'),
+    (11, 'CHA'),
+    (12, '4x4')
+)
+
+DIPLOME_FORMATEURS = (
+    (20, 'FCI'),
+    (21, 'PAE1'),
+    (22, 'PAE2'),
+    (23, 'PAE3'),
+    (24, 'PAE4'),
+)
+
+FORMATIONS = DIPLOME_SECOURS + DIPLOME_CONDUCTEURS + DIPLOME_FORMATEURS
 
 
 

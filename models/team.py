@@ -5,7 +5,7 @@ from django.db import models
 from benevole import Benevole
 from DPS import Dimensionnement
 
-from dulsine_commons import TEAM_TYPES, FORMATIONS
+from dulsine_commons import TEAM_TYPES, DIPLOME_SECOURS
 
 
 class Team(models.Model):
@@ -27,7 +27,7 @@ class Souhait(models.Model):
 
     benevole = models.ForeignKey(Benevole)
     dimensionnement = models.ForeignKey(Dimensionnement)
-    fonction = models.CharField(max_length = 6, choices = FORMATIONS)
+    fonction = models.IntegerField(choices = DIPLOME_SECOURS)
     date = models.DateTimeField(auto_now_add = True)
 
     def __unicode__(self):
@@ -41,7 +41,7 @@ class Inscription(models.Model):
 
     benevole = models.ForeignKey(Benevole)
     team = models.ForeignKey(Team)
-    fonction = models.CharField(max_length = 6, choices = FORMATIONS)
+    fonction = models.IntegerField(choices = DIPLOME_SECOURS)
 
     def __unicode__(self):
         return u"%s => %s : %s" %(self.team, self.fonction, self.benevole)
