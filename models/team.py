@@ -31,7 +31,7 @@ class Souhait(models.Model):
     date = models.DateTimeField(auto_now_add = True)
 
     def __unicode__(self):
-        return u"%s => %s : %s" %(self.dimensionnement,  self.fonction, self.benevole)
+        return u"%s => %s : %s" %(self.dimensionnement,  DIPLOME_SECOURS[self.fonction][1], self.benevole)
 
 
 
@@ -44,5 +44,5 @@ class Inscription(models.Model):
     fonction = models.IntegerField(choices = DIPLOME_SECOURS)
 
     def __unicode__(self):
-        return u"%s => %s : %s" %(self.team, self.fonction, self.benevole)
+        return u"%s => %s : %s" %(self.team, DIPLOME_SECOURS[self.fonction][1], self.benevole)
 
