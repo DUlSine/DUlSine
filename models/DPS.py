@@ -7,20 +7,10 @@ import os, binascii
 from django.db import models
 
 from structure import Structure
-from organisateur import Organisateur, CIVILITES
+from organisateur import Organisateur
 from benevole import Benevole
 
-CIRCUITS = (
-        ('O', 'ouvert'),
-        ('F', 'ferme'),
-        ('N', 'pas de circuit')
-    )
-
-TYPES_ACTEURS = (
-        ('P', 'Professionnels'),
-        ('A', 'Amateurs'),
-        ('M', 'Mixte')
-)
+from dulsine_commons import CIVILITES, CIRCUITS, TYPES_ACTEURS
 
 
 def random_hash():

@@ -5,26 +5,7 @@ from django.db import models
 from benevole import Benevole
 from DPS import Dimensionnement
 
-
-TEAM_TYPES = (
-    (0, 'PAPS'),
-    (1, 'Equipe'),
-    (2, 'Binome'),
-    (3, 'Equipe d\'Evacuation')
-)
-
-
-FORMATIONS = (
-    ('CI',      'Chef d\'Intervention'),
-    ('PSE2',    'Equipier Secouriste'),
-    ('PSE1',    'Secouriste'),
-    ('PSC1',    'Sauveteur'),
-    ('IPS',     'IPS'),
-
-    ('CH',      'Chauffeur'),
-    ('CHA',     'Chauffeur Ambulance')
-)
-
+from dulsine_commons import TEAM_TYPES, FORMATIONS
 
 
 class Team(models.Model):

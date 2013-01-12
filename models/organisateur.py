@@ -2,11 +2,7 @@
 # vim: set ts=4
 from django.db import models
 
-CIVILITES = (
-    ('M.', 'Monsieur'),
-    ('Mme', 'Madame'),
-    ('Mlle', 'Mademoiselle')
-)
+from dulsine_commons import CIVILITES
 
 
 class Organisateur(models.Model):
