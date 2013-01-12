@@ -10,7 +10,7 @@ from structure import Structure
 from organisateur import Organisateur
 from benevole import Benevole
 
-from dulsine_commons import CIVILITES, CIRCUITS, TYPES_ACTEURS
+from dulsine_commons import *
 
 
 def random_hash():
@@ -189,16 +189,17 @@ class Dimensionnement(models.Model):
         if(self.IS == None):
             return 0
 
-        if(formation == 'CI'):
+        if(formation == DIPLOME_CI):
             return (self.IS - self.IS % 4) / 4
-        elif(formation == 'PSE2'):
+        elif(formation == DIPLOME_PSE2):
             return (self.IS - self.IS % 4) / 2 + (self.IS % 4) / 2
-        elif(formation == 'PSE1'):
+        elif(formation == DIPLOME_PSE1):
             return (self.IS - self.IS % 4) / 4 + (self.IS % 4) / 2
-        elif(formation == 'PSC1'):
+        elif(formation == DIPLOME_PSC1):
             return Team.objects.filter(dimensionnement = self, team_type = 1).count()
         else:
-            return -1
+            assert(0)
+
 
     # Compute the current number of the given person
     def nombreIS(self, formation):
