@@ -33,11 +33,11 @@
   <td>{{ dim.debut|date:"D d"|capfirst }}</td>
   <td>{{ dim.debut|date:"H:i" }} - {{ dim.fin|date:"H:i" }}</td>
   <td><a href="{% url 'dps.dimensionnement.details' dim.DPS.structure.pk dim.id %}">{{ dim }}</a></td>
-  <td>???</td>
-  <td>{% badge dim.id 'CI' %}</td>
-  <td>{% badge dim.id 'PSE2' %}</td>
-  <td>{% badge dim.id 'PSE1' %}</td>
-  <td>{% badge dim.id 'PSC1' %}</td>
+  <td><span class="label label-defaut">???</span></td>
+  <td>{% badge dim.id 0 %}</td>
+  <td>{% badge dim.id 1 %}</td>
+  <td>{% badge dim.id 2 %}</td>
+  <td>{% badge dim.id 3 %}</td>
 </tr>
 {% endfor %}
 </table>

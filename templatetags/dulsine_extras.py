@@ -1,19 +1,23 @@
 from django import template
 from DUlSine.models.DPS import Dimensionnement
 
+from DUlSine.models.dulsine_commons import DIPLOME_CI, DIPLOME_PSC1
+
 register = template.Library()
 
 @register.simple_tag
-def badge(dim_id, function):
-    if not function in ['CI', 'PSE2', 'PSE1', 'PSC1']:
-        raise template.TemplateSyntaxError("'badge' tag second argument should be CI, PSE2, PSE1 or PSC1")
+def badge(dim_id, function_id):
+    print(function_id)
+    function_id = int(function_id)
+    if function_id < DIPLOME_CI or function_id > DIPLOME_PSC1:
+        raise template.TemplateSyntaxError("'badge'(%s) tag second argument should be in [0, 3]" %(function_id))
 
     # Grab the corresponding Dimensionnement
     dim = Dimensionnement.objects.get(id = dim_id)
 
     # Compute the answer
-    current = dim.nombreIS(function)
-    required = dim.nombreISMax(function)
+    current = dim.nombreIS(function_id)
+    required = dim.nombreISMax(function_id)
 
     # Filter out the badge if the function is not needed
     if(required == 0 or required == 0):
@@ -28,7 +32,7 @@ def badge(dim_id, function):
         badge = 'success'
 
     # If the PSC1 is missing that's not an issue
-    if(function == 'PSC1' and current < required):
+    if(function_id == DIPLOME_PSC1 and current < required):
         badge = 'info'
 
     return u"<span class=\"badge badge-%s\">%d/%d</span>" %(badge, current, required)
