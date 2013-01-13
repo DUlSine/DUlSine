@@ -1,0 +1,33 @@
+{% extends 'auth.html' %}
+
+{% block titre %}{{ structure }} - Benevoles{% endblock %}
+{% block corps %}
+<div class="page-header">
+  <h1>Liste des bénévoles</h1>
+</div>
+
+<div class="row">
+<div class="span12">
+  <table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Login</th>
+    <th>Nom</th>
+    <th>Prénom</th>
+    <th>email</th>
+    <th>Téléphone</th>
+  </tr>
+  </thead>
+  {% for benevole in benevoles %}
+  <tr>
+    <td>{{ benevole.user.username }}</td>
+    <td>{{ benevole.user.last_name }}</td>
+    <td>{{ benevole.user.first_name }}</td>
+    <td><a href="mailto:{{ benevole.user.email }}">{{ benevole.user.email }}</a></td>
+    <td><a href="tel:{{ benevole.telephone }}">{{ benevole.telephone }}</a></td>
+  </tr>
+  {% endfor %}
+  </table>
+</div>
+</div>
+{% endblock %}
