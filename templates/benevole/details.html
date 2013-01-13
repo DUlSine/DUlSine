@@ -1,0 +1,38 @@
+{% extends 'auth.html' %}
+
+{% block titre %}{{ benevole }}{% endblock %}
+
+{% block corps %}
+<div class="page-header">
+  <h1>Détails du bénévole</h1>
+</div>
+
+<div class="row">
+  <div class="span12">
+    <div class="tabbable tabs-left">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab1" data-toggle="tab">Informations</a></li>
+        <li><a href="#tab2" data-toggle="tab">Formations</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+          <dl class="dl-horizontal">
+            <dt>Nom</dt>
+            <dd>{{ benevole.user.last_name }}</dd>
+            <dt>Prénom</dt>
+            <dd>{{ benevole.user.first_name }}</dd>
+            <dt>Téléphone</dt>
+            <dd><a href="tel:{{ benevole.telephone }}">{{ benevole.telephone }}</a></dd>
+            <dt>email</dt>
+            <dd><a href="mailto:{{ benevole.user.email }}">{{ benevole.user.email }}</a></dd>
+            <dt>Adresse</dt>
+            <dd>{{ benevole.adresse }}</dd>
+          </dl>
+        </div>
+        <div class="tab-pane" id="tab2">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

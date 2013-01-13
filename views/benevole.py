@@ -15,7 +15,11 @@ def index(request, structure):
 
 
 def details(request, benevole_id):
-    return HttpResponse(status = 200)
+    benevole = get_object_or_404(Benevole, id = benevole_id)
+
+    return render_to_response('benevole/details.html', {'benevole': benevole}, context_instance = RequestContext(request))
+
+
 
 def calendrier(request, benevole_id, event_type = None, avant = None, apres = None):
     return HttpResponse(status = 200)
