@@ -7,7 +7,6 @@ register = template.Library()
 
 @register.simple_tag
 def badge(dim_id, function_id):
-    print(function_id)
     function_id = int(function_id)
     if function_id < DIPLOME_CI or function_id > DIPLOME_PSC1:
         raise template.TemplateSyntaxError("'badge'(%s) tag second argument should be in [0, 3]" %(function_id))
