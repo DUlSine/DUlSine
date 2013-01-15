@@ -225,5 +225,6 @@ def admin_details(request, structure, dps_id):
 def admin_dimensionnement(request, structure, dps_id, dim_id):
     Struct = get_object_or_404(Structure, numero = structure)
     dimensionnement = get_object_or_404(Dimensionnement, pk = dim_id, DPS__pk = dps_id)
+    souhaits = Souhait.objects.filter(dimensionnement = dimensionnement)
 
-    return render_to_response('dps/admin/dimensionnement.html', {'structure': Struct, 'dim': dimensionnement}, context_instance = RequestContext(request))
+    return render_to_response('dps/admin/dimensionnement.html', {'structure': Struct, 'dim': dimensionnement, 'souhaits': souhaits}, context_instance = RequestContext(request))

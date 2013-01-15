@@ -90,5 +90,27 @@
       </div>
     </div>
   </div>
+
+  <div class="span12">
+    <h4 class="modal-header">Personnes disponible</h4>
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Souhait</th>
+        <th>Date</th>
+      <tr>
+    </thead>
+    {% for souhait in souhaits %}
+      <tr>
+        <td>{{ souhait.benevole.user.last_name }}</td>
+        <td>{{ souhait.benevole.user.first_name }}</td>
+        <td>{{ souhait.get_fonction_display }}</td>
+        <td>{{ souhait.date|date:"d/m/Y H:i" }}</td>
+      </tr>
+    {% endfor %}
+    </table>
+  </div>
 </div>
 {% endblock %}
