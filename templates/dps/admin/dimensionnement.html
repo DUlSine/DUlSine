@@ -92,12 +92,13 @@
   </div>
 
   <div class="span12">
+    {% if souhaits %}
     <h4 class="modal-header">Personnes disponible</h4>
     <table class="table table-striped">
     <thead>
       <tr>
         <th>Nom</th>
-        <th>Prenom</th>
+        <th>Prénom</th>
         <th>Souhait</th>
         <th>Date</th>
       <tr>
@@ -111,6 +112,9 @@
       </tr>
     {% endfor %}
     </table>
+    {% else %}
+    <h4 class="modal-header">Aucunes disponibilités</h4>
+    {% endif %}
   </div>
 </div>
 {% endblock %}
