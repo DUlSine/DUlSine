@@ -34,4 +34,4 @@ def badge(dim_id, function_id):
     if(function_id == DIPLOME_PSC1 and current < required):
         badge = 'info'
 
-    return u"<span class=\"badge badge-%s\">%d/%d</span>" %(badge, current, required)
+    return u"<span class=\"badge badge-%s\" dim-id=\"%d\" function-id=\"%s\">%d/%d</span>" %(badge, dim_id, function_id, current, required)
