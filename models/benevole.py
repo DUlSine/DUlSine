@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# vim: set ts=4
+
 from django.contrib.auth.models import User
 from django.db import models
 

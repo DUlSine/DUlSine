@@ -49,4 +49,6 @@ urlpatterns += patterns('DUlSine.views.benevole',
     url(r'^(?P<structure>\d+)/benevoles/$', 'index', name = 'benevole.index'),
     url(r'^benevole/(?P<benevole_id>\d+)/$', 'details', name = 'benevole.details'),
     url(r'^benevole/(?P<benevole_id>\d+)/calendrier(?:/(?P<event_type>\w+))?(?:/(?P<avant>\d+)(?:/(?P<apres>\d+))?)?/$', 'calendrier', name = 'benevole.calendrier'),
+    url(r'^benevole/inscription/$', 'inscription', name = 'benevole.inscription'),
+    url(r'^benevole/inscription/confirmation/$', 'inscription_confirmation', name = 'benevole.inscription.confirmation'),
 )

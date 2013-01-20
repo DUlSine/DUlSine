@@ -1,0 +1,85 @@
+{% extends 'auth.html' %}
+
+
+{% block titre %}DUlSine - Inscription{% endblock %}
+
+
+{% block corps %}
+<div class="page-header">
+  <h1>Inscription</h1>
+</div>
+
+<p>Pour s'incrire en tant que bénévole sur DUlSine, veuillez remplir le formulaire suivant:<p>
+
+<form action="" method="post" class="form-horizontal">
+  {% csrf_token %}
+  <div class="row">
+    <div class="span6">
+      <legend>Identification:</legend>
+      {% for field in "***"|make_list %}
+      <!-- {% cycle form_user.username form_user.password1 form_user.password2 as field %} -->
+      <div class="control-group {% if field.errors %}error{% endif %}">
+        <label class="control-label" for="id_{{ field.html_name }}">{{ field.label }}</label>
+        <div class="controls">
+          {{ field }}
+          {% for error in field.errors %}
+            <span class="help-inline">{{ error }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="span6">
+      <legend>Identitité:</legend>
+      {% for field in "***"|make_list %}
+      <!-- {% cycle form_user.first_name form_user.last_name form_benevole.date_naissance as field %} -->
+      <div class="control-group {% if field.errors %}error{% endif %}">
+        <label class="control-label" for="id_{{ field.html_name }}">{{ field.label }}</label>
+        <div class="controls">
+          {{ field }}
+          {% for error in field.errors %}
+            <span class="help-inline">{{ error }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="span6">
+      <legend>Coordonnées:</legend>
+      {% for field in "***"|make_list %}
+      <!-- {% cycle form_user.email form_benevole.adresse form_benevole.telephone as field %} -->
+      <div class="control-group {% if field.errors %}error{% endif %}">
+        <label class="control-label" for="id_{{ field.html_name }}">{{ field.label }}</label>
+        <div class="controls">
+          {{ field }}
+          {% for error in field.errors %}
+            <span class="help-inline">{{ error }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="span6">
+      <legend>Bénévole:</legend>
+      {% for field in "**"|make_list %}
+      <!-- {% cycle form_benevole.structure form_benevole.diplomes as field %} -->
+      <div class="control-group {% if field.errors %}error{% endif %}">
+        <label class="control-label" for="id_{{ field.html_name }}">{{ field.label }}</label>
+        <div class="controls">
+          {{ field }}
+          {% for error in field.errors %}
+            <span class="help-inline">{{ error }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+  <button type="submit" class="btn">S'inscrire</button>
+</form>
+
+{% endblock %}
