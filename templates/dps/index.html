@@ -29,7 +29,7 @@
 </thead>
 
 {% for dim in month.list %}
-<tr>
+<tr id="{{ dim.id }}">
   <td>{{ dim.debut|date:"D d"|capfirst }}</td>
   <td>{{ dim.debut|date:"H:i" }} - {{ dim.fin|date:"H:i" }}</td>
   <td><a href="{% url 'dps.dimensionnement.details' dim.DPS.structure.pk dim.id %}">{{ dim }}</a></td>
@@ -45,4 +45,17 @@
 
 {% endfor %}
 </div>
+{% endblock %}
+
+{% block script %}
+<script>
+  var function_names = { "CI": 0, "PSE2": 1, "PSE1": 2, "PSC1": 3}
+  $("span.badge").click(function(event) {
+    $.getJSON($(this).attr("dim-id") + "/inscription/" + $(this).attr("function-id")).done(function(response) {
+      if(response.fonction in function_names) {
+        $("tr#" + response.dim + " > td > span.label").replaceWith("<span class=\"label label-warning\">" + response.fonction + " ?</span>")
+      }
+    })
+  })
+</script>
 {% endblock %}
