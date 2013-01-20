@@ -11,6 +11,8 @@ from django.contrib.auth.decorators import login_required
 
 from DUlSine.models import DPS, Structure, Dimensionnement, Organisateur, Souhait, DIPLOME_SECOURS
 
+import json
+
 
 class OrganisateurForm(ModelForm):
     class Meta:
@@ -81,7 +83,9 @@ def inscription(request, structure, dim_id, fonction):
     new_wish = Souhait(benevole = request.user.benevole, dimensionnement = dimensionnement, fonction = DIPLOME_SECOURS[fonction][0])
     new_wish.save()
 
-    return HttpResponse(status = 200)
+    return HttpResponse(json.dumps({'fonction': DIPLOME_SECOURS[fonction][1],
+                                    'dim': dim_id}),
+                        mimetype='application/json')
 
 
 
