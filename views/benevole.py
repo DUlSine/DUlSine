@@ -8,6 +8,7 @@ from django.template import RequestContext
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 from DUlSine.models import Structure, Benevole
 
@@ -64,3 +65,7 @@ def inscription(request):
 def inscription_confirmation(request):
     return render_to_response('benevole/inscription/confirmation.html', context_instance = RequestContext(request))
 
+
+@login_required
+def moncompte(request):
+    return render_to_response('benevole/moncompte.html', context_instance = RequestContext(request))

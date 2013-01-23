@@ -1,0 +1,33 @@
+{% extends 'auth.html' %}
+
+
+{% block titre %}DUlSine - Votre espace personnel{% endblock %}
+
+
+{% block corps %}
+<div class="page-header">
+  <h1>Votre espace personnel</h1>
+</div>
+
+<div class="row">
+
+  <div class="span12">
+    <p>Bienvenue dans votre espace personnel.</p>
+    <p>Vous pouvez modifier ici vos informations personnelles ainsi que votre mot de passe.</p>
+  </div>
+
+  <div class="span8">
+    {% include "benevole/helpers/details_benevole.html" with user_entry=user %} 
+  </div>
+
+  <div class="span4">
+    <div class="well">
+    <center>
+      <p><a href="#" class="btn btn-block">Changer votre mot de passe</a></p>
+      <p><a href="#" class="btn btn-block">Modifier vos informations personnelles</a></p>
+    </center>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

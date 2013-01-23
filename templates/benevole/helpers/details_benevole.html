@@ -1,0 +1,27 @@
+<legend>Identitité:</legend>
+<dl class="dl-horizontal">
+  {% for field in "***"|make_list %}
+    <!-- {% cycle user_entry.first_name user_entry.last_name user_entry.benevole.date_naissance as field %} -->
+    <!-- {% cycle "Prénom" "Nom" "Date de naissance" as field_name %} -->
+    {% include "helpers/entry.html" %} 
+  {% endfor %}
+</dl>
+
+<legend>Coordonnées:</legend>
+<dl class="dl-horizontal">
+  {% for field in "***"|make_list %}
+    <!-- {% cycle user_entry.email user_entry.benevole.adresse user_entry.benevole.telephone as field %} -->
+    <!-- {% cycle "Adresse email" "Adresse postale" "Téléphone" as field_name %} -->
+    {% include "helpers/entry.html" %}  
+  {% endfor %}
+</dl>
+
+<legend>Bénévole:</legend>
+<dl class="dl-horizontal">
+    {% for field in "**"|make_list %}
+    <!-- {% cycle user_entry.benevole.structure user_entry.benevole.diplomes as field %} -->
+    <!-- {% cycle "Structure de ratachement" "Diplômes" as field_name %} -->
+    {% include "helpers/entry.html" %}
+  {% endfor %}
+</dl>
+
