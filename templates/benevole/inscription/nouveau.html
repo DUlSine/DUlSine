@@ -18,57 +18,25 @@
       <legend>Identification:</legend>
       {% for field in "***"|make_list %}
       <!-- {% cycle form_user.username form_user.password1 form_user.password2 as field %} -->
-      <div class="control-group {% if field.errors %}error{% endif %}">
-        <label class="control-label" for="id_{{ field.html_name }}">{{ field.label }}</label>
-        <div class="controls">
-          {{ field }}
-          {% for error in field.errors %}
-            <span class="help-inline">{{ error }}</span>
-          {% endfor %}
-        </div>
-      </div>
+      {% include "helpers/form_entry.html" %}
       {% endfor %}
 
       <legend>Identitité:</legend>
       {% for field in "***"|make_list %}
       <!-- {% cycle form_user.first_name form_user.last_name form_benevole.date_naissance as field %} -->
-      <div class="control-group {% if field.errors %}error{% endif %}">
-        <label class="control-label" for="id_{{ field.html_name }}">{{ field.label }}</label>
-        <div class="controls">
-          {{ field }}
-          {% for error in field.errors %}
-            <span class="help-inline">{{ error }}</span>
-          {% endfor %}
-        </div>
-      </div>
+      {% include "helpers/form_entry.html" %} 
       {% endfor %}
 
       <legend>Coordonnées:</legend>
       {% for field in "***"|make_list %}
       <!-- {% cycle form_user.email form_benevole.adresse form_benevole.telephone as field %} -->
-      <div class="control-group {% if field.errors %}error{% endif %}">
-        <label class="control-label" for="id_{{ field.html_name }}">{{ field.label }}</label>
-        <div class="controls">
-          {{ field }}
-          {% for error in field.errors %}
-            <span class="help-inline">{{ error }}</span>
-          {% endfor %}
-        </div>
-      </div>
+      {% include "helpers/form_entry.html" %}
       {% endfor %}
 
       <legend>Bénévole:</legend>
       {% for field in "**"|make_list %}
       <!-- {% cycle form_benevole.structure form_benevole.diplomes as field %} -->
-      <div class="control-group {% if field.errors %}error{% endif %}">
-        <label class="control-label" for="id_{{ field.html_name }}">{{ field.label }}</label>
-        <div class="controls">
-          {{ field }}
-          {% for error in field.errors %}
-            <span class="help-inline">{{ error }}</span>
-          {% endfor %}
-        </div>
-      </div>
+      {% include "helpers/form_entry.html" %}
       {% endfor %}
 
   </div>
