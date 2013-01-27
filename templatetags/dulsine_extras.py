@@ -1,6 +1,6 @@
 from django import template
 from DUlSine.models.DPS import Dimensionnement
-from DUlSine.models.team import Souhait
+from DUlSine.models.team import Inscription, Souhait
 
 from DUlSine.models.dulsine_commons import DIPLOME_CI, DIPLOME_PSC1, DIPLOME_SECOURS
 
@@ -42,14 +42,22 @@ def badge(dim_id, function_id):
 
 @register.simple_tag
 def label(dim_id, user_id):
-    # Get the wish if any (should be unique)
+    # Test if the user is registered in a team
     try:
-        wish = Souhait.objects.get(dimensionnement = dim_id, benevole = user_id)
-    except Souhait.DoesNotExist:
-        class_name = 'default'
-        message = '???'
+        subscription = Inscription.objects.get(team__dimensionnement = dim_id, benevole = user_id)
+    except Inscription.DoesNotExist:
+        # Get the wish if any (should be unique)
+        try:
+            wish = Souhait.objects.get(dimensionnement = dim_id, benevole = user_id)
+        except Souhait.DoesNotExist:
+            class_name = 'default'
+            message = '???'
+        else:
+            class_name = 'warning'
+            message = u"%s ?" %(DIPLOME_SECOURS[wish.fonction][1])
+
     else:
-        class_name = 'warning'
-        message = u"%s ?" %(DIPLOME_SECOURS[wish.fonction][1])
+        class_name = 'success'
+        message = u"%s" %(DIPLOME_SECOURS[subscription.fonction][1])
 
     return "<span class=\"label label-%s\">%s</span>" %(class_name, message)
