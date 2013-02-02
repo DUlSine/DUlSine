@@ -17,7 +17,7 @@ class Team(models.Model):
     taille = models.IntegerField()
 
     def __unicode__(self):
-        return u"%s (%s)" %(self.dimensionnement, TEAM_TYPES[self.team_type][1])
+        return u"%s (%s)" %(self.dimensionnement, self.get_team_type_display())
 
 
 
@@ -31,7 +31,7 @@ class Souhait(models.Model):
     date = models.DateTimeField(auto_now_add = True)
 
     def __unicode__(self):
-        return u"%s => %s : %s" %(self.dimensionnement,  DIPLOME_SECOURS[self.fonction][1], self.benevole)
+        return u"%s => %s : %s" %(self.dimensionnement, self.get_fonction_display(), self.benevole)
 
 
 
@@ -44,5 +44,5 @@ class Inscription(models.Model):
     fonction = models.IntegerField(choices = DIPLOME_SECOURS)
 
     def __unicode__(self):
-        return u"%s => %s : %s" %(self.team, DIPLOME_SECOURS[self.fonction][1], self.benevole)
+        return u"%s => %s : %s" %(self.team, self.get_fonction_display(), self.benevole)
 
