@@ -2,6 +2,14 @@
 
 {% block titre %}{{ benevole }}{% endblock %}
 
+{% block breadcrumb %}
+<ul class="breadcrumb">
+  <li><a href="{% url 'index' %}">Accueil</a> <span class="divider">/</span></li>
+  <li><a href="{% url 'benevole.index' user.benevole.structure.numero %}">Bénévoles</a> <span class="divider">/</span></li>
+  <li class="active">{{ benevole }}</li>
+</ul>
+{% endblock %}
+
 {% block corps %}
 <div class="page-header">
   <h1>Détails du bénévole</h1>
