@@ -78,8 +78,12 @@ def inscription(request, structure, dim_id, fonction):
     if fonction < 0 and fonction > 3:
         raise Http404()
 
+    # Delete the privious wish if any
+    wishes = Souhait.objects.filter(benevole = request.user.benevole, dimensionnement = dimensionnement)
+    for wish in wishes:
+        wish.delete()
+
     # Create the wish
-    # TODO: check that only one wish per user is created
     new_wish = Souhait(benevole = request.user.benevole, dimensionnement = dimensionnement, fonction = DIPLOME_SECOURS[fonction][0])
     new_wish.save()
 
