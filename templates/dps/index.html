@@ -60,7 +60,7 @@
 <script>
   var function_names = { "CI": 0, "PSE2": 1, "PSE1": 2, "PSC1": 3}
   $("span.badge").click(function(event) {
-    $.getJSON($(this).attr("dim-id") + "/inscription/" + $(this).attr("function-id")).done(function(response) {
+    $.getJSON($(this).attr("dim-id") + "/inscription/" + $(this).attr("function-id") + '/').done(function(response) {
       if(response.fonction in function_names) {
         $("tr#" + response.dim + " > td > span.label").replaceWith("<span class=\"label label-warning\">" + response.fonction + " ?</span>")
       }
