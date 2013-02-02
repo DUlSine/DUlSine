@@ -9,7 +9,7 @@ from django.template import RequestContext
 
 from django.contrib.auth.decorators import login_required
 
-from DUlSine.models import DPS, Structure, Dimensionnement, Organisateur, Souhait, DIPLOME_SECOURS
+from DUlSine.models import DPS, Structure, Dimensionnement, Organisateur, Souhait, Inscription, DIPLOME_SECOURS
 
 import json
 
@@ -76,6 +76,10 @@ def inscription(request, structure, dim_id, fonction):
     # Check that the values are in [0: CI, 3: PSC1]
     fonction = int(fonction)
     if fonction < 0 and fonction > 3:
+        raise Http404()
+
+    # Check that the admin does not subscribe the user (not removable y the user)
+    if Inscription.objects.filter(benevole = request.user.benevole, team__dimensionnement = dimensionnement).count() > 0:
         raise Http404()
 
     # Delete the privious wish if any
