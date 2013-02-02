@@ -5,9 +5,11 @@
 {% block titre %}{{ structure.nom }} - DPS{% endblock %}
 
 {% block breadcrumb %}
+<ul class="breadcrumb">
   <li><a href="{% url 'index' %}">Accueil</a> <span class="divider">/</span></li>
   <li><a href="#">Événements</a> <span class="divider">/</span></li>
   <li class="active">DPS</li>
+</ul>
 {% endblock %}
 
 {% block corps %}

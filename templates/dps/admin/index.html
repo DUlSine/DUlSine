@@ -5,9 +5,11 @@
 {% block titre %}{{ structure.nom }} - Gestion des DPS{% endblock %}
 
 {% block breadcrumb %}
+<ul class="breadcrumb">
   <li><a href="{% url 'index' %}">Accueil</a> <span class="divider">/</span></li>
   <li><a href="#">Admin</a> <span class="divider">/</span></li>
   <li class="active">DPS</li>
+</ul>
 {% endblock %}
 
 {% block corps %}

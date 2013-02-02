@@ -5,10 +5,12 @@
 {% block titre %}{{ structure }} - {{ dps }}{% endblock %}
 
 {% block breadcrumb %}
+<ul class="breadcrumb">
   <li><a href="{% url 'index' %}">Accueil</a> <span class="divider">/</span></li>
   <li><a href="#">Admin</a> <span class="divider">/</span></li>
   <li><a href="{% url 'dps.admin.index' user.benevole.structure.numero %}">DPS</a> <span class="divider">/</span></li>
   <li class="active">{{ dps }}</li>
+</ul>
 {% endblock %}
 
 {% block corps %}

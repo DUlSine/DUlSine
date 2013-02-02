@@ -3,11 +3,13 @@
 {% block titre %}{{ structure }} - Gestion des DPS{% endblock %}
 
 {% block breadcrumb %}
+<ul class="breadcrumb">
   <li><a href="{% url 'index' %}">Accueil</a> <span class="divider">/</span></li>
   <li><a href="#">Admin</a> <span class="divider">/</span></li>
   <li><a href="{% url 'dps.admin.index' user.benevole.structure.numero %}">DPS</a> <span class="divider">/</span></li>
   <li><a href="{% url 'dps.admin.details' user.benevole.structure.numero dim.DPS.id %}">{{ dim.DPS }}</a> <span class="divider">/</span></li>
   <li class="active">{{ dim.shortName }}</li>
+</ul>
 {% endblock %}
 
 {% block corps %}

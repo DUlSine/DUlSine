@@ -3,10 +3,12 @@
 {% block titre %}{{ structure.nom }} - {{ dim }}{% endblock %}
 
 {% block breadcrumb %}
+<ul class="breadcrumb">
   <li><a href="{% url 'index' %}">Accueil</a> <span class="divider">/</span></li>
   <li><a href="#">Événements</a> <span class="divider">/</span></li>
   <li><a href="{% url 'dps.index' user.benevole.structure.numero %}">DPS</a> <span class="divider">/</span></li>
   <li class="active">{{ dim }}</li>
+</ul>
 {% endblock %}
 
 {% block corps %}
