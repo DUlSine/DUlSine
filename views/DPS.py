@@ -75,7 +75,7 @@ def inscription(request, structure, dim_id, fonction):
 
     # Check that the values are in [0: CI, 3: PSC1]
     fonction = int(fonction)
-    if fonction < 0 and fonction > 3:
+    if fonction < 0 or fonction > 3:
         raise Http404()
 
     # Check that the admin does not subscribe the user (not removable y the user)
