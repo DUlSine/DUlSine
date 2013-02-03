@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # vim: set ts=4
+
 from decimal import Decimal
 import math
 import os, binascii

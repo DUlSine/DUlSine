@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # vim: set ts=4
+
 from django.db import models
 
 from dulsine_commons import CIVILITES

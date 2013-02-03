@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 # vim: set ts=4
+
 from django.db import models
+from dulsine_commons import TEAM_TYPES, DIPLOME_SECOURS
 
 from benevole import Benevole
 from DPS import Dimensionnement
 
-from dulsine_commons import TEAM_TYPES, DIPLOME_SECOURS
 
 
 class Team(models.Model):

@@ -6,6 +6,7 @@ from django.db import models
 
 from structure import Structure
 
+
 class Benevole(models.Model):
     class Meta:
         app_label = 'DUlSine'
