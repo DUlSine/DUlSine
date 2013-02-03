@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 # vim: set ts=4
-from django.db.models import Q
-from django.http import HttpResponse
+
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+from django.db.models import Q
 from django.forms import ModelForm, RadioSelect
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 
-from django.contrib.auth.decorators import login_required
 
-from DUlSine.models import DPS, Structure, Dimensionnement, Organisateur, Souhait, Team, Inscription, DIPLOME_SECOURS
-from DUlSine.models.dulsine_commons import NOT_AVAILABLE
+from DUlSine.models import Dimensionnement, DPS, Inscription, Organisateur, Souhait, Structure, Team
+from DUlSine.models.dulsine_commons import DIPLOME_SECOURS, NOT_AVAILABLE
 
 import json
 

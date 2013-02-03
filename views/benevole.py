@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 # vim: set ts=4
-from django.core.urlresolvers import reverse
-from django.http import HttpResponse, HttpResponseRedirect
-from django.forms import ModelForm
-from django.shortcuts import render_to_response, get_object_or_404
-from django.template import RequestContext
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
+from django.forms import ModelForm
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render_to_response, get_object_or_404
+from django.template import RequestContext
 
 from DUlSine.models import Structure, Benevole
 
