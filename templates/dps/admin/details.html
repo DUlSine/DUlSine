@@ -82,10 +82,10 @@
   <td>{{ dim.DPS.intitule }}</td>
   <td><a href="{% url 'dps.admin.dimensionnement.details' dim.DPS.structure.pk dim.DPS.id dim.id %}">{{ dim.shortName }}</a></td>
   <td>???</td>
-  <td>{% badge dim.id 0 %}</td>
   <td>{% badge dim.id 1 %}</td>
   <td>{% badge dim.id 2 %}</td>
   <td>{% badge dim.id 3 %}</td>
+  <td>{% badge dim.id 4 %}</td>
 </tr>
 {% endfor %}
 </table>
