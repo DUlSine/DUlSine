@@ -27,6 +27,7 @@ class DUlSineUserCreationForm(UserCreationForm):
                   "username", "password1", "password2")
 
 
+@login_required
 def index(request, structure):
     Struct = get_object_or_404(Structure, numero = structure)
     benevoles = Benevole.objects.filter(structure = structure)
@@ -35,6 +36,7 @@ def index(request, structure):
 
 
 
+@login_required
 def details(request, benevole_id):
     benevole = get_object_or_404(Benevole, id = benevole_id)
 
@@ -44,6 +46,8 @@ def details(request, benevole_id):
 
 def calendrier(request, benevole_id, event_type = None, avant = None, apres = None):
     return HttpResponse(status = 200)
+
+
 
 def inscription(request):
     if(request.method == 'POST'):
@@ -61,6 +65,8 @@ def inscription(request):
         form_user = DUlSineUserCreationForm()
         form_benevole = BenevoleForm()
     return render_to_response('benevole/inscription/nouveau.html', {'form_user' : form_user, 'form_benevole' : form_benevole}, context_instance = RequestContext(request))
+
+
 
 def inscription_confirmation(request):
     return render_to_response('benevole/inscription/confirmation.html', context_instance = RequestContext(request))

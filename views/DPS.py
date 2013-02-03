@@ -218,6 +218,7 @@ def devis(request, structure, dps_id):
 
 
 
+@login_required
 def admin_index(request, structure):
     Struct = get_object_or_404(Structure, numero = structure)
     # Get all the dimensionnements for that structure
@@ -227,6 +228,7 @@ def admin_index(request, structure):
 
 
 
+@login_required
 def admin_details(request, structure, dps_id):
     Struct = get_object_or_404(Structure, numero = structure)
     dps = get_object_or_404(DPS, pk = dps_id)
@@ -236,6 +238,7 @@ def admin_details(request, structure, dps_id):
 
 
 
+@login_required
 def admin_dimensionnement(request, structure, dps_id, dim_id):
     Struct = get_object_or_404(Structure, numero = structure)
     dimensionnement = get_object_or_404(Dimensionnement, pk = dim_id, DPS__pk = dps_id)
