@@ -61,7 +61,7 @@
   // Force the cursor to be a pointer above clickable elements
   $("span.badge").css("cursor", "pointer")
 
-  var function_names = { "CI": 0, "PSE2": 1, "PSE1": 2, "PSC1": 3}
+  var function_names = { "CI": 1, "PSE2": 2, "PSE1": 3, "PSC1": 4}
   $("span.badge").click(function(event) {
     $.getJSON($(this).attr("dim-id") + "/inscription/" + $(this).attr("function-id") + '/').done(function(response) {
       if(response.fonction in function_names) {

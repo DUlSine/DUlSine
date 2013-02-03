@@ -11,7 +11,7 @@ register = template.Library()
 def badge(dim_id, function_id):
     function_id = int(function_id)
     if function_id < DIPLOME_CI or function_id > DIPLOME_PSC1:
-        raise template.TemplateSyntaxError("'badge'(%s) tag second argument should be in [0, 3]" %(function_id))
+        raise template.TemplateSyntaxError("'badge'(%s) tag second argument should be in [1, 4]" %(function_id))
 
     # Grab the corresponding Dimensionnement
     dim = Dimensionnement.objects.get(id = dim_id)

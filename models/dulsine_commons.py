@@ -30,19 +30,20 @@ TEAM_TYPES = (
 
 
 DIPLOME_SECOURS = (
-    (0, 'CI'),
-    (1, 'PSE2'),
-    (2, 'PSE1'),
-    (3, 'PSC1'),
-    (4, 'IPS'),
+    (0, 'ND'),
+    (1, 'CI'),
+    (2, 'PSE2'),
+    (3, 'PSE1'),
+    (4, 'PSC1'),
+    (5, 'IPS'),
 
-    (5, 'CDPE')
+    (6, 'CDPE')
 )
 
-DIPLOME_CI = 0
-DIPLOME_PSE2 = 1
-DIPLOME_PSE1 = 2
-DIPLOME_PSC1 = 3
+DIPLOME_CI = 1
+DIPLOME_PSE2 = 2
+DIPLOME_PSE1 = 3
+DIPLOME_PSC1 = 4
 
 DIPLOME_CONDUCTEURS = (
     (10, 'CH'),
