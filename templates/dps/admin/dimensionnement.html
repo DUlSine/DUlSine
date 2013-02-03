@@ -1,5 +1,7 @@
 {% extends 'auth.html' %}
 
+{% load dulsine_extras %}
+
 {% block titre %}{{ structure }} - Gestion des DPS{% endblock %}
 
 {% block breadcrumb %}
@@ -117,8 +119,8 @@
         <th width="25%">Nom</th>
         <th width="25%">Prénom</th>
         <th width="15%">Souhait</th>
+        <th width="10%">Status</th>
         <th width="15%">Date</th>
-        <th width="10%"></th>
         <th width="10%"></th>
       <tr>
     </thead>
@@ -127,9 +129,9 @@
         <td>{{ souhait.benevole.user.last_name }}</td>
         <td>{{ souhait.benevole.user.first_name }}</td>
         <td>{{ souhait.get_fonction_display }}</td>
+        <td>{% badge dim.id souhait.fonction %}</td>
         <td>{{ souhait.date|date:"d/m/Y H:i" }}</td>
-        <td><a href="#"><i class="icon-plus-sign"></i>Accepter</a></td>
-        <td><a href="#"><i class="icon-minus-sign"></i>Refuser</a></td>
+        <td><a href="#"><i class="icon-plus-sign"></i>Sélectionner</a></td>
       </tr>
     {% endfor %}
     </table>
