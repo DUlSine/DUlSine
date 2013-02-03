@@ -17,6 +17,9 @@
   <h1>Liste des DPS <small>Inscription</small></h1>
 </div>
 
+<p>Cliquer sur le poste qui vous intéresse pour indiquer votre disponbilité.</p>
+<p>Si vous n'êtes pas disponible, merci de l'indiquer en cliquant sur «N.D.» (Non Disponible)</p>
+
 <div class="row">
 {% regroup all_dim by debut|date:"F o" as all_dim_by_months %}
 {% for month in all_dim_by_months %}
@@ -29,7 +32,7 @@
  <th width="10%">Date</th>
  <th width="10%">Horaire</th>
  <th width="45%">Nom</th>
- <th width="10%">Status</th>
+ <th width="10%">Poste</th>
  <th width="5%">N.D.</th>
  <th width="5%">CI</th>
  <th width="5%">PSE2</th>
