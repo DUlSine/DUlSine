@@ -102,15 +102,24 @@
   </div>
 
   <div class="span12">
+    <h4 class="modal-header">Équipes</h4>
+    {% for team in teams %}
+    <p>{{ team.get_team_type_display }}</p>
+    {% endfor %}
+  </div>
+
+  <div class="span12">
     {% if souhaits %}
-    <h4 class="modal-header">Personnes disponible</h4>
+    <h4 class="modal-header">Personnes disponibles</h4>
     <table class="table table-striped">
     <thead>
       <tr>
-        <th>Nom</th>
-        <th>Prénom</th>
-        <th>Souhait</th>
-        <th>Date</th>
+        <th width="25%">Nom</th>
+        <th width="25%">Prénom</th>
+        <th width="15%">Souhait</th>
+        <th width="15%">Date</th>
+        <th width="10%"></th>
+        <th width="10%"></th>
       <tr>
     </thead>
     {% for souhait in souhaits %}
@@ -119,11 +128,33 @@
         <td>{{ souhait.benevole.user.first_name }}</td>
         <td>{{ souhait.get_fonction_display }}</td>
         <td>{{ souhait.date|date:"d/m/Y H:i" }}</td>
+        <td><a href="#"><i class="icon-plus-sign"></i>Accepter</a></td>
+        <td><a href="#"><i class="icon-minus-sign"></i>Refuser</a></td>
       </tr>
     {% endfor %}
     </table>
     {% else %}
     <h4 class="modal-header">Aucunes disponibilités</h4>
+    {% endif %}
+  </div>
+
+  <div class="span12">
+    {% if not_available %}
+    <h4 class="modal-header">Personnes indisponibles</h4>
+    <table class="table table-striped">
+    <thead>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>Date</th>
+    </thead>
+    {% for na in not_available %}
+    <tr>
+      <td>{{ na.benevole.user.last_name }}</td>
+      <td>{{ na.benevole.user.first_name }}</td>
+      <td>{{ na.date|date:"d/m/Y H:i" }}</td>
+    </tr>
+    {% endfor %}
+    </table>
     {% endif %}
   </div>
 </div>

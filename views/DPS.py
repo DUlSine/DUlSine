@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # vim: set ts=4
+from django.db.models import Q
 from django.http import HttpResponse
 from django.core.urlresolvers import reverse
 from django.forms import ModelForm, RadioSelect
@@ -9,7 +10,8 @@ from django.template import RequestContext
 
 from django.contrib.auth.decorators import login_required
 
-from DUlSine.models import DPS, Structure, Dimensionnement, Organisateur, Souhait, Inscription, DIPLOME_SECOURS
+from DUlSine.models import DPS, Structure, Dimensionnement, Organisateur, Souhait, Team, Inscription, DIPLOME_SECOURS
+from DUlSine.models.dulsine_commons import NOT_AVAILABLE
 
 import json
 
@@ -237,6 +239,8 @@ def admin_details(request, structure, dps_id):
 def admin_dimensionnement(request, structure, dps_id, dim_id):
     Struct = get_object_or_404(Structure, numero = structure)
     dimensionnement = get_object_or_404(Dimensionnement, pk = dim_id, DPS__pk = dps_id)
-    souhaits = Souhait.objects.filter(dimensionnement = dimensionnement)
+    souhaits = Souhait.objects.filter(dimensionnement = dimensionnement).filter(~Q(fonction = NOT_AVAILABLE))
+    not_available = Souhait.objects.filter(dimensionnement = dimensionnement, fonction = NOT_AVAILABLE)
+    teams = Team.objects.filter(dimensionnement = dimensionnement)
 
-    return render_to_response('dps/admin/dimensionnement.html', {'structure': Struct, 'dim': dimensionnement, 'souhaits': souhaits}, context_instance = RequestContext(request))
+    return render_to_response('dps/admin/dimensionnement.html', {'structure': Struct, 'dim': dimensionnement, 'teams': teams, 'souhaits': souhaits, 'not_available': not_available}, context_instance = RequestContext(request))
