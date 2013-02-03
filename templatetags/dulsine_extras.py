@@ -51,7 +51,7 @@ def label(dim_id, user_id):
             wish = Souhait.objects.get(dimensionnement = dim_id, benevole = user_id)
         except Souhait.DoesNotExist:
             class_name = 'default'
-            message = '???'
+            message = '------'
         else:
             class_name = 'warning'
             message = u"%s ?" %(DIPLOME_SECOURS[wish.fonction][1])
