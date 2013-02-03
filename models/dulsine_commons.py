@@ -30,7 +30,7 @@ TEAM_TYPES = (
 
 
 DIPLOME_SECOURS = (
-    (0, 'ND'),
+    (0, 'N.D.'),
     (1, 'CI'),
     (2, 'PSE2'),
     (3, 'PSE1'),
@@ -40,6 +40,7 @@ DIPLOME_SECOURS = (
     (6, 'CDPE')
 )
 
+NOT_AVAILABLE = 0
 DIPLOME_CI = 1
 DIPLOME_PSE2 = 2
 DIPLOME_PSE1 = 3

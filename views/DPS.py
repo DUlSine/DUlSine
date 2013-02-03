@@ -73,9 +73,9 @@ def inscription(request, structure, dim_id, fonction):
     # Add the wish for this user to the dimensionnement
     # TODO: check that the require formation for the function is ok
 
-    # Check that the values are in [1: CI, 4: PSC1]
+    # Check that the values are in [0: absent, 1: CI, 4: PSC1]
     fonction = int(fonction)
-    if (fonction < 1 or fonction > 5):
+    if (fonction < 0 or fonction > 5):
         raise Http404()
 
     # Check that the admin does not subscribe the user (not removable y the user)

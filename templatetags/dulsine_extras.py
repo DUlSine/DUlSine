@@ -2,7 +2,7 @@ from django import template
 from DUlSine.models.DPS import Dimensionnement
 from DUlSine.models.team import Inscription, Souhait
 
-from DUlSine.models.dulsine_commons import DIPLOME_CI, DIPLOME_PSC1, DIPLOME_SECOURS
+from DUlSine.models.dulsine_commons import NOT_AVAILABLE, DIPLOME_CI, DIPLOME_PSC1, DIPLOME_SECOURS
 
 register = template.Library()
 
@@ -51,13 +51,17 @@ def label(dim_id, user_id):
             wish = Souhait.objects.get(dimensionnement = dim_id, benevole = user_id)
         except Souhait.DoesNotExist:
             class_name = 'default'
-            message = '------'
+            message = '--?--'
         else:
-            class_name = 'warning'
-            message = u"%s ?" %(DIPLOME_SECOURS[wish.fonction][1])
+            if wish.fonction == NOT_AVAILABLE:
+                class_name = 'inverse'
+                message = u"%s" %(DIPLOME_SECOURS[wish.fonction][1])
+            else:
+                class_name = 'warning'
+                message = u"%s ?" %(DIPLOME_SECOURS[wish.fonction][1])
 
     else:
         class_name = 'success'
         message = u"%s" %(DIPLOME_SECOURS[subscription.fonction][1])
 
-    return "<span class=\"label label-%s\">%s</span>" %(class_name, message)
+    return "<span class=\"label label-%s\" dim-id=\"%s\">%s</span>" %(class_name, dim_id, message)
