@@ -72,9 +72,9 @@
       if(response.wish in function_names) {
         // Special case for 'ND'
         if(response.wish == "N.D.")
-          $("tr#" + response.dim + " > td > span.label").replaceWith("<span class=\"label label-inverse\">" + response.wish + "</span>")
+          $("tr#" + response.dim + " > td > span.label").attr('class', 'label label-inverse').html(response.wish)
         else
-          $("tr#" + response.dim + " > td > span.label").replaceWith("<span class=\"label label-warning\">" + response.wish + "</span>")
+          $("tr#" + response.dim + " > td > span.label").attr('class', 'label label-warning').html(response.wish)
         $("tr#" + response.dim + " > td > span.badge.nombre_nd").html(response.nombreND)
       }
     })
