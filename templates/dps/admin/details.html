@@ -66,8 +66,9 @@
  <th width="10%">Date</th>
  <th width="10%">Horaire</th>
  <th width="25%">DPS</th>
- <th width="25%">Dimensionnement</th>
+ <th width="20%">Dimensionnement</th>
  <th width="10%">Status</th>
+ <th width="5%">N.D.</th>
  <th width="5%">CI</th>
  <th width="5%">PSE2</th>
  <th width="5%">PSE1</th>
@@ -82,6 +83,7 @@
   <td>{{ dim.DPS.intitule }}</td>
   <td><a href="{% url 'dps.admin.dimensionnement.details' dim.DPS.structure.pk dim.DPS.id dim.id %}">{{ dim.shortName }}</a></td>
   <td>???</td>
+  <td><span class="badge badge-default">{{ dim.nombreND }}</span></td>
   <td>{% badge dim.id 1 %}</td>
   <td>{% badge dim.id 2 %}</td>
   <td>{% badge dim.id 3 %}</td>
