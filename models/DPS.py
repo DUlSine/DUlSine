@@ -22,6 +22,7 @@ def random_hash():
 class DPS(models.Model):
     class Meta:
         app_label = 'DUlSine'
+        verbose_name_plural = 'DPS'
 
     hash_id = models.CharField(unique = True, max_length = 30, default = random_hash)
     structure = models.ForeignKey(Structure, null = True, blank = True)
