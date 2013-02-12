@@ -16,7 +16,7 @@ urlpatterns += patterns('django.contrib.auth.views',
 urlpatterns += patterns('DUlSine.views.DPS',
     url(r'^(?P<structure>\d+)/DPS/$', 'index', name = 'dps.index'),
     url(r'^(?P<structure>\d+)/DPS/(?P<dim_id>\d+)/$', 'details', name = 'dps.dimensionnement.details'),
-    url(r'^(?P<structure>\d+)/DPS/(?P<dim_id>\d+)/inscription/(?P<fonction>\d+)/$', 'inscription', name = 'dimensionnement.inscription'),
+    url(r'^(?P<structure>\d+)/DPS/(?P<dim_id>\d+)/inscription/(?P<wish_num>\d+)/$', 'inscription', name = 'dimensionnement.inscription'),
 
     # Creating a new DPS in  steps:
     # * information on the organizer and on the DPS
