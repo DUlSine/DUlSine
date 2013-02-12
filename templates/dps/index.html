@@ -47,7 +47,7 @@
   <td>{{ dim.debut|date:"H:i" }} - {{ dim.fin|date:"H:i" }}</td>
   <td><a href="{% url 'dps.dimensionnement.details' dim.DPS.structure.pk dim.id %}">{{ dim }}</a></td>
   <td>{% label dim.id user.id %}</td>
-  <td><span class="badge clickable badge-default" dim-id="{{ dim.id }}" function-id="0">{{ dim.nombreND }}</span></td>
+  <td><span class="badge clickable nombre_nd" dim-id="{{ dim.id }}" function-id="0">{{ dim.nombreND }}</span></td>
   <td>{% badge dim.id 1 %}</td>
   <td>{% badge dim.id 2 %}</td>
   <td>{% badge dim.id 3 %}</td>
@@ -75,6 +75,7 @@
           $("tr#" + response.dim + " > td > span.label").replaceWith("<span class=\"label label-inverse\">" + response.wish + "</span>")
         else
           $("tr#" + response.dim + " > td > span.label").replaceWith("<span class=\"label label-warning\">" + response.wish + "</span>")
+        $("tr#" + response.dim + " > td > span.badge.nombre_nd").html(response.nombreND)
       }
     })
   })

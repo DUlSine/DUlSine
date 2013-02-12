@@ -95,7 +95,8 @@ def inscription(request, structure, dim_id, wish_num):
     new_wish.save()
 
     return HttpResponse(json.dumps({'wish': new_wish.get_wish_display(),
-                                    'dim': dim_id}),
+                                    'dim': dim_id,
+                                    'nombreND': dimensionnement.nombreND()}),
                         mimetype='application/json')
 
 
