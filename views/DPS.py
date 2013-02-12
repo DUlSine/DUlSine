@@ -10,7 +10,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 
 
-from DUlSine.models import Dimensionnement, DPS, Inscription, Organisateur, Souhait, Structure, Team
+from DUlSine.models import Dimensionnement, DPS, Inscription, Organisateur, Structure, Team, Wish
 from DUlSine.models.dulsine_commons import DIPLOME_SECOURS, NOT_AVAILABLE
 
 import json
@@ -67,17 +67,18 @@ def details(request, structure, dim_id):
 
 
 @login_required
-def inscription(request, structure, dim_id, fonction):
+def inscription(request, structure, dim_id, wish_num):
     # Check that the structure and dimensionnement does exists
     Struct = get_object_or_404(Structure, numero = structure)
     dimensionnement = get_object_or_404(Dimensionnement, pk = dim_id)
 
     # Add the wish for this user to the dimensionnement
     # TODO: check that the require formation for the function is ok
+    # For instance not < 18 or PSC1 inside VPSP or Binomes
 
-    # Check that the values are in [0: absent, 1: CI, 4: PSC1]
-    fonction = int(fonction)
-    if (fonction < 0 or fonction > 5):
+    # Check that the values are in WISH_CHOICES
+    wish_num = int(wish_num)
+    if (wish_num < 0 or wish_num > 3):
         raise Http404()
 
     # Check that the admin does not subscribe the user (not removable y the user)
@@ -85,15 +86,15 @@ def inscription(request, structure, dim_id, fonction):
         raise Http404()
 
     # Delete the privious wish if any
-    wishes = Souhait.objects.filter(benevole = request.user.benevole, dimensionnement = dimensionnement)
+    wishes = Wish.objects.filter(benevole = request.user.benevole, dimensionnement = dimensionnement)
     for wish in wishes:
         wish.delete()
 
     # Create the wish
-    new_wish = Souhait(benevole = request.user.benevole, dimensionnement = dimensionnement, fonction = DIPLOME_SECOURS[fonction][0])
+    new_wish = Wish(benevole = request.user.benevole, dimensionnement = dimensionnement, wish = wish_num)
     new_wish.save()
 
-    return HttpResponse(json.dumps({'fonction': DIPLOME_SECOURS[fonction][1],
+    return HttpResponse(json.dumps({'wish': new_wish.get_wish_display(),
                                     'dim': dim_id}),
                         mimetype='application/json')
 
@@ -242,8 +243,8 @@ def admin_details(request, structure, dps_id):
 def admin_dimensionnement(request, structure, dps_id, dim_id):
     Struct = get_object_or_404(Structure, numero = structure)
     dimensionnement = get_object_or_404(Dimensionnement, pk = dim_id, DPS__pk = dps_id)
-    souhaits = Souhait.objects.filter(dimensionnement = dimensionnement).filter(~Q(fonction = NOT_AVAILABLE))
-    not_available = Souhait.objects.filter(dimensionnement = dimensionnement, fonction = NOT_AVAILABLE)
+    wishes = Wish.objects.filter(dimensionnement = dimensionnement).filter(~Q(wish = NOT_AVAILABLE))
+    not_available = Wish.objects.filter(dimensionnement = dimensionnement, wish = NOT_AVAILABLE)
     teams = Team.objects.filter(dimensionnement = dimensionnement)
 
-    return render_to_response('dps/admin/dimensionnement.html', {'structure': Struct, 'dim': dimensionnement, 'teams': teams, 'souhaits': souhaits, 'not_available': not_available}, context_instance = RequestContext(request))
+    return render_to_response('dps/admin/dimensionnement.html', {'structure': Struct, 'dim': dimensionnement, 'teams': teams, 'wishes': wishes, 'not_available': not_available}, context_instance = RequestContext(request))

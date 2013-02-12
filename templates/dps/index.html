@@ -32,7 +32,7 @@
  <th width="10%">Date</th>
  <th width="10%">Horaire</th>
  <th width="45%">Nom</th>
- <th width="10%">Poste</th>
+ <th width="10%">Dispo</th>
  <th width="5%">N.D.</th>
  <th width="5%">CI</th>
  <th width="5%">PSE2</th>
@@ -47,7 +47,7 @@
   <td>{{ dim.debut|date:"H:i" }} - {{ dim.fin|date:"H:i" }}</td>
   <td><a href="{% url 'dps.dimensionnement.details' dim.DPS.structure.pk dim.id %}">{{ dim }}</a></td>
   <td>{% label dim.id user.id %}</td>
-  <td><span class="badge badge-default" dim-id="{{ dim.id }}" function-id="0">N.D.</span></td>
+  <td><span class="badge clickable badge-default" dim-id="{{ dim.id }}" function-id="0">{{ dim.nombreND }}</span></td>
   <td>{% badge dim.id 1 %}</td>
   <td>{% badge dim.id 2 %}</td>
   <td>{% badge dim.id 3 %}</td>
@@ -64,17 +64,17 @@
 {% block script %}
 <script>
   // Force the cursor to be a pointer above clickable elements
-  $("span.badge").css("cursor", "pointer")
+  $("span.clickable").css("cursor", "pointer")
 
-  var function_names = { "N.D.": 0, "CI": 1, "PSE2": 2, "PSE1": 3, "PSC1": 4}
-  $("span.badge").click(function(event) {
+  var function_names = { "N.D.": 0, "Disponible": 1, "Intéressé": 2, "Très intéresse": 3}
+  $("span.clickable").click(function(event) {
     $.getJSON($(this).attr("dim-id") + "/inscription/" + $(this).attr("function-id") + '/').done(function(response) {
-      if(response.fonction in function_names) {
+      if(response.wish in function_names) {
         // Special case for 'ND'
-        if(response.fonction == "N.D.")
-          $("tr#" + response.dim + " > td > span.label").replaceWith("<span class=\"label label-inverse\">" + response.fonction + "</span>")
+        if(response.wish == "N.D.")
+          $("tr#" + response.dim + " > td > span.label").replaceWith("<span class=\"label label-inverse\">" + response.wish + "</span>")
         else
-          $("tr#" + response.dim + " > td > span.label").replaceWith("<span class=\"label label-warning\">" + response.fonction + " ?</span>")
+          $("tr#" + response.dim + " > td > span.label").replaceWith("<span class=\"label label-warning\">" + response.wish + "</span>")
       }
     })
   })

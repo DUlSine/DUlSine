@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+# vim: set ts=4
+
 # Common enumerations used in some places
 
 CIVILITES = (
@@ -63,4 +66,12 @@ DIPLOME_FORMATEURS = (
 FORMATIONS = DIPLOME_SECOURS + DIPLOME_CONDUCTEURS + DIPLOME_FORMATEURS
 
 
+WISH_ND = 0
+
+WISH_CHOICES = (
+    (WISH_ND, 'N.D.'),
+    (1, 'Disponible'),
+    (2, 'Intéressé'),
+    (3, 'Très intéressé'),
+)
 

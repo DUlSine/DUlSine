@@ -207,4 +207,9 @@ class Dimensionnement(models.Model):
         return Inscription.objects.filter(team__dimensionnement = self, fonction = formation).count()
 
 
-from team import Team, Inscription
+    # Compute the number of benevole marked as not available
+    def nombreND(self):
+        return Wish.objects.filter(dimensionnement = self, wish = WISH_ND).count()
+
+
+from team import Team, Inscription, Wish

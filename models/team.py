@@ -2,7 +2,7 @@
 # vim: set ts=4
 
 from django.db import models
-from dulsine_commons import TEAM_TYPES, DIPLOME_SECOURS
+from dulsine_commons import TEAM_TYPES, DIPLOME_SECOURS, WISH_CHOICES
 
 from benevole import Benevole
 from DPS import Dimensionnement
@@ -22,17 +22,18 @@ class Team(models.Model):
 
 
 
-class Souhait(models.Model):
+class Wish(models.Model):
     class Meta:
         app_label = 'DUlSine'
+        verbose_name_plural = 'Wishes'
 
     benevole = models.ForeignKey(Benevole)
     dimensionnement = models.ForeignKey(Dimensionnement)
-    fonction = models.IntegerField(choices = DIPLOME_SECOURS)
+    wish = models.IntegerField(choices = WISH_CHOICES)
     date = models.DateTimeField(auto_now_add = True)
 
     def __unicode__(self):
-        return u"%s => %s : %s" %(self.dimensionnement, self.get_fonction_display(), self.benevole)
+        return u"%s => %s : %s" %(self.dimensionnement, self.benevole, self.get_wish_display())
 
 
 

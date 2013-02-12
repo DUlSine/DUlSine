@@ -1,8 +1,8 @@
 from django import template
 from DUlSine.models.DPS import Dimensionnement
-from DUlSine.models.team import Inscription, Souhait
+from DUlSine.models.team import Inscription, Wish
 
-from DUlSine.models.dulsine_commons import NOT_AVAILABLE, DIPLOME_CI, DIPLOME_PSC1, DIPLOME_SECOURS
+from DUlSine.models.dulsine_commons import NOT_AVAILABLE, DIPLOME_CI, DIPLOME_PSC1, DIPLOME_SECOURS, WISH_ND
 
 register = template.Library()
 
@@ -36,7 +36,7 @@ def badge(dim_id, function_id):
     if(function_id == DIPLOME_PSC1 and current < required):
         badge = 'info'
 
-    return u"<span class=\"badge badge-%s\" dim-id=\"%d\" function-id=\"%s\">%d/%d</span>" %(badge, dim_id, function_id, current, required)
+    return u"<span class=\"badge badge-%s\" dim-id=\"%d\">%d/%d</span>" %(badge, dim_id, current, required)
 
 
 
@@ -48,20 +48,20 @@ def label(dim_id, user_id):
     except Inscription.DoesNotExist:
         # Get the wish if any (should be unique)
         try:
-            wish = Souhait.objects.get(dimensionnement = dim_id, benevole = user_id)
-        except Souhait.DoesNotExist:
+            wish = Wish.objects.get(dimensionnement = dim_id, benevole = user_id)
+        except Wish.DoesNotExist:
             class_name = 'default'
             message = '--?--'
         else:
-            if wish.fonction == NOT_AVAILABLE:
+            if wish.wish == WISH_ND:
                 class_name = 'inverse'
-                message = u"%s" %(DIPLOME_SECOURS[wish.fonction][1])
+                message = u"N.D."
             else:
                 class_name = 'warning'
-                message = u"%s ?" %(DIPLOME_SECOURS[wish.fonction][1])
+                message = u"%s" %(wish.get_wish_display())
 
     else:
         class_name = 'success'
-        message = u"%s" %(DIPLOME_SECOURS[subscription.fonction][1])
+        message = u"%s" %(subscription.get_function_display())
 
-    return "<span class=\"label label-%s\" dim-id=\"%s\">%s</span>" %(class_name, dim_id, message)
+    return "<span class=\"label clickable label-%s\" dim-id=\"%s\" function-id=\"1\">%s</span>" %(class_name, dim_id, message)

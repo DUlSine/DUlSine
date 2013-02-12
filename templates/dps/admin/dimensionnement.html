@@ -111,7 +111,7 @@
   </div>
 
   <div class="span12">
-    {% if souhaits %}
+    {% if wishes %}
     <h4 class="modal-header">Personnes disponibles</h4>
     <table class="table table-striped">
     <thead>
@@ -119,18 +119,16 @@
         <th width="25%">Nom</th>
         <th width="25%">Prénom</th>
         <th width="15%">Souhait</th>
-        <th width="10%">Status</th>
         <th width="15%">Date</th>
         <th width="10%"></th>
       <tr>
     </thead>
-    {% for souhait in souhaits %}
+    {% for wish in wishes %}
       <tr>
-        <td>{{ souhait.benevole.user.last_name }}</td>
-        <td>{{ souhait.benevole.user.first_name }}</td>
-        <td>{{ souhait.get_fonction_display }}</td>
-        <td>{% badge dim.id souhait.fonction %}</td>
-        <td>{{ souhait.date|date:"d/m/Y H:i" }}</td>
+        <td>{{ wish.benevole.user.last_name }}</td>
+        <td>{{ wish.benevole.user.first_name }}</td>
+        <td>{{ wish.get_wish_display }}</td>
+        <td>{{ wish.date|date:"d/m/Y H:i" }}</td>
         <td><a href="#"><i class="icon-plus-sign"></i>Sélectionner</a></td>
       </tr>
     {% endfor %}
