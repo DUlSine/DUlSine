@@ -78,7 +78,7 @@ def inscription(request, structure, dim_id, wish_num):
 
     # Check that the values are in WISH_CHOICES
     wish_num = int(wish_num)
-    if (wish_num < 0 or wish_num > 3):
+    if (wish_num < 0 or wish_num > len(WISH_CHOICES)):
         raise Http404()
 
     # Check that the admin does not subscribe the user (not removable y the user)
