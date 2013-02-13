@@ -206,6 +206,14 @@ def dimensionnement_modification(request, dps_hash, dim_id):
 
 
 
+def dimensionnement_delete(request, dps_hash, dim_id):
+    # Get the already existing DPS and corresponding Dimensionnement
+    dim = get_object_or_404(Dimensionnement, pk = dim_id, DPS__hash_id = dps_hash)
+    dim.delete()
+
+    return HttpResponseRedirect(reverse('dps.demande.details', args = [ dps_hash]))
+
+
 
 def calendrier(request, structure, avant = None, apres = None):
     return HttpResponse(status = 200)
