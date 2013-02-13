@@ -77,6 +77,7 @@ RISQUES_E2 = (
 class Dimensionnement(models.Model):
     class Meta:
         app_label = 'DUlSine'
+        ordering = ('debut', 'fin')
 
     DPS = models.ForeignKey(DPS)
 
