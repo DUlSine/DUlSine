@@ -12,6 +12,7 @@
 <div class="row">
   <div class="span12">
     <h2>Liste des dimensionnements</h2>
+    {% if dims %}
     <table class="table table-striped">
     <thead>
     <tr>
@@ -30,6 +31,11 @@
     </tr>
     {% endfor %}
     </table>
+    {% else %}
+    <div class="alert">
+      <strong>Attention :</strong> auncun dimensionnement pour ce DPS. Cliquer sur le bouton ci-dessou.
+    </div>
+    {% endif %}
     <p><a href="{% url 'dps.demande.dimensionnement' dps.hash_id %}" class="btn btn-default">ajouter un dimensionnement</a></p>
   </div>
 </div>
