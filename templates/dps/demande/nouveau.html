@@ -11,6 +11,13 @@
 
 <p>Pour faire la demande pour un poste de secours (DPS), veuillez remplir le formulaire suivant aussi précisément que possible.<p>
 
+{% if form_orga.errors or form_dps.errors %}
+<div class="alert alert-error">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Attention !</strong> certains éléments de la page sont mal remplis.
+</div>
+{% endif %}
+
 <form action="" method="post" class="form-horizontal">
   {% csrf_token %}
   <h2>Informations sur l'organisateur :</h2>
