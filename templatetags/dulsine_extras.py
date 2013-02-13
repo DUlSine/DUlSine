@@ -62,6 +62,6 @@ def label(dim_id, user_id):
 
     else:
         class_name = 'success'
-        message = u"%s" %(subscription.get_function_display())
+        message = u"%s" %(subscription.get_fonction_display())
 
     return "<span class=\"label clickable label-%s\" dim-id=\"%s\" function-id=\"1\">%s</span>" %(class_name, dim_id, message)
