@@ -9,28 +9,28 @@
 
 <p>Cette page liste les différents dimensionnements de votre manifestation. Chaque dimensionnement correspond à une journée.</p>
 
-<h2>Liste des dimensionnements</h2>
 <div class="row">
-<div class="span12">
-<table class="table table-striped">
-<thead>
-<tr>
-  <th>Jour</th>
-  <th>Horaire</th>
-  <th>Intitulé</th>
-  <th></th>
-</tr>
-</thead>
-{% for dim in dims %}
-<tr>
-  <td>{{ dim.debut|date:"D d/m/y"|capfirst}}</td>
-  <td>{{ dim.debut|date:"H:i"}} - {{ dim.fin|date:"H:i" }}</td>
-  <td>{{ dim.nom }}</td>
-  <td><a href="{% url 'dps.demande.dimensionnement.modification' dps.hash_id dim.id %}" class="btn btn-primary btn-small">Modifier</a></td>
-</tr>
-{% endfor %}
-</table>
-<p><a href="{% url 'dps.demande.dimensionnement' dps.hash_id %}" class="btn btn-default">ajouter un dimensionnement</a></p>
-</div>
+  <div class="span12">
+    <h2>Liste des dimensionnements</h2>
+    <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Jour</th>
+      <th>Horaire</th>
+      <th>Intitulé</th>
+      <th></th>
+    </tr>
+    </thead>
+    {% for dim in dims %}
+    <tr>
+      <td>{{ dim.debut|date:"D d/m/y"|capfirst}}</td>
+      <td>{{ dim.debut|date:"H:i"}} - {{ dim.fin|date:"H:i" }}</td>
+      <td>{{ dim.nom }}</td>
+      <td><a href="{% url 'dps.demande.dimensionnement.modification' dps.hash_id dim.id %}" class="btn btn-primary btn-small">Modifier</a></td>
+    </tr>
+    {% endfor %}
+    </table>
+    <p><a href="{% url 'dps.demande.dimensionnement' dps.hash_id %}" class="btn btn-default">ajouter un dimensionnement</a></p>
+  </div>
 </div>
 {% endblock %}
