@@ -11,7 +11,7 @@ from django.template import RequestContext
 
 
 from DUlSine.models import Dimensionnement, DPS, Inscription, Organisateur, Structure, Team, Wish
-from DUlSine.models.dulsine_commons import DIPLOME_SECOURS, NOT_AVAILABLE
+from DUlSine.models.dulsine_commons import DIPLOME_SECOURS, WISH_ND
 
 import json
 
@@ -244,8 +244,8 @@ def admin_details(request, structure, dps_id):
 def admin_dimensionnement(request, structure, dps_id, dim_id):
     Struct = get_object_or_404(Structure, numero = structure)
     dimensionnement = get_object_or_404(Dimensionnement, pk = dim_id, DPS__pk = dps_id)
-    wishes = Wish.objects.filter(dimensionnement = dimensionnement).filter(~Q(wish = NOT_AVAILABLE))
-    not_available = Wish.objects.filter(dimensionnement = dimensionnement, wish = NOT_AVAILABLE)
+    wishes = Wish.objects.filter(dimensionnement = dimensionnement).filter(~Q(wish = WISH_ND))
+    not_available = Wish.objects.filter(dimensionnement = dimensionnement, wish = WISH_ND)
     teams = Team.objects.filter(dimensionnement = dimensionnement)
 
     return render_to_response('dps/admin/dimensionnement.html', {'structure': Struct, 'dim': dimensionnement, 'teams': teams, 'wishes': wishes, 'not_available': not_available}, context_instance = RequestContext(request))
