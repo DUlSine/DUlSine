@@ -24,6 +24,7 @@
     <th>Prénom</th>
     <th>email</th>
     <th>Téléphone</th>
+    <th width="5%"></th>
   </tr>
   </thead>
   {% for benevole in benevoles %}
@@ -33,6 +34,7 @@
     <td>{{ benevole.user.first_name }}</td>
     <td><a href="mailto:{{ benevole.user.email }}">{{ benevole.user.email }}</a></td>
     <td><a href="tel:{{ benevole.telephone }}">{{ benevole.telephone }}</a></td>
+    <td><a href="{% url 'benevole.details' benevole.pk %}" class="btn btn-info btn-mini">Détails</a></td>
   </tr>
   {% endfor %}
   </table>
