@@ -32,22 +32,21 @@ TEAM_TYPES = (
 )
 
 
-DIPLOME_SECOURS = (
-    (0, 'N.D.'),
-    (1, 'CI'),
-    (2, 'PSE2'),
-    (3, 'PSE1'),
-    (4, 'PSC1'),
-    (5, 'IPS'),
+DIPLOME_CI = 0
+DIPLOME_PSE2 = 1
+DIPLOME_PSE1 = 2
+DIPLOME_PSC1 = 3
 
-    (6, 'CDPE')
+DIPLOME_SECOURS = (
+    (DIPLOME_CI,   'CI'),
+    (DIPLOME_PSE2, 'PSE2'),
+    (DIPLOME_PSE1, 'PSE1'),
+    (DIPLOME_PSC1, 'PSC1'),
+    (4, 'IPS'),
+
+    (5, 'CDPE')
 )
 
-NOT_AVAILABLE = 0
-DIPLOME_CI = 1
-DIPLOME_PSE2 = 2
-DIPLOME_PSE1 = 3
-DIPLOME_PSC1 = 4
 
 DIPLOME_CONDUCTEURS = (
     (10, 'CH'),
