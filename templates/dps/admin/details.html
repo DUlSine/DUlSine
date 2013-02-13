@@ -84,10 +84,10 @@
   <td><a href="{% url 'dps.admin.dimensionnement.details' dim.DPS.structure.pk dim.DPS.id dim.id %}">{{ dim.shortName }}</a></td>
   <td>???</td>
   <td><span class="badge badge-default">{{ dim.nombreD }} / {{ dim.nombreND }}</span></td>
-  <td>{% badge dim.id 1 %}</td>
-  <td>{% badge dim.id 2 %}</td>
-  <td>{% badge dim.id 3 %}</td>
-  <td>{% badge dim.id 4 %}</td>
+  <td>{% badge dim.id DIPLOME_CI %}</td>
+  <td>{% badge dim.id DIPLOME_PSE2 %}</td>
+  <td>{% badge dim.id DIPLOME_PSE1 %}</td>
+  <td>{% badge dim.id DIPLOME_PSC1 %}</td>
 </tr>
 {% endfor %}
 </table>

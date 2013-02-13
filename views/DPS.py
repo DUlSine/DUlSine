@@ -11,7 +11,7 @@ from django.template import RequestContext
 
 
 from DUlSine.models import Dimensionnement, DPS, Inscription, Organisateur, Structure, Team, Wish
-from DUlSine.models.dulsine_commons import DIPLOME_SECOURS, WISH_ND
+from DUlSine.models.dulsine_commons import *
 
 import json
 
@@ -52,7 +52,7 @@ def index(request, structure):
 
     # Get all the dimensionnements for that structure
     dimensionnements = Dimensionnement.objects.filter(DPS__structure = Struct)
-    return render_to_response('dps/index.html', {'structure': Struct, 'all_dim': dimensionnements}, context_instance = RequestContext(request))
+    return render_to_response('dps/index.html', {'structure': Struct, 'all_dim': dimensionnements, 'DIPLOME_CI': DIPLOME_CI, 'DIPLOME_PSE2': DIPLOME_PSE2, 'DIPLOME_PSE1': DIPLOME_PSE1, 'DIPLOME_PSC1': DIPLOME_PSC1}, context_instance = RequestContext(request))
 
 
 
@@ -226,7 +226,7 @@ def admin_index(request, structure):
     # Get all the dimensionnements for that structure
     dimensionnements = Dimensionnement.objects.filter(DPS__structure = Struct)
 
-    return render_to_response('dps/admin/index.html',  {'structure': Struct, 'all_dim': dimensionnements}, context_instance = RequestContext(request))
+    return render_to_response('dps/admin/index.html',  {'structure': Struct, 'all_dim': dimensionnements, 'DIPLOME_CI': DIPLOME_CI, 'DIPLOME_PSE2': DIPLOME_PSE2, 'DIPLOME_PSE1': DIPLOME_PSE1, 'DIPLOME_PSC1': DIPLOME_PSC1}, context_instance = RequestContext(request))
 
 
 
@@ -236,7 +236,7 @@ def admin_details(request, structure, dps_id):
     dps = get_object_or_404(DPS, pk = dps_id)
     dimensionnements = Dimensionnement.objects.filter(DPS = dps)
 
-    return render_to_response('dps/admin/details.html', {'structure': Struct, 'dps': dps, 'all_dim': dimensionnements}, context_instance = RequestContext(request))
+    return render_to_response('dps/admin/details.html', {'structure': Struct, 'dps': dps, 'all_dim': dimensionnements, 'DIPLOME_CI': DIPLOME_CI, 'DIPLOME_PSE2': DIPLOME_PSE2, 'DIPLOME_PSE1': DIPLOME_PSE1, 'DIPLOME_PSC1': DIPLOME_PSC1}, context_instance = RequestContext(request))
 
 
 

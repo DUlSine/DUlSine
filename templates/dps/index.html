@@ -48,10 +48,10 @@
   <td><a href="{% url 'dps.dimensionnement.details' dim.DPS.structure.pk dim.id %}">{{ dim }}</a></td>
   <td>{% label dim.id user.id %}</td>
   <td><span class="badge clickable nombre_nd" dim-id="{{ dim.id }}" function-id="0">{{ dim.nombreND }}</span></td>
-  <td>{% badge dim.id 1 %}</td>
-  <td>{% badge dim.id 2 %}</td>
-  <td>{% badge dim.id 3 %}</td>
-  <td>{% badge dim.id 4 %}</td>
+  <td>{% badge dim.id DIPLOME_CI %}</td>
+  <td>{% badge dim.id DIPLOME_PSE2 %}</td>
+  <td>{% badge dim.id DIPLOME_PSE1 %}</td>
+  <td>{% badge dim.id DIPLOME_PSC1 %}</td>
 </tr>
 {% endfor %}
 </table>
