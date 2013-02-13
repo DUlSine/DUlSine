@@ -15,7 +15,7 @@
     <div class="tabbable tabs-left">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#tab1" data-toggle="tab">Organisateur</a></li>
-        <li><a href="#tab2" data-toggle="tab">Contacts</a></li>
+        <li><a href="#tab2" data-toggle="tab">Coordonnées</a></li>
         <li><a href="#tab3" data-toggle="tab">Manifestation</a></li>
         <li><a href="#tab4" data-toggle="tab">Lieu</a></li>
       </ul>
@@ -28,7 +28,12 @@
             <dd>{{ dps.organisateur.adresse }}</dd>
             <dt>Représentant légale</dt>
             <dd>{{ dps.organisateur.representant_civilite }} {{ dps.organisateur.representant_nom }} {{ dps.organisateur.representant_prenom }}, {{ dps.organisateur.representant_fonction }}</dd>
-
+          </dl>
+        </div>
+        <div class="tab-pane" id="tab2">
+          <dl class="dl-horizontal">
+            <dt>Contact</dt>
+            <dd>{{ dps.organisateur.contact_civilite }} {{ dps.organisateur.contact_nom }} {{ dps.organisateur.contact_prenom }}, {{ dps.organisateur.contact_fonction }}</dd>
             {% if dps.organisateur.telephone %}
             <dt>Téléphone</dt>
             <dd><a href="tel:{{ dps.organisateur.telephone }}">{{ dps.organisateur.telephone }}</a></dd>
@@ -43,14 +48,8 @@
             {% endif %}
             <dt>email</dt>
             <dd><a href="mailto:{{ dps.organisateur.email }}">{{ dps.organisateur.email }}</a></dd>
-          </dl>
-        </div>
-        <div class="tab-pane" id="tab2">
-          <dl class="dl-horizontal">
-            <dt>Contact</dt>
-            <dd>{{ dps.organisateur.contact_civilite }} {{ dps.organisateur.contact_nom }} {{ dps.organisateur.contact_prenom }}, {{ dps.organisateur.contact_fonction }}</dd>
             <dt>Contact sur place</dt>
-            <dd>{{ dps.contact_sur_place_civilite }} {{ dps.contact_sur_place_nom }} {{ dps.contact_sur_place_prenom }} ({{ dps.contact_sur_place_telephone }})</dd>
+            <dd>{{ dps.contact_sur_place_civilite }} {{ dps.contact_sur_place_nom }} {{ dps.contact_sur_place_prenom }} (<a href="tel:{{ dps.contact_sur_place_telephone }}">{{ dps.contact_sur_place_telephone }}</a>)</dd>
           </dl>
         </div>
         <div class="tab-pane" id="tab3">
