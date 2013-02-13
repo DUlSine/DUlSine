@@ -6,6 +6,7 @@ import math
 import os, binascii
 
 from django.db import models
+from django.db.models import Q
 
 from structure import Structure
 from organisateur import Organisateur
@@ -211,6 +212,9 @@ class Dimensionnement(models.Model):
     # Compute the number of benevole marked as not available
     def nombreND(self):
         return Wish.objects.filter(dimensionnement = self, wish = WISH_ND).count()
+
+    def nombreD(self):
+        return Wish.objects.filter(dimensionnement = self).filter(~Q(wish = WISH_ND)).count()
 
 
 from team import Team, Inscription, Wish
