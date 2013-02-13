@@ -10,6 +10,7 @@ from structure import Structure
 class Benevole(models.Model):
     class Meta:
         app_label = 'DUlSine'
+        ordering = ('user__last_name', 'user__first_name')
 
     def __unicode__(self):
         return u"%s (%s)" %(self.user.get_full_name(), self.structure.nom)
