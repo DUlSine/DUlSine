@@ -93,8 +93,9 @@
       <th>Jour</th>
       <th>Horaire</th>
       <th>Intitulé</th>
-      <th width="5%"></th>
-      <th width="5%"></th>
+      <th width="3%"></th>
+      <th width="3%"></th>
+      <th width="3%"></th>
     </tr>
     </thead>
     {% for dim in dims %}
@@ -102,8 +103,9 @@
       <td>{{ dim.debut|date:"D d/m/y"|capfirst}}</td>
       <td>{{ dim.debut|date:"H:i"}} - {{ dim.fin|date:"H:i" }}</td>
       <td>{{ dim.nom }}</td>
-      <td><a href="{% url 'dps.demande.dimensionnement.modification' dps.hash_id dim.id %}" class="btn btn-primary btn-mini">Modifier</a></td>
-      <td><a href="{% url 'dps.demande.dimensionnement.delete' dps.hash_id dim.id %}" class="btn btn-danger btn-mini">Supprimer</a></td>
+      <td><a href="{% url 'dps.demande.dimensionnement.modification' dps.hash_id dim.id %}" class="btn btn-primary btn-mini"><i class="icon-pencil"></i></a></td>
+      <td><a href="{% url 'dps.demande.dimensionnement.copy' dps.hash_id dim.id %}" class="btn btn-success btn-mini"><i class="icon-plus-sign"></i></a></td>
+      <td><a href="{% url 'dps.demande.dimensionnement.delete' dps.hash_id dim.id %}" class="btn btn-danger btn-mini"><i class="icon-trash"></i></a></td>
     </tr>
     {% endfor %}
     </table>

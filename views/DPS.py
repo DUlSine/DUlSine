@@ -206,6 +206,20 @@ def dimensionnement_modification(request, dps_hash, dim_id):
 
 
 
+def dimensionnement_copy(request, dps_hash, dim_id):
+    # Get the already existing DPS and corresponding Dimensionnement
+    dim = get_object_or_404(Dimensionnement, pk = dim_id, DPS__hash_id = dps_hash)
+
+    # Change the values to not override the name
+    dim.nom = dim.nom + ' (copie)'
+    # Remove the primary key: this is now a new object
+    setattr(dim, 'pk', None)
+    dim.save()
+
+    return HttpResponseRedirect(reverse('dps.demande.details', args = [dps_hash]))
+
+
+
 def dimensionnement_delete(request, dps_hash, dim_id):
     # Get the already existing DPS and corresponding Dimensionnement
     dim = get_object_or_404(Dimensionnement, pk = dim_id, DPS__hash_id = dps_hash)

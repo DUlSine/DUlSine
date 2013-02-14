@@ -31,6 +31,7 @@ urlpatterns += patterns('DUlSine.views.DPS',
     url(r'^DPS/demande/(?P<dps_hash>[0-9a-f]+)/dimensionnement/$', 'dimensionnement', name = 'dps.demande.dimensionnement'),
     url(r'^DPS/demande/(?P<dps_hash>[0-9a-f]+)/dimensionnement/(?P<dim_id>\d+)/verification/$', 'dimensionnement_verification', name = 'dps.demande.dimensionnement.verification'),
     url(r'^DPS/demande/(?P<dps_hash>[0-9a-f]+)/dimensionnement/(?P<dim_id>\d+)/modification/$', 'dimensionnement_modification', name = 'dps.demande.dimensionnement.modification'),
+    url(r'^DPS/demande/(?P<dps_hash>[0-9a-f]+)/dimensionnement/(?P<dim_id>\d+)/copy/$', 'dimensionnement_copy', name = 'dps.demande.dimensionnement.copy'),
     url(r'^DPS/demande/(?P<dps_hash>[0-9a-f]+)/dimensionnement/(?P<dim_id>\d+)/delete/$', 'dimensionnement_delete', name = 'dps.demande.dimensionnement.delete'),
 
     # Managing DPS
