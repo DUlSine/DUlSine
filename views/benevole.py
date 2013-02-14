@@ -40,7 +40,20 @@ def index(request, structure):
 def details(request, benevole_id):
     benevole = get_object_or_404(Benevole, id = benevole_id)
 
-    return render_to_response('benevole/details.html', {'benevole': benevole}, context_instance = RequestContext(request))
+    # Find previous and next benevoles
+    benevoles = Benevole.objects.filter(structure = benevole.structure)
+    previous_b = 0
+    next_b = 0
+    index = 0
+    for b in benevoles:
+        index = index + 1
+        if b.pk == int(benevole_id):
+            if index < benevoles.count():
+                next_b = benevoles[index].pk
+            break
+        previous_b = b.pk
+
+    return render_to_response('benevole/details.html', {'benevole': benevole, 'previous': previous_b, 'next': next_b}, context_instance = RequestContext(request))
 
 
 

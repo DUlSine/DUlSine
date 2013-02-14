@@ -15,6 +15,10 @@
   <h1>Détails du bénévole</h1>
 </div>
 
+<ul class="pager">
+  {% if previous %}<li class="previous"><a href="{% url 'benevole.details' previous %}">&larr;Previous</a></li>{% endif %}
+  {% if next %}<li class="next"><a href="{% url 'benevole.details' next %}">Next&rarr;</a></li>{% endif %}
+</ul>
 <div class="row">
   <div class="span12">
     <div class="tabbable tabs-left">
