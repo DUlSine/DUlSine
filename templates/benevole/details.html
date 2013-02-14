@@ -38,6 +38,16 @@
           </dl>
         </div>
         <div class="tab-pane" id="tab2">
+          <dl class="dl-horizontal">
+            <dt>Secourisme</dt>
+            <dd>{% for diplome in benevole.diplomesSecours %}{{ diplome }}{% if not forloop.last %}, {% endif %}{% empty %}&nbsp;{% endfor %}</dd>
+            <dt>Conducteur</dt>
+            <dd>{% for diplome in benevole.diplomesConducteur %}{{ diplome }}{% if not forloop.last %}, {% endif %}{% empty %}&nbsp;{% endfor %}</dd>
+            <dt>Radio</dt>
+            <dd>OPR</dd>
+            <dt>Formateur</dt>
+            <dd>{% for diplome in benevole.diplomesFormateur %}{{ diplome }}{% if not forloop.last %}, {% endif %}{% empty %}&nbsp;{% endfor %}</dd>
+          </dl>
         </div>
       </div>
     </div>
