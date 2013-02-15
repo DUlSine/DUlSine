@@ -109,7 +109,24 @@
       <td>{{ dim.debut|date:"D d/m/y"|capfirst}}</td>
       <td>{{ dim.debut|date:"H:i"}} - {{ dim.fin|date:"H:i" }}</td>
       <td>{{ dim.nom }}</td>
-      <td><a href="{% url 'dps.demande.dimensionnement.modification' dps.hash_id dim.id %}" class="btn btn-primary btn-mini" title="modifier"><i class="icon-pencil"></i></a>&nbsp;<a href="{% url 'dps.demande.dimensionnement.copy' dps.hash_id dim.id %}" class="btn btn-success btn-mini" title="dupliquer"><i class="icon-plus-sign"></i></a>&nbsp;<a href="{% url 'dps.demande.dimensionnement.delete' dps.hash_id dim.id %}" class="btn btn-danger btn-mini" title="supprimer"><i class="icon-trash"></i></a></td>
+      <td>
+        <a href="{% url 'dps.demande.dimensionnement.modification' dps.hash_id dim.id %}" class="btn btn-primary btn-mini" title="modifier"><i class="icon-pencil"></i></a>
+        <a href="{% url 'dps.demande.dimensionnement.copy' dps.hash_id dim.id %}" class="btn btn-success btn-mini" title="dupliquer"><i class="icon-plus-sign"></i></a>
+        <a href="#deleteModal{{ dim.id }}" role="button" class="btn btn-danger btn-mini" title="supprimer" data-toggle="modal"><i class="icon-trash"></i></a>
+        <div id="deleteModal{{ dim.id }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Confirmation</h3>
+          </div>
+          <div class="modal-body">
+            <p>Etes-vous certains de supprimer ce dimensionnement ?</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Annuler</button>
+            <a href="{% url 'dps.demande.dimensionnement.delete' dps.hash_id dim.id %}" class="btn btn-danger">Supprimer</a>
+          </div>
+        </div>
+      </td>
     </tr>
     {% endfor %}
     </table>
