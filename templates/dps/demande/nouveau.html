@@ -3,6 +3,18 @@
 
 {% block titre %}DUlSine - Demande de DPS{% if not nouveau %} (modification){% endif %}{% endblock %}
 
+{% block breadcrumb %}
+<ul class="breadcrumb">
+  <li><a href="{% url 'index' %}">Accueil</a> <span class="divider">/</span></li>
+  {% if nouveau %}
+  <li class="active">Demande</li>
+  {% else %}
+  <li><a href="{% url 'dps.demande' %}">Demande</a> <span class="divider">/</span></li>
+  <li><a href="{% url 'dps.demande.details' dps.hash_id %}">{{ dps }}</a> <span class="divider">/</span></li>
+  <li class="active">Modification</li>
+  {% endif %}
+</ul>
+{% endblock %}
 
 {% block corps %}
 <div class="page-header">

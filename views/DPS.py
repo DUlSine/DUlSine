@@ -151,7 +151,7 @@ def demande_modification(request, dps_hash):
         form_orga = OrganisateurForm(instance = orga)
         form_dps = DPSForm(instance = dps)
 
-    return render_to_response('dps/demande/nouveau.html', {'form_orga': form_orga, 'form_dps': form_dps, 'nouveau': False}, context_instance = RequestContext(request))
+    return render_to_response('dps/demande/nouveau.html', {'form_orga': form_orga, 'form_dps': form_dps, 'dps': dps, 'nouveau': False}, context_instance = RequestContext(request))
 
 
 
@@ -175,14 +175,14 @@ def dimensionnement(request, dps_hash, dim_id = None):
         dim = get_object_or_404(Dimensionnement, pk = dim_id, DPS = dps)
         form = DimensionnementForm(instance = dim)
 
-    return render_to_response('dps/demande/dimensionnement_nouveau.html', {'form': form, 'nouveau': True}, context_instance = RequestContext(request))
+    return render_to_response('dps/demande/dimensionnement_nouveau.html', {'form': form, 'dps': dps, 'nouveau': True}, context_instance = RequestContext(request))
 
 
 
 def dimensionnement_verification(request, dps_hash, dim_id):
     # Check that the Dimensionnement does exist and is associated with the right DPS
     dim = get_object_or_404(Dimensionnement, pk = dim_id, DPS__hash_id = dps_hash)
-    return render_to_response('dps/demande/dimensionnement_resume.html', {'dps_hash': dps_hash, 'dim': dim }, context_instance = RequestContext(request))
+    return render_to_response('dps/demande/dimensionnement_resume.html', {'dps': dim.DPS, 'dim': dim }, context_instance = RequestContext(request))
 
 
 
@@ -202,7 +202,7 @@ def dimensionnement_modification(request, dps_hash, dim_id):
         # Give default values to the form
         form = DimensionnementForm(instance = dim)
 
-    return render_to_response('dps/demande/dimensionnement_nouveau.html', {'form': form, 'nouveau': False}, context_instance = RequestContext(request))
+    return render_to_response('dps/demande/dimensionnement_nouveau.html', {'form': form, 'dps': dim.DPS, 'nouveau': False}, context_instance = RequestContext(request))
 
 
 
