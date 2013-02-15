@@ -109,7 +109,7 @@
       <td>{{ dim.debut|date:"D d/m/y"|capfirst}}</td>
       <td>{{ dim.debut|date:"H:i"}} - {{ dim.fin|date:"H:i" }}</td>
       <td>{{ dim.nom }}</td>
-      <td><a href="{% url 'dps.demande.dimensionnement.modification' dps.hash_id dim.id %}" class="btn btn-primary btn-mini"><i class="icon-pencil"></i></a>&nbsp;<a href="{% url 'dps.demande.dimensionnement.copy' dps.hash_id dim.id %}" class="btn btn-success btn-mini"><i class="icon-plus-sign"></i></a>&nbsp;<a href="{% url 'dps.demande.dimensionnement.delete' dps.hash_id dim.id %}" class="btn btn-danger btn-mini"><i class="icon-trash"></i></a></td>
+      <td><a href="{% url 'dps.demande.dimensionnement.modification' dps.hash_id dim.id %}" class="btn btn-primary btn-mini" title="modifier"><i class="icon-pencil"></i></a>&nbsp;<a href="{% url 'dps.demande.dimensionnement.copy' dps.hash_id dim.id %}" class="btn btn-success btn-mini" title="dupliquer"><i class="icon-plus-sign"></i></a>&nbsp;<a href="{% url 'dps.demande.dimensionnement.delete' dps.hash_id dim.id %}" class="btn btn-danger btn-mini" title="supprimer"><i class="icon-trash"></i></a></td>
     </tr>
     {% endfor %}
     </table>
