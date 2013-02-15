@@ -1,7 +1,7 @@
 {% extends 'auth.html' %}
 
 
-{% block titre %}DUlSine - Demande de DPS{% endblock %}
+{% block titre %}DUlSine - Demande de DPS{% if not nouveau %} (modification){% endif %}{% endblock %}
 
 
 {% block corps %}
