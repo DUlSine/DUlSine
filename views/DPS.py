@@ -60,7 +60,8 @@ def index(request, structure):
 def details(request, structure, dim_id):
     # Check that the structure does exist
     Struct = get_object_or_404(Structure, numero = structure)
-    dimensionnement = get_object_or_404(Dimensionnement, pk = dim_id)
+    # TODO: add the possibility to share DPS between structures
+    dimensionnement = get_object_or_404(Dimensionnement, pk = dim_id, DPS__structure = Struct)
 
     return render_to_response('dps/details.html', {'structure': Struct, 'dim': dimensionnement}, context_instance = RequestContext(request))
 
