@@ -63,7 +63,18 @@ def details(request, structure, dim_id):
     # TODO: add the possibility to share DPS between structures
     dimensionnement = get_object_or_404(Dimensionnement, pk = dim_id, DPS__structure = Struct)
 
-    return render_to_response('dps/details.html', {'structure': Struct, 'dim': dimensionnement}, context_instance = RequestContext(request))
+    # Check if the user has a wish or is already subscribed
+    subscription = Inscription.objects.filter(benevole = request.user, team__dimensionnement = dimensionnement)
+    if subscription.count() == 1:
+        fonction = subscription[0].get_fonction_display()
+        wish = ''
+    else:
+        fonction = ''
+        wish = Wish.objects.filter(benevole = request.user, dimensionnement = dimensionnement)
+        if wish.count() == 1:
+            wish = wish[0].get_wish_display()
+
+    return render_to_response('dps/details.html', {'structure': Struct, 'dim': dimensionnement, 'fonction': fonction, 'wish': wish}, context_instance = RequestContext(request))
 
 
 

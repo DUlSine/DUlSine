@@ -16,6 +16,18 @@
   <h1>{{ dim }}{% if user.is_staff %} <small><a href="{% url 'dps.admin.dimensionnement.details' dim.DPS.structure.numero dim.DPS.id dim.id %}">Admin</a></small>{% endif %}</h1>
 </div>
 
+{% if fonction %}
+<div class="alert alert-success">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  Vous-êtes «{{ fonction }}» sur ce DPS
+</div>
+{% elif wish %}
+<div class="alert alert-warning">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  Vous-êtes «{{ wish }}» pour ce DPS
+</div>
+{% endif %}
+
 <div class="row">
   <div class="span12">
     <h4 class="modal-header">Informations générales</h4>
