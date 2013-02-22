@@ -30,7 +30,7 @@
       {% endif %}
       {% if dim.effectifs_public > 0 %}
       <dt>Public</dt>
-      <dd>{{ dim.effectifs_public }} personnes de {{ dim.age_public }} (besoins specifiques : {{ dim.besoins_specifiques }})</dd>
+      <dd>{{ dim.effectifs_public }} personnes de {{ dim.age_public }} (besoins specifiques : {{ dim.besoins_specifiques|default:"aucun" }})</dd>
       {% endif %}
       {% if dim.effectifs_acteurs > 0 %}
       <dt>Acteurs</dt>
