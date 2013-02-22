@@ -31,7 +31,7 @@
     <div class="span6">
       <legend>Dimensionnement :</legend>
       <div class="control-group {% if form.nom.errors %}error{% endif %}">
-        <label class="control-label" for="id_nom">Nom</label>
+        <label class="control-label" for="id_nom">Nom (facultatif)</label>
         <div class="controls">
           {{ form.nom }}
           {% for error in form.nom.errors %}
@@ -200,7 +200,7 @@
     <div class="span6">
       <legend>Secours publics :</legend>
       <div class="control-group {% if form.centre_sdis.errors %}error{% endif %}">
-        <label class="control-label" for="id_centre_sdis">Centre de secours</label>
+        <label class="control-label" for="id_centre_sdis">Centre de secours (Pompier)</label>
         <div class="controls">
           {{ form.centre_sdis }}
           {% for error in form.centre_sdis.errors %}
