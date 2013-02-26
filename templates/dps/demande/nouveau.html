@@ -21,12 +21,19 @@
   <h1>Demande de DPS</h1>
 </div>
 
-<p>Pour faire la demande pour un poste de secours (DPS), veuillez remplir le formulaire suivant aussi précisément que possible.<p>
+<p>Afin de remplir la demande pour un poste de secours (DPS), il vous faut remplir le questionnaire ci-contre ainsi que le suivant.</p>
+<p>Dans l'ordre vous serez ammenés à décrire :</p>
+<dl class="dl-horizontal">
+  <dt>La manifestation</dt>
+  <dd>Informations diverses sur vous et sur votre manifestation</dd>
+  <dt>Les journées</dt>
+  <dd>Pour chacunes des journées de votre manifestation, il faudra remplir un «dimenionnement». Ceci nous permet de déterminer le nombre adéquat de secouristes dont vous avez besoin pour chacuns des jours.</dd>
+</dl>
 
 {% if form_orga.errors or form_dps.errors %}
 <div class="alert alert-error">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <strong>Attention !</strong> certains éléments de la page sont mal remplis.
+  <strong>Attention !</strong> les champs, indiqués en rouge dans la page, sont mal remplis.
 </div>
 {% endif %}
 
@@ -317,6 +324,6 @@
       </div>
     </div>
   </div>
-  <button type="submit" class="btn">{% if nouveau %}Envoyer la demande{% else %}Enregistrer{% endif %}</button>
+  <button type="submit" class="btn">{% if nouveau %}Page suivante{% else %}Enregistrer{% endif %}</button>
 </form>
 {% endblock %}
