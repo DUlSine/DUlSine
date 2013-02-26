@@ -93,7 +93,7 @@
   </div>
 
   <div class="span12">
-    <h2>Liste des dimensionnements</h2>
+    <h2>Liste des dimensionnements <small><a href="{% url 'dps.demande.dimensionnement' dps.hash_id %}">Ajouter</a></small></h2>
     {% if dims %}
     <table class="table table-striped">
     <thead>
@@ -133,10 +133,9 @@
     </table>
     {% else %}
     <div class="alert">
-      <strong>Attention :</strong> auncun dimensionnement pour ce DPS. Cliquer sur le bouton ci-dessous.
+      <strong>Attention :</strong> auncun dimensionnement pour ce DPS. Cliquez sur le liens «Ajouter».
     </div>
     {% endif %}
-    <p><a href="{% url 'dps.demande.dimensionnement' dps.hash_id %}" class="btn btn-default">ajouter un dimensionnement</a></p>
   </div>
 </div>
 {% endblock %}
