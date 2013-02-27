@@ -23,6 +23,13 @@ class OrganisateurForm(ModelForm):
             'contact_civilite': RadioSelect,
             'representant_civilite': RadioSelect
         }
+    def __init__(self, *args, **kwargs):
+        super(OrganisateurForm, self).__init__(*args, **kwargs)
+        # Add HTML5 attributes
+        self.fields['contact_civilite'].widget.attrs['autofocus'] = 'autofocus'
+        self.fields['contact_fonction'].widget.attrs['placeholder'] = 'président, trésorier, ...'
+        self.fields['representant_fonction'].widget.attrs['placeholder'] = 'président, trésorier, ...'
+
 
 
 class DPSForm(ModelForm):
@@ -32,6 +39,12 @@ class DPSForm(ModelForm):
             'contact_sur_place_civilite': RadioSelect
         }
         exclude = ('hash_id', 'structure', 'organisateur', 'prix')
+
+    def __init__(self, *args, **kwargs):
+        super(DPSForm, self).__init__(*args, **kwargs)
+        # Add HTML5 attributes
+        self.fields['objet'].widget.attrs['placeholder'] = 'concert, spectacle, repas, ...'
+
 
 
 class DimensionnementForm(ModelForm):
@@ -43,6 +56,15 @@ class DimensionnementForm(ModelForm):
             'E2': RadioSelect
         }
         exclude = ('DPS', 'IS')
+
+    def __init__(self, *args, **kwargs):
+        super(DimensionnementForm, self).__init__(*args, **kwargs)
+        # Add HTML5 attributes
+        self.fields['nom'].widget.attrs['autofocus'] = 'autofocus'
+        self.fields['debut'].widget.attrs['placeholder'] = 'jj/mm/aaaa hh:mm'
+        self.fields['fin'].widget.attrs['placeholder'] = 'jj/mm/aaaa hh:mm'
+        self.fields['besoins_specifiques'].widget.attrs['placeholder'] = 'aucun'
+
 
 
 @login_required
