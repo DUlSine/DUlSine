@@ -20,11 +20,25 @@ class BenevoleForm(ModelForm):
         model = Benevole
         exclude = ("user",)
 
+    def __init__(self, *args, **kwargs):
+        super(BenevoleForm, self).__init__(*args, **kwargs)
+        # Add HTML5 attributes
+        self.fields['date_naissance'].widget.attrs['placeholder'] = 'jj/mm/aaaa'
+        self.fields['telephone'].widget.attrs['placeholder'] = '06.00.00.00.00'
+
+
+
 class DUlSineUserCreationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ("first_name", "last_name", "email", \
                   "username", "password1", "password2")
+
+    def __init__(self, *args, **kwargs):
+        super(DUlSineUserCreationForm, self).__init__(*args, **kwargs)
+        # Add HTML5 attributes
+        self.fields['username'].widget.attrs['autofocus'] = 'autofocus'
+        self.fields['email'].widget.attrs['placeholder'] = '@example.com'
 
 
 @login_required
