@@ -24,7 +24,7 @@
 {% elif wish %}
 <div class="alert alert-warning">
   <button type="button" class="close" data-dismiss="alert">&times;</button>
-  Vous-êtes «{{ wish }}» pour ce DPS
+  Vous-êtes «{{ wish.get_simple_text }}» pour ce DPS
 </div>
 {% endif %}
 
