@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 # vim: set ts=4
 
+from django.core.mail import EmailMessage
 from django.db import models
-from dulsine_commons import TEAM_TYPES, DIPLOME_SECOURS, WISH_CHOICES
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.template.loader import render_to_string
 
+from dulsine_commons import TEAM_TYPES, DIPLOME_SECOURS, WISH_CHOICES, WISH_ND
 from benevole import Benevole
 from DPS import Dimensionnement
 
@@ -34,6 +38,28 @@ class Wish(models.Model):
 
     def __unicode__(self):
         return u"%s => %s : %s" %(self.dimensionnement, self.benevole, self.get_wish_display())
+
+    def get_simple_text(self):
+        if self.wish == WISH_ND:
+            return 'indisponible'
+        else:
+            return 'disponible'
+
+
+# Callback that send a mail when a wish is done
+@receiver(post_save, sender = Wish)
+def wish_callback(sender, **kwargs):
+    # TODO: add a Reply-To to help users
+    # TODO: add the right person in Cc
+    # TODO: set the From field
+    wish = kwargs['instance']
+    msg = EmailMessage(subject = '[DUlSine: %s] %s' %(wish.get_simple_text(), wish.dimensionnement),
+                       body = render_to_string('dps/wish.email',
+                                        {'dim': wish.dimensionnement,
+                                         'user': wish.benevole.user,
+                                         'wish': wish}),
+                       to = [wish.benevole.user.email])
+    msg.send(fail_silently = False)
 
 
 

@@ -1,0 +1,13 @@
+Bonjour {{ user.first_name }},
+
+vous êtes maintenant marqué(e) comme {{ wish.get_simple_text }} pour le DPS :
+{{ dim }} {% if dim.debut|date:"d/m/y" == dim.fin|date:"d/m/y" %}le {{ dim.debut|date:"l d/m/y" }} de {{ dim.debut|date:"H:i" }} à {{ dim.fin|date:"H:i" }}{% else %}du {{ dim.debut|date:"l d/m/y" }} à {{ dim.debut|date:"H:i" }} au {{ dim.fin|date:"l d/m/y" }} à {{ dim.fin|date:"H:i" }}{% endif %}
+
+Pour rappel, vous n'êtes PAS encore INSCRIT(e) pour ce DPS.
+Vous recevrez un mail lorsque ceci sera le cas.
+
+
+Merci et bonne journée
+
+-- 
+DUlSine
