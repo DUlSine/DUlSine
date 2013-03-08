@@ -7,6 +7,7 @@ from django.test.client import Client
 from django.utils import unittest
 
 from DUlSine.models import *
+from DUlSine.views.DPS import *
 
 
 class URLTest(unittest.TestCase):
@@ -104,3 +105,55 @@ class DimensionnementTest(unittest.TestCase):
         self.assertEqual(self.nouveau_dimensionnement(251, True, 0.25, 0.35, 0.40).calculIS(True), 4)
         # Un PAPS n'est pas adapté pour les acteurs
         self.assertEqual(self.nouveau_dimensionnement(251, False, 0.40, 0.35, 0.25).calculIS(False), 4)
+
+
+class DPSRequestTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_demande(self):
+        self.assertEqual(self.client.get('/DUlSine/DPS/demande').status_code, 301)
+
+        # First request
+        response = self.client.get('/DUlSine/DPS/demande/')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.templates), 3)
+        self.assertEqual(response.templates[0].name, 'dps/demande/nouveau.html')
+        self.assertEqual(response.templates[1].name, 'auth.html')
+        self.assertEqual(response.templates[2].name, 'base.html')
+
+        self.assertEqual(response.context['nouveau'], True)
+        form_dps = response.context['form_dps']
+        self.assertEqual(len(form_dps.errors.keys()), 0)
+        self.assertEqual(type(form_dps), DPSForm)
+        self.assertEqual(form_dps.fields.keys(), ['intitule', 'objet', 'lieu', 'circuit', 'superficie',
+                                                  'distance', 'risques', 'adresse_rdv', 'contact_sur_place_nom',
+                                                  'contact_sur_place_prenom', 'contact_sur_place_civilite',
+                                                  'contact_sur_place_telephone', 'remarques'])
+
+        form_orga = response.context['form_orga']
+        self.assertEqual(type(form_orga), OrganisateurForm)
+        self.assertEqual(form_orga.fields.keys(), ['nom', 'adresse', 'contact_nom', 'contact_prenom',
+                                                   'contact_civilite', 'contact_fonction', 'representant_nom',
+                                                   'representant_prenom', 'representant_civilite',
+                                                   'representant_fonction', 'telephone', 'portable',
+                                                   'fax', 'email'])
+
+        # Post the request now
+        response = self.client.post('/DUlSine/DPS/demande/')
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.templates), 3)
+        self.assertEqual(response.templates[0].name, 'dps/demande/nouveau.html')
+        self.assertEqual(response.templates[1].name, 'auth.html')
+        self.assertEqual(response.templates[2].name, 'base.html')
+
+        self.assertEqual(response.context['nouveau'], True)
+        form_dps = response.context['form_dps']
+        self.assertEqual(form_dps.errors.keys(), ['objet', 'distance', 'adresse_rdv', 'contact_sur_place_telephone',
+                                                  'contact_sur_place_nom', 'risques', 'intitule',
+                                                  'contact_sur_place_prenom', 'contact_sur_place_civilite',
+                                                  'circuit', 'lieu', 'superficie'])
+        form_orga = response.context['form_orga']
+        self.assertEqual(form_orga.errors.keys(), ['representant_civilite', 'nom', 'contact_nom', 'contact_fonction',
+                                                   'contact_prenom', 'adresse', 'representant_nom', 'representant_prenom',
+                                                   'representant_fonction', 'contact_civilite', 'email'])
