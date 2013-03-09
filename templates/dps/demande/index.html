@@ -113,10 +113,10 @@
         <a href="{% url 'dps.demande.dimensionnement.modification' dps.hash_id dim.id %}" class="btn btn-primary btn-mini" title="modifier"><i class="icon-pencil"></i></a>
         <a href="{% url 'dps.demande.dimensionnement.copy' dps.hash_id dim.id %}" class="btn btn-success btn-mini" title="dupliquer"><i class="icon-plus-sign"></i></a>
         <a href="#deleteModal{{ dim.id }}" role="button" class="btn btn-danger btn-mini" title="supprimer" data-toggle="modal"><i class="icon-trash"></i></a>
-        <div id="deleteModal{{ dim.id }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div id="deleteModal{{ dim.id }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="deleteModal{{ dim.id }}" aria-hidden="true">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3 id="myModalLabel">Suppression</h3>
+            <h3 id="deleteModal{{ dim.id }}">Suppression</h3>
           </div>
           <div class="modal-body">
             <p>Etes-vous certains de supprimer ce dimensionnement ?</p>
