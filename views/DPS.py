@@ -159,6 +159,18 @@ def demande_details(request, dps_hash):
 
 
 
+def demande_envoyer(request, dps_hash):
+    dps = get_object_or_404(DPS, hash_id = dps_hash)
+
+    # Test that we have at least 1 dimensionnement
+    if(Dimensionnement.objects.filter(DPS = dps).count() == 0):
+        return HttpResponseRedirect(reverse('dps.demande.details', args = [dps_hash]))
+
+    # TODO: to implement completely
+    raise Http404
+
+
+
 def demande_verification(request, dps_hash):
     dps = get_object_or_404(DPS, hash_id = dps_hash)
     return render_to_response('dps/demande/resume.html', {'dps': dps }, context_instance = RequestContext(request))
