@@ -18,14 +18,11 @@ class URLTest(unittest.TestCase):
         self.assertEqual(self.client.get('/DUlSine/DPS/').status_code, 404)
 
         self.assertEqual(self.client.get('/DUlSine/38/DPS').status_code, 301)
-        self.assertEqual(self.client.get('/DUlSine/38/DPS/').status_code, 200)
         self.assertEqual(self.client.get('/DUlSine/arrt/DPS/').status_code, 404)
-
         self.assertEqual(self.client.get('/DUlSine/3802/DPS/123456').status_code, 301)
-        self.assertEqual(self.client.get('/DUlSine/3802/DPS/123456/').status_code, 404)
 
-        self.assertEqual(self.client.get('/DUlSine/3802/DPS/demande').status_code, 301)
-        self.assertEqual(self.client.get('/DUlSine/3802/DPS/demande/').status_code, 200)
+        self.assertEqual(self.client.get('/DUlSine/DPS/demande').status_code, 301)
+        self.assertEqual(self.client.get('/DUlSine/DPS/demande/').status_code, 200)
 
         self.assertEqual(self.client.get('/DUlSine/3802/DPS/calendrier').status_code, 301)
         self.assertEqual(self.client.get('/DUlSine/3802/DPS/calendrier/').status_code, 200)
@@ -36,11 +33,6 @@ class URLTest(unittest.TestCase):
         self.assertEqual(self.client.get('/DUlSine/3802/DPS/calendrier/562/981/').status_code, 200)
         self.assertEqual(self.client.get('/DUlSine/3802/DPS/calendrier/562/981/re').status_code, 404)
         self.assertEqual(self.client.get('/DUlSine/3802/DPS/calendrier/562/981/123').status_code, 404)
-
-    def test_benevole(self):
-        self.assertEqual(self.client.get('/DUlSine/1230/benevoles').status_code, 301)
-        self.assertEqual(self.client.get('/DUlSine/1230/benevoles/').status_code, 404)
-        self.assertEqual(self.client.get('/DUlSine/3810/benevoles/').status_code, 200)
 
 
 class DimensionnementTest(unittest.TestCase):
