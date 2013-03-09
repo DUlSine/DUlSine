@@ -115,7 +115,7 @@
         <a href="#deleteModal{{ dim.id }}" role="button" class="btn btn-danger btn-mini" title="supprimer" data-toggle="modal"><i class="icon-trash"></i></a>
         <div id="deleteModal{{ dim.id }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h3 id="myModalLabel">Suppression</h3>
           </div>
           <div class="modal-body">
@@ -133,20 +133,20 @@
     </table>
     <center>
       <a href="#sendModal" role="button" class="btn btn-success" title="envoyer" data-toggle="modal">Envoyer</a>
-      <div id="sendModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="sendModal" aria-hidden="true">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-          <h3 id="sendModal">Envoyer</h3>
-        </div>
-        <div class="modal-body">
-          <p>Etes-vous certains que votre demande pour «{{ dps }}» est complète ?</p>
-        </div>
-        <div class="modal-footer">
-          <button class="btn" data-dismiss="modal" aria-hidden="true">Annuler</button>
-          <a href="{% url 'dps.demande.envoyer' dps.hash_id %}" class="btn btn-success">Envoyer</a>
-        </div>
-      </div>
     </center>
+    <div id="sendModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="sendModal" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 id="sendModal">Envoyer</h3>
+      </div>
+      <div class="modal-body">
+        <p>Etes-vous certains que votre demande pour «{{ dps }}» est complète ?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Annuler</button>
+        <a href="{% url 'dps.demande.envoyer' dps.hash_id %}" class="btn btn-success">Envoyer</a>
+      </div>
+    </div>
     {% else %}
     <div class="alert">
       <strong>Attention :</strong> auncun dimensionnement pour ce DPS. Cliquez sur le liens «Ajouter».
