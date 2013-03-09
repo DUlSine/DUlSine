@@ -131,6 +131,9 @@
     </tr>
     {% endfor %}
     </table>
+    <center>
+      <a href="{% url 'dps.demande.envoyer' dps.hash_id %}" class="btn btn-success">Envoyer</a>
+    </center>
     {% else %}
     <div class="alert">
       <strong>Attention :</strong> auncun dimensionnement pour ce DPS. Cliquez sur le liens «Ajouter».
