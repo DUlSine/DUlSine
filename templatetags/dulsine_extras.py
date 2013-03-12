@@ -2,7 +2,7 @@ from django import template
 from DUlSine.models.DPS import Dimensionnement
 from DUlSine.models.team import Inscription, Wish
 
-from DUlSine.models.dulsine_commons import DIPLOME_CI, DIPLOME_PSC1, DIPLOME_SECOURS, WISH_ND
+from DUlSine.models.dulsine_commons import DIPLOME_CI, DIPLOME_PSC1, WISH_ND
 
 register = template.Library()
 
