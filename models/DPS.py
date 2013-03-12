@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 # vim: set ts=4
 
+import binascii
 from decimal import Decimal
 import math
-import os, binascii
+import os
 
 from django.db import models
 from django.db.models import Q
@@ -47,30 +48,29 @@ class DPS(models.Model):
     prix = models.IntegerField(default = 0)
     remarques = models.CharField(max_length = 500, blank = True)
 
-
     def __unicode__(self):
         return self.intitule
 
 
 RISQUES_P2 = (
-    ( Decimal("0.25"), 'Public Assis : spectacle, cérémonie culturelle, réunion publique'),
-    ( Decimal("0.3"),  'Public debout : cérémonie culturelle, réunion publique,restauration, exposition, foire, salon, comice agricole, ..'),
-    ( Decimal("0.35"), 'Public debout : spectacle avec public statique, fête foraine, rendez-vous sportif avec protection du public par rapport à l’évènement, ...'),
-    ( Decimal("0.4"),  'Public debout : spectacle avec public dynamique, danse, féria, fête votive, carnaval, spectacle de rue, évènement se déroulant sur plusieurs jours avec présence permanente du public')
+    (Decimal("0.25"), 'Public Assis : spectacle, cérémonie culturelle, réunion publique'),
+    (Decimal("0.3"), 'Public debout : cérémonie culturelle, réunion publique,restauration, exposition, foire, salon, comice agricole, ..'),
+    (Decimal("0.35"), 'Public debout : spectacle avec public statique, fête foraine, rendez-vous sportif avec protection du public par rapport à l’évènement, ...'),
+    (Decimal("0.4"), 'Public debout : spectacle avec public dynamique, danse, féria, fête votive, carnaval, spectacle de rue, évènement se déroulant sur plusieurs jours avec présence permanente du public')
 )
 
 RISQUES_E1 = (
-    ( Decimal("0.25"), 'Permanente (bâtiment, salle en dur,..) voies publics avec accès dégagés'),
-    ( Decimal("0.3"),  'Non permanente (gradins, tribunes, chapiteaux,..) espace naturels ≤ 2 hectares, brancardage 150m <longueur ≤300m Terrain en pente sur plus de 100 m'),
-    ( Decimal("0.35"), 'Espace naturels : 2 ha < surface ≤ 5 ha, brancardage 300m <longueur ≤600m, terrain en pente sur plus de 150m. Autres conditions d’accès difficile'),
-    ( Decimal("0.4"),  'Espaces naturels : surface > 5 hectares - Brancardage : longueur > 600m. Terrain en pente sur plus de 300m autres conditions d\'accès difficiles. Progression des secours rendue difficile par la présence du public')
+    (Decimal("0.25"), 'Permanente (bâtiment, salle en dur,..) voies publics avec accès dégagés'),
+    (Decimal("0.3"), 'Non permanente (gradins, tribunes, chapiteaux,..) espace naturels ≤ 2 hectares, brancardage 150m <longueur ≤300m Terrain en pente sur plus de 100 m'),
+    (Decimal("0.35"), 'Espace naturels : 2 ha < surface ≤ 5 ha, brancardage 300m <longueur ≤600m, terrain en pente sur plus de 150m. Autres conditions d’accès difficile'),
+    (Decimal("0.4"), 'Espaces naturels : surface > 5 hectares - Brancardage : longueur > 600m. Terrain en pente sur plus de 300m autres conditions d\'accès difficiles. Progression des secours rendue difficile par la présence du public')
 )
 
 RISQUES_E2 = (
-    ( Decimal("0.25"), '≤ 10 minutes'),
-    ( Decimal("0.3"),  '> 10 minutes et ≤ 20 minutes'),
-    ( Decimal("0.35"), '> 20 minutes et ≤ 30 minutes'),
-    ( Decimal("0.4"),  '> 30 minutes')
+    (Decimal("0.25"), '≤ 10 minutes'),
+    (Decimal("0.3"), '> 10 minutes et ≤ 20 minutes'),
+    (Decimal("0.35"), '> 20 minutes et ≤ 30 minutes'),
+    (Decimal("0.4"), '> 30 minutes')
 )
 
 
@@ -87,11 +87,11 @@ class Dimensionnement(models.Model):
     fin = models.DateTimeField()
 
     effectifs_acteurs = models.IntegerField(default = 0)
-    age_acteurs       = models.CharField(max_length = 50, blank = True)
-    type_acteurs      = models.CharField(max_length = 1, choices = TYPES_ACTEURS, blank = True)
+    age_acteurs = models.CharField(max_length = 50, blank = True)
+    type_acteurs = models.CharField(max_length = 1, choices = TYPES_ACTEURS, blank = True)
 
-    effectifs_public    = models.IntegerField(default = 0)
-    age_public          = models.CharField(max_length = 50, blank = True)
+    effectifs_public = models.IntegerField(default = 0)
+    age_public = models.CharField(max_length = 50, blank = True)
     besoins_specifiques = models.CharField(max_length = 200, blank = True)
 
     medecin = models.CharField(max_length = 200, blank = True)
@@ -111,17 +111,16 @@ class Dimensionnement(models.Model):
     IS = models.IntegerField(null = True, blank = True)
 
     def __unicode__(self):
-        if self.nom != None:
-            return u"%s : %s" %(self.DPS, self.nom)
+        if self.nom is not None:
+            return u"%s : %s" % (self.DPS, self.nom)
         else:
-            return u"%s : %s - %s" %(self.DPS, self.debut, self.fin)
+            return u"%s : %s - %s" % (self.DPS, self.debut, self.fin)
 
     def shortName(self):
-        if self.nom != None:
+        if self.nom is not None:
             return self.nom
         else:
-            return u"%s - %s" %(self.debut, self.fin)
-
+            return u"%s - %s" % (self.debut, self.fin)
 
     def getIndice(self):
         """
@@ -129,7 +128,6 @@ class Dimensionnement(models.Model):
           @return the indicator
         """
         return self.P2 + self.E1 + self.E2
-
 
     def calculRISPublic(self):
         return self.calculRIS(True)
@@ -146,15 +144,14 @@ class Dimensionnement(models.Model):
         indice = self.P2 + self.E1 + self.E2
         P = 0
         if(public):
-            P = self.effectifs_public;
+            P = self.effectifs_public
         else:
-            P = self.effectifs_acteurs;
+            P = self.effectifs_acteurs
 
         if(P > 100000):
             P = 100000 + (P - 100000) / 2
 
         return indice * P / 1000
-
 
     def calculISPublic(self):
         return self.calculIS(True)
@@ -175,7 +172,7 @@ class Dimensionnement(models.Model):
             num_is = 2
             # A PAPS is not enough when protecting actors and if the public
             # helps took more than 30 minutes to come (E2 = 0.40)
-            if(public == False or self.E2 == 0.40):
+            if(public is False or self.E2 == 0.40):
                 num_is = 4
         elif(ris <= 4):
             num_is = 4
@@ -187,10 +184,9 @@ class Dimensionnement(models.Model):
 
         return num_is
 
-
     # Compute the required number of the given person
     def nombreISMax(self, formation):
-        if(self.IS == None):
+        if(self.IS is None):
             return 0
 
         if(formation == DIPLOME_CI):
@@ -204,11 +200,9 @@ class Dimensionnement(models.Model):
         else:
             assert(0)
 
-
     # Compute the current number of the given person
     def nombreIS(self, formation):
         return Inscription.objects.filter(team__dimensionnement = self, fonction = formation).count()
-
 
     # Compute the number of benevole marked as not available
     def nombreND(self):

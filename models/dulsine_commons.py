@@ -11,16 +11,16 @@ CIVILITES = (
 
 
 CIRCUITS = (
-        ('O', 'ouvert'),
-        ('F', 'ferme'),
-        ('N', 'pas de circuit')
+    ('O', 'ouvert'),
+    ('F', 'ferme'),
+    ('N', 'pas de circuit')
 )
 
 
 TYPES_ACTEURS = (
-        ('P', 'Professionnels'),
-        ('A', 'Amateurs'),
-        ('M', 'Mixte')
+    ('P', 'Professionnels'),
+    ('A', 'Amateurs'),
+    ('M', 'Mixte')
 )
 
 
@@ -40,7 +40,7 @@ DIPLOME_IPS = 4
 DIPLOME_CDPE = 5
 
 DIPLOME_SECOURS = (
-    (DIPLOME_CI,   'CI'),
+    (DIPLOME_CI, 'CI'),
     (DIPLOME_PSE2, 'PSE2'),
     (DIPLOME_PSE1, 'PSE1'),
     (DIPLOME_PSC1, 'PSC1'),
@@ -80,4 +80,3 @@ WISH_CHOICES = (
     (2, 'Intéressé'),
     (3, 'Très intéressé'),
 )
-

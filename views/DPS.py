@@ -23,13 +23,13 @@ class OrganisateurForm(ModelForm):
             'contact_civilite': RadioSelect,
             'representant_civilite': RadioSelect
         }
+
     def __init__(self, *args, **kwargs):
         super(OrganisateurForm, self).__init__(*args, **kwargs)
         # Add HTML5 attributes
         self.fields['contact_civilite'].widget.attrs['autofocus'] = 'autofocus'
         self.fields['contact_fonction'].widget.attrs['placeholder'] = 'président, trésorier, ...'
         self.fields['representant_fonction'].widget.attrs['placeholder'] = 'président, trésorier, ...'
-
 
 
 class DPSForm(ModelForm):
@@ -44,7 +44,6 @@ class DPSForm(ModelForm):
         super(DPSForm, self).__init__(*args, **kwargs)
         # Add HTML5 attributes
         self.fields['objet'].widget.attrs['placeholder'] = 'concert, spectacle, repas, ...'
-
 
 
 class DimensionnementForm(ModelForm):
@@ -66,7 +65,6 @@ class DimensionnementForm(ModelForm):
         self.fields['besoins_specifiques'].widget.attrs['placeholder'] = 'aucun'
 
 
-
 @login_required
 def index(request, structure):
     # Check that the structure does exist
@@ -75,7 +73,6 @@ def index(request, structure):
     # Get all the dimensionnements for that structure
     dimensionnements = Dimensionnement.objects.filter(DPS__structure = Struct)
     return render_to_response('dps/index.html', {'structure': Struct, 'all_dim': dimensionnements, 'DIPLOME_CI': DIPLOME_CI, 'DIPLOME_PSE2': DIPLOME_PSE2, 'DIPLOME_PSE1': DIPLOME_PSE1, 'DIPLOME_PSC1': DIPLOME_PSC1}, context_instance = RequestContext(request))
-
 
 
 @login_required
@@ -97,7 +94,6 @@ def details(request, structure, dim_id):
             wish = wish[0]
 
     return render_to_response('dps/details.html', {'structure': Struct, 'dim': dimensionnement, 'fonction': fonction, 'wish': wish}, context_instance = RequestContext(request))
-
 
 
 @login_required
@@ -134,7 +130,6 @@ def inscription(request, structure, dim_id, wish_num):
                         mimetype='application/json')
 
 
-
 def demande(request):
     if(request.method == 'POST'):
         form_orga = OrganisateurForm(request.POST)
@@ -151,12 +146,10 @@ def demande(request):
     return render_to_response('dps/demande/nouveau.html', {'form_orga': form_orga, 'form_dps': form_dps, 'nouveau': True}, context_instance = RequestContext(request))
 
 
-
 def demande_details(request, dps_hash):
     dps = get_object_or_404(DPS, hash_id = dps_hash)
     dims = Dimensionnement.objects.filter(DPS = dps)
     return render_to_response('dps/demande/index.html', {'dps': dps, 'dims': dims}, context_instance = RequestContext(request))
-
 
 
 def demande_envoyer(request, dps_hash):
@@ -170,11 +163,9 @@ def demande_envoyer(request, dps_hash):
     raise Http404
 
 
-
 def demande_verification(request, dps_hash):
     dps = get_object_or_404(DPS, hash_id = dps_hash)
-    return render_to_response('dps/demande/resume.html', {'dps': dps }, context_instance = RequestContext(request))
-
+    return render_to_response('dps/demande/resume.html', {'dps': dps}, context_instance = RequestContext(request))
 
 
 def demande_modification(request, dps_hash):
@@ -200,13 +191,12 @@ def demande_modification(request, dps_hash):
     return render_to_response('dps/demande/nouveau.html', {'form_orga': form_orga, 'form_dps': form_dps, 'dps': dps, 'nouveau': False}, context_instance = RequestContext(request))
 
 
-
 def dimensionnement(request, dps_hash, dim_id = None):
     # Check that the DPS does exist
     dps = get_object_or_404(DPS, hash_id = dps_hash)
 
     # Is it a new dimensionnement ?
-    if(dim_id == None):
+    if(dim_id is None):
         if(request.method == 'POST'):
             form = DimensionnementForm(request.POST)
             if(form.is_valid()):
@@ -224,12 +214,10 @@ def dimensionnement(request, dps_hash, dim_id = None):
     return render_to_response('dps/demande/dimensionnement_nouveau.html', {'form': form, 'dps': dps, 'nouveau': True}, context_instance = RequestContext(request))
 
 
-
 def dimensionnement_verification(request, dps_hash, dim_id):
     # Check that the Dimensionnement does exist and is associated with the right DPS
     dim = get_object_or_404(Dimensionnement, pk = dim_id, DPS__hash_id = dps_hash)
-    return render_to_response('dps/demande/dimensionnement_resume.html', {'dps': dim.DPS, 'dim': dim }, context_instance = RequestContext(request))
-
+    return render_to_response('dps/demande/dimensionnement_resume.html', {'dps': dim.DPS, 'dim': dim}, context_instance = RequestContext(request))
 
 
 def dimensionnement_modification(request, dps_hash, dim_id):
@@ -251,7 +239,6 @@ def dimensionnement_modification(request, dps_hash, dim_id):
     return render_to_response('dps/demande/dimensionnement_nouveau.html', {'form': form, 'dps': dim.DPS, 'nouveau': False}, context_instance = RequestContext(request))
 
 
-
 def dimensionnement_copy(request, dps_hash, dim_id):
     # Get the already existing DPS and corresponding Dimensionnement
     dim = get_object_or_404(Dimensionnement, pk = dim_id, DPS__hash_id = dps_hash)
@@ -265,19 +252,16 @@ def dimensionnement_copy(request, dps_hash, dim_id):
     return HttpResponseRedirect(reverse('dps.demande.details', args = [dps_hash]))
 
 
-
 def dimensionnement_delete(request, dps_hash, dim_id):
     # Get the already existing DPS and corresponding Dimensionnement
     dim = get_object_or_404(Dimensionnement, pk = dim_id, DPS__hash_id = dps_hash)
     dim.delete()
 
-    return HttpResponseRedirect(reverse('dps.demande.details', args = [ dps_hash]))
-
+    return HttpResponseRedirect(reverse('dps.demande.details', args = [dps_hash]))
 
 
 def calendrier(request, structure, avant = None, apres = None):
     return HttpResponse(status = 200)
-
 
 
 def devis(request, structure, dps_id):
@@ -287,15 +271,13 @@ def devis(request, structure, dps_id):
     return render_to_response('dps/devis.html', {'structure': Struct, 'dps': dps}, context_instance = RequestContext(request))
 
 
-
 @login_required
 def admin_index(request, structure):
     Struct = get_object_or_404(Structure, numero = structure)
     # Get all the dimensionnements for that structure
     dimensionnements = Dimensionnement.objects.filter(DPS__structure = Struct)
 
-    return render_to_response('dps/admin/index.html',  {'structure': Struct, 'all_dim': dimensionnements, 'DIPLOME_CI': DIPLOME_CI, 'DIPLOME_PSE2': DIPLOME_PSE2, 'DIPLOME_PSE1': DIPLOME_PSE1, 'DIPLOME_PSC1': DIPLOME_PSC1}, context_instance = RequestContext(request))
-
+    return render_to_response('dps/admin/index.html', {'structure': Struct, 'all_dim': dimensionnements, 'DIPLOME_CI': DIPLOME_CI, 'DIPLOME_PSE2': DIPLOME_PSE2, 'DIPLOME_PSE1': DIPLOME_PSE1, 'DIPLOME_PSC1': DIPLOME_PSC1}, context_instance = RequestContext(request))
 
 
 @login_required
@@ -305,7 +287,6 @@ def admin_details(request, structure, dps_id):
     dimensionnements = Dimensionnement.objects.filter(DPS = dps)
 
     return render_to_response('dps/admin/details.html', {'structure': Struct, 'dps': dps, 'all_dim': dimensionnements, 'DIPLOME_CI': DIPLOME_CI, 'DIPLOME_PSE2': DIPLOME_PSE2, 'DIPLOME_PSE1': DIPLOME_PSE1, 'DIPLOME_PSC1': DIPLOME_PSC1}, context_instance = RequestContext(request))
-
 
 
 @login_required

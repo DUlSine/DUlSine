@@ -15,7 +15,7 @@ class Benevole(models.Model):
         ordering = ('user__last_name', 'user__first_name')
 
     def __unicode__(self):
-        return u"%s (%s)" %(self.user.get_full_name(), self.structure.nom)
+        return u"%s (%s)" % (self.user.get_full_name(), self.structure.nom)
 
     user = models.OneToOneField(User)
     structure = models.ForeignKey(Structure, verbose_name='structure de ratachement')
@@ -25,7 +25,6 @@ class Benevole(models.Model):
     adresse = models.CharField('adresse', max_length = 200)
     date_naissance = models.DateField('date de naissance')
     diplomes = models.CommaSeparatedIntegerField('diplômes', max_length = 200)
-
 
     def listDiplomes(self, lookup):
         diplomes = []
@@ -38,7 +37,6 @@ class Benevole(models.Model):
     # Return the only diploma for 'Secours'
     def diplomesSecours(self):
         return self.listDiplomes(DIPLOME_SECOURS_LIST)
-
 
     # Return the list of diploma for 'Conducteurs'
     def diplomesConducteur(self):

@@ -27,11 +27,10 @@ class BenevoleForm(ModelForm):
         self.fields['telephone'].widget.attrs['placeholder'] = '06.00.00.00.00'
 
 
-
 class DUlSineUserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ("first_name", "last_name", "email", \
+        fields = ("first_name", "last_name", "email",
                   "username", "password1", "password2")
 
     def __init__(self, *args, **kwargs):
@@ -47,7 +46,6 @@ def index(request, structure):
     benevoles = Benevole.objects.filter(structure = structure)
 
     return render_to_response('benevole/index.html', {'structure': Struct, 'benevoles': benevoles}, context_instance = RequestContext(request))
-
 
 
 @login_required
@@ -70,10 +68,8 @@ def details(request, benevole_id):
     return render_to_response('benevole/details.html', {'benevole': benevole, 'previous': previous_b, 'next': next_b}, context_instance = RequestContext(request))
 
 
-
 def calendrier(request, benevole_id, event_type = None, avant = None, apres = None):
     return HttpResponse(status = 200)
-
 
 
 def inscription(request):
@@ -91,8 +87,7 @@ def inscription(request):
     else:
         form_user = DUlSineUserCreationForm()
         form_benevole = BenevoleForm()
-    return render_to_response('benevole/inscription/nouveau.html', {'form_user' : form_user, 'form_benevole' : form_benevole}, context_instance = RequestContext(request))
-
+    return render_to_response('benevole/inscription/nouveau.html', {'form_user': form_user, 'form_benevole': form_benevole}, context_instance = RequestContext(request))
 
 
 def inscription_confirmation(request):

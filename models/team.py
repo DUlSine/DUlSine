@@ -12,7 +12,6 @@ from benevole import Benevole
 from DPS import Dimensionnement
 
 
-
 class Team(models.Model):
     class Meta:
         app_label = 'DUlSine'
@@ -22,8 +21,7 @@ class Team(models.Model):
     taille = models.IntegerField()
 
     def __unicode__(self):
-        return u"%s (%s)" %(self.dimensionnement, self.get_team_type_display())
-
+        return u"%s (%s)" % (self.dimensionnement, self.get_team_type_display())
 
 
 class Wish(models.Model):
@@ -37,7 +35,7 @@ class Wish(models.Model):
     date = models.DateTimeField(auto_now_add = True)
 
     def __unicode__(self):
-        return u"%s => %s : %s" %(self.dimensionnement, self.benevole, self.get_wish_display())
+        return u"%s => %s : %s" % (self.dimensionnement, self.benevole, self.get_wish_display())
 
     def get_simple_text(self):
         if self.wish == WISH_ND:
@@ -53,14 +51,13 @@ def wish_callback(sender, **kwargs):
     # TODO: add the right person in Cc
     # TODO: set the From field
     wish = kwargs['instance']
-    msg = EmailMessage(subject = '[DUlSine: %s] %s' %(wish.get_simple_text(), wish.dimensionnement),
+    msg = EmailMessage(subject = '[DUlSine: %s] %s' % (wish.get_simple_text(), wish.dimensionnement),
                        body = render_to_string('dps/wish.email',
                                         {'dim': wish.dimensionnement,
                                          'user': wish.benevole.user,
                                          'wish': wish}),
                        to = [wish.benevole.user.email])
     msg.send(fail_silently = False)
-
 
 
 class Inscription(models.Model):
@@ -72,5 +69,4 @@ class Inscription(models.Model):
     fonction = models.IntegerField(choices = DIPLOME_SECOURS)
 
     def __unicode__(self):
-        return u"%s => %s : %s" %(self.team, self.get_fonction_display(), self.benevole)
-
+        return u"%s => %s : %s" % (self.team, self.get_fonction_display(), self.benevole)

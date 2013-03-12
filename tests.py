@@ -50,7 +50,6 @@ class DimensionnementTest(unittest.TestCase):
         dim.E2 = E2
         return dim
 
-
     def test_RIS(self):
         self.assertEqual(self.nouveau_dimensionnement(0, True, 0.25, 0.25, 0.25).calculRIS(True), 0)
         self.assertEqual(self.nouveau_dimensionnement(0, False, 0.25, 0.25, 0.25).calculRIS(False), 0)
@@ -79,7 +78,6 @@ class DimensionnementTest(unittest.TestCase):
         self.assertEqual(self.nouveau_dimensionnement(1000, False, 0.40, 0.40, 0.30).calculRIS(False), 0.40 + 0.40 + 0.30)
         self.assertEqual(self.nouveau_dimensionnement(1000, False, 0.40, 0.40, 0.35).calculRIS(False), 0.40 + 0.40 + 0.35)
         self.assertEqual(self.nouveau_dimensionnement(1000, False, 0.40, 0.40, 0.40).calculRIS(False), 0.40 + 0.40 + 0.40)
-
 
     def test_IS(self):
         self.assertEqual(self.nouveau_dimensionnement(0, True, 0.25, 0.25, 0.25).calculIS(True), 0)

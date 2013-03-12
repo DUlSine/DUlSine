@@ -11,7 +11,7 @@ register = template.Library()
 def badge(dim_id, function_id):
     function_id = int(function_id)
     if function_id < DIPLOME_CI or function_id > DIPLOME_PSC1:
-        raise template.TemplateSyntaxError("'badge'(%s) tag second argument should be in [1, 4]" %(function_id))
+        raise template.TemplateSyntaxError("'badge'(%s) tag second argument should be in [1, 4]" % (function_id))
 
     # Grab the corresponding Dimensionnement
     dim = Dimensionnement.objects.get(id = dim_id)
@@ -22,7 +22,7 @@ def badge(dim_id, function_id):
 
     # Filter out the badge if the function is not needed
     if(required == 0 or required == 0):
-        return u'';
+        return u''
 
     # Select the right badge
     if(current == 0):
@@ -36,8 +36,7 @@ def badge(dim_id, function_id):
     if(function_id == DIPLOME_PSC1 and current < required):
         badge = 'info'
 
-    return u"<span class=\"badge badge-%s\" dim-id=\"%d\">%d/%d</span>" %(badge, dim_id, current, required)
-
+    return u"<span class=\"badge badge-%s\" dim-id=\"%d\">%d/%d</span>" % (badge, dim_id, current, required)
 
 
 @register.simple_tag
@@ -58,10 +57,10 @@ def label(dim_id, user_id):
                 message = u"N.D."
             else:
                 class_name = 'warning'
-                message = u"%s" %(wish.get_wish_display())
+                message = u"%s" % (wish.get_wish_display())
 
     else:
         class_name = 'success'
-        message = u"%s" %(subscription.get_fonction_display())
+        message = u"%s" % (subscription.get_fonction_display())
 
-    return "<span class=\"label clickable label-%s\" dim-id=\"%s\" function-id=\"1\">%s</span>" %(class_name, dim_id, message)
+    return "<span class=\"label clickable label-%s\" dim-id=\"%s\" function-id=\"1\">%s</span>" % (class_name, dim_id, message)
