@@ -8,4 +8,5 @@ install:
     - pip install -q -r requirements.txt --use-mirrors
 
 script:
-    ./tests/manage.py test DUlSine
+    - ./tests/manage.py test DUlSine
+    - pep8 --statistics DUlSine
