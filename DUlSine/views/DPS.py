@@ -13,6 +13,9 @@ from django.template import RequestContext
 from DUlSine.models import Dimensionnement, DPS, Inscription, Organisateur, Structure, Team, Wish
 from DUlSine.models.dulsine_commons import *
 
+from pdf_helpers import generate_devis
+from StringIO import StringIO
+
 import json
 
 
@@ -268,7 +271,19 @@ def devis(request, structure, dps_id):
     Struct = get_object_or_404(Structure, numero = structure)
     dps = get_object_or_404(DPS, pk = dps_id, structure = Struct)
 
-    return render_to_response('dps/devis.html', {'structure': Struct, 'dps': dps}, context_instance = RequestContext(request))
+    # Create the response with a pdf attached
+    response = HttpResponse(mimetype='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename=%s' % ('Devis')
+    buff = StringIO()
+
+    # Create the pdf using reportlab
+    generate_devis(buff, dps)
+
+    # Dump the pdf stream
+    response.write(buff.getvalue())
+    buff.close()
+
+    return response
 
 
 @login_required
