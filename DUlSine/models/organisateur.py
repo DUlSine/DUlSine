@@ -30,3 +30,9 @@ class Organisateur(models.Model):
 
     def __unicode__(self):
         return self.nom
+
+    def contact(self):
+        return u"%s %s %s" % (self.get_contact_civilite_display(), self.contact_nom, self.contact_prenom)
+
+    def representantLegal(self):
+        return u"%s %s %s" % (self.get_representant_civilite_display(), self.representant_nom, self.representant_prenom)
