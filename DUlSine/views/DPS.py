@@ -273,7 +273,7 @@ def devis(request, structure, dps_id):
 
     # Create the response with a pdf attached
     response = HttpResponse(mimetype='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename=%s' % ('Devis')
+    response['Content-Disposition'] = 'attachment; filename=%s' % ('Devis.pdf')
     buff = StringIO()
 
     # Create the pdf using reportlab
