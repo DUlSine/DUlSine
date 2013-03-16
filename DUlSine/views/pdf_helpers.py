@@ -9,34 +9,34 @@ from reportlab.lib.units import inch
 from reportlab.platypus import Image, Paragraph, SimpleDocTemplate, Spacer
 
 def generate_devis(buff, dps):
- 
+
   # Our container for 'Flowable' objects
   elements = []
-   
+
   # A large collection of style sheets pre-made for us
   styles = getSampleStyleSheet()
-  
-  # Create the document 
+
+  # Create the document
   doc = SimpleDocTemplate(buff, pagesize = A4,
                           rightMargin = 72, leftMargin = 72, topMargin = 72, bottomMargin = 18,
                           title = "Devis - DPS du XX/XX/XXXX", author = "Croix-Rouge Francaise - UL de XXX", subject = "Devis")
-  
-  # Add elements to print in one raw at the end 
+
+  # Add elements to print in one raw at the end
   elements.append(Paragraph("XXX, le XXX XXX XXX", ParagraphStyle(name = 'Date', alignment = TA_RIGHT)))
-  
+
   #I = Image("logo_crf.gif")
   #I.drawHeight = 1.25 * inch * I.drawHeight / I.drawWidth
   #I.drawWidth = 1.25 * inch
   #I.hAlign = 'LEFT'
-  
+
   #elements.append(I)
-  
+
   elements.append(Spacer(1, 20))
   elements.append(Paragraph("Monsieur XXX XXX", ParagraphStyle(name = 'destinataire', alignment = TA_RIGHT)))
   elements.append(Paragraph("XXX organisateur XXX", ParagraphStyle(name = 'destinataire', alignment = TA_RIGHT)))
   elements.append(Spacer(1, 5))
   elements.append(Paragraph("XXX adresse organisateur XXX", ParagraphStyle(name = 'destinataire', alignment = TA_RIGHT)))
-  
+
   # Object
   identFirstLine = ParagraphStyle(name ='paragraph', firstLineIndent = 12)
   elements.append(Spacer(1, 20))
@@ -44,7 +44,7 @@ def generate_devis(buff, dps):
   elements.append(Spacer(1, 20))
   elements.append(Paragraph("XXX Monsieur, Madame, XXX", identFirstLine))
   elements.append(Paragraph("Suite à votre demande à l'occasion de la manifestation :", styles['Normal']))
-  
+
   # The title
   centered = ParagraphStyle(name = 'centered', alignment = TA_CENTER)
   elements.append(Spacer(1, 5))
@@ -52,7 +52,7 @@ def generate_devis(buff, dps):
   elements.append(Paragraph("Du XXX au XXX, de XXX à XXX", centered))
   elements.append(Paragraph("Qui se déroule à l'endroit suivant :", centered))
   elements.append(Paragraph("XXX", centered))
-  
+
   # List the persons
   ident = ParagraphStyle(name = 'listing', leftIndent = 30)
   elements.append(Spacer(1, 20))
@@ -73,7 +73,7 @@ def generate_devis(buff, dps):
   elements.append(Paragraph("X véhicule logistiques ou de transport de personnel", ident))
   elements.append(Paragraph("X véhicule de premiers secours à personnes (VPSP)", ident))
   elements.append(Paragraph("X véhicule tout terrain", ident))
-  
+
   # Create the needed style for the paragraphs
   elements.append(Spacer(1, 30))
   elements.append(Paragraph("La facturation de cette prestation est estimée à XXX€, pour la prestation et les horaires mentionnés ci-dessus.", identFirstLine))
@@ -83,15 +83,15 @@ def generate_devis(buff, dps):
   espèrons que vous ferez appel à nos services et à sa qualité.", identFirstLine))
   elements.append(Spacer(1, 20))
   elements.append(Paragraph("Dans l’attente d’une confirmation écrite de votre part, veuillez agréer, Monsieur, mes salutations distinguées.", identFirstLine))
-  
-  
+
+
   # Sign it
   elements.append(Spacer(1, 30))
   elements.append(Paragraph("XXX Auteur XXX", centered))
   elements.append(Paragraph("XXX Titre XXX", centered))
   elements.append(Paragraph("Croix-Rouge Française", centered))
   elements.append(Paragraph("UL de XXX", centered))
-   
+
   # Write the document to the buffer
   doc.build(elements)
 
