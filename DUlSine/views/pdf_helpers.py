@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # vim: set ts=4
+from datetime import date
 import sys
 
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT
@@ -24,7 +25,8 @@ def generate_devis(buff, dps):
                             subject = "Devis")
 
     # Add elements to print in one raw at the end
-    elements.append(Paragraph("XXX, le XXX XXX XXX", ParagraphStyle(name = 'Date', alignment = TA_RIGHT)))
+    elements.append(Paragraph("%s, le %s" % (dps.structure.nom, date.today().strftime("%A %d %B %Y")),
+                    ParagraphStyle(name = 'Date', alignment = TA_RIGHT)))
 
     #I = Image("logo_crf.gif")
     #I.drawHeight = 1.25 * inch * I.drawHeight / I.drawWidth
@@ -78,7 +80,7 @@ def generate_devis(buff, dps):
 
     # Create the needed style for the paragraphs
     elements.append(Spacer(1, 30))
-    elements.append(Paragraph("La facturation de cette prestation est estimée à XXX€, pour la prestation et les horaires mentionnés ci-dessus.", identFirstLine))
+    elements.append(Paragraph("La facturation de cette prestation est estimée à %d€, pour la prestation et les horaires mentionnés ci-dessus." % (dps.prix), identFirstLine))
     elements.append(Spacer(1, 20))
     elements.append(Paragraph("XXX Emplacement du DPS XXX.", identFirstLine))
     elements.append(Paragraph("Nous rappellons que les secouristes sont bénévoles et ne touchent aucune indemnités. Nous \
