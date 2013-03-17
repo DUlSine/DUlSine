@@ -1,5 +1,9 @@
 {% extends 'auth.html' %}
 
+{% block head %}
+  <link rel="stylesheet" type="text/css" media="screen" href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+{% endblock %}
+
 {% block titre %}DUlSine - Demande de DPS : Dimensionnement{% endblock %}
 
 {% block breadcrumb %}
@@ -42,7 +46,10 @@
       <div class="control-group {% if form.debut.errors %}error{% endif %}">
         <label class="control-label" for="id_debut">Début</label>
         <div class="controls">
-          {{ form.debut }}
+          <div id="debut" class="input-append">
+            {{ form.debut }}
+            <span class="add-on"><i class="icon-calendar"></i></span>
+          </div>
           {% for error in form.debut.errors %}
           <span class="help-inline">{{ error }}</span>
           {% endfor %}
@@ -51,7 +58,10 @@
       <div class="control-group {% if form.fin.errors %}error{% endif %}">
         <label class="control-label" for="id_fin">Fin</label>
         <div class="controls">
-          {{ form.fin }}
+          <div id="fin" class="input-append">
+            {{ form.fin }}
+            <span class="add-on"><i class="icon-calendar"></i></span>
+          </div>
           {% for error in form.fin.errors %}
           <span class="help-inline">{{ error }}</span>
           {% endfor %}
@@ -232,4 +242,17 @@
   <button type="submit" class="btn">{% if nouveau %}Ajouter le dimensionnement{% else %}Enregistrer{% endif %}</button>
 </form>
 
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript">
+  $(function() {
+    $('#debut, #fin').datetimepicker({
+      format: 'dd/MM/yyyy hh:mm',
+      pickSeconds: false,
+      language: 'fr',
+    });
+  });
+</script>
 {% endblock %}
