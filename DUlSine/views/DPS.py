@@ -4,7 +4,7 @@
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.db.models import Q
-from django.forms import ModelForm, RadioSelect
+from django.forms import ModelForm, RadioSelect, DateTimeInput
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
@@ -53,6 +53,8 @@ class DimensionnementForm(ModelForm):
     class Meta:
         model = Dimensionnement
         widgets = {
+            'debut': DateTimeInput(format="%d/%m/%Y %H:%M"),
+            'fin': DateTimeInput(format="%d/%m/%Y %H:%M"),
             'P2': RadioSelect,
             'E1': RadioSelect,
             'E2': RadioSelect
