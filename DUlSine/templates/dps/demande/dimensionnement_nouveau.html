@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block head %}
-  <link rel="stylesheet" href="{% get_static_prefix %}css/bootstrap-datetimepicker.min.css">
+  <link rel="stylesheet" href="{% get_static_prefix %}dulsine/css/bootstrap-datetimepicker.min.css">
 {% endblock %}
 
 {% block titre %}DUlSine - Demande de DPS : Dimensionnement{% endblock %}
@@ -246,8 +246,8 @@
 {% endblock %}
 
 {% block script %}
-<script type="text/javascript" src="{% get_static_prefix %}js/vendor/bootstrap-datetimepicker.min.js"></script>
-<script type="text/javascript" src="{% get_static_prefix %}js/vendor/bootstrap-datetimepicker.fr.js"></script>
+<script type="text/javascript" src="{% get_static_prefix %}dulsine/js/vendor/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="{% get_static_prefix %}dulsine/js/vendor/bootstrap-datetimepicker.fr.js"></script>
 <script type="text/javascript">
   $(function() {
     $('#debut, #fin').datetimepicker({

@@ -9,19 +9,19 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width">
 
-  <link rel="stylesheet" href="{% get_static_prefix %}css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% get_static_prefix %}dulsine/css/bootstrap.min.css">
   <style>
     body {
       padding-top: 60px;
       padding-bottom: 40px;
     }
     </style>
-  <link rel="stylesheet" href="{% get_static_prefix %}css/bootstrap-responsive.min.css">
-  <link rel="stylesheet" href="{% get_static_prefix %}css/main.css">
+  <link rel="stylesheet" href="{% get_static_prefix %}dulsine/css/bootstrap-responsive.min.css">
+  <link rel="stylesheet" href="{% get_static_prefix %}dulsine/css/main.css">
   {% block head %}
   {% endblock %}
 
-  <script src="{% get_static_prefix %}js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+  <script src="{% get_static_prefix %}dulsine/js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 
   <title>{% block titre %}{% endblock %}</title>
 </head>
@@ -54,8 +54,8 @@
 </footer>
 </div> <!-- /container -->
 
-<script>window.jQuery || document.write('<script src="{% get_static_prefix %}js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
-<script src="{% get_static_prefix %}js/vendor/bootstrap.min.js"></script>
+<script>window.jQuery || document.write('<script src="{% get_static_prefix %}dulsine/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="{% get_static_prefix %}dulsine/js/vendor/bootstrap.min.js"></script>
 {% block script %}
 {% endblock %}
 </body>
